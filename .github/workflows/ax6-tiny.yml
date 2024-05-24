@@ -23,7 +23,7 @@ jobs:
       #编译平台，X64包含X86
       CORE_TARGET: Redmi-AX6
       #默认主题
-      CORE_THEME: design
+      CORE_THEME: material
       #默认主机名
       CORE_NAME: Redmi-AX6
       #默认密码，仅作展示，更改无效
@@ -61,6 +61,9 @@ jobs:
       kernel_usage: stable
       builder_name: ophub
       auto_kernel: true
-      CORE_DOCKER: false
+      #打包的方式
+      CORE_Pack: qualcommax
+      #feeds.conf.default  -- patch 目录 使用默认的：false
+      CORE_feeds_conf: false
       
       
