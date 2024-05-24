@@ -1,0 +1,385 @@
+#云编译公用核心
+name: 联合公用核心
+
+# Controls when the workflow will run
+on:
+  #公用核心标识
+  workflow_call:
+    inputs:
+      UNION_TARGET:
+        required: true
+        type: string
+      UNION_THEME:
+        required: true
+        type: string
+      UNION_NAME:
+        required: true
+        type: string
+      UNION_PW:
+        required: true
+        type: string
+      UNION_IP:
+        required: true
+        type: string
+      UNION_URL:
+        required: true
+        type: string
+      UNION_BRANCH:
+        required: true
+        type: string
+      UNION_CFG:
+        required: true
+        type: string
+      UNION_other_CFG:
+        required: true
+        type: string
+      UNION_SOC:
+        required: true
+        type: string
+      UNION_PATCH:
+        required: true
+        type: string
+      UNION_REMOVE:
+        required: true
+        type: string
+      UNION_TAGS_NAME:
+        required: true
+        type: string
+      UNION_LINUX:
+        required: true
+        type: string
+      UNION_FILES:
+        required: true
+        type: string
+      DIY_P1_SH:
+        required: true
+        type: string
+      DIY_P2_SH:
+        required: true
+        type: string
+      DIY_P2_SH:
+        required: true
+        type: string
+      DIY_P3_SH:
+        required: true
+        type: string
+      UNION_TAG:
+        required: true
+        type: string
+      UNION_STORAGE:
+        required: true
+        type: string
+      kernel_repo:
+        required: true
+        type: string
+      kernel_usage:
+        required: true
+        type: string
+      builder_name:
+        required: true
+        type: string
+      auto_kernel:
+        required: true
+        type: string
+      UNION_DOCKER:
+        required: true
+        type: string
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+  UNION_TARGET: ${{inputs.UNION_TARGET}}
+  UNION_THEME: ${{inputs.UNION_THEME}}
+  UNION_NAME: ${{inputs.UNION_NAME}}
+  UNION_PW: ${{inputs.UNION_PW}}
+  UNION_IP: ${{inputs.UNION_IP}}
+  UNION_URL: ${{inputs.UNION_URL}}
+  UNION_BRANCH: ${{inputs.UNION_BRANCH}}
+  UNION_CFG: ${{inputs.UNION_CFG}}
+  UNION_other_CFG: ${{inputs.UNION_other_CFG}}
+  UNION_SOC: ${{inputs.UNION_SOC}}
+  UNION_PATCH: ${{inputs.UNION_PATCH}}
+  UNION_REMOVE: ${{inputs.UNION_REMOVE}}
+  UNION_TAGS_NAME: ${{inputs.UNION_TAGS_NAME}}
+  UNION_LINUX: ${{inputs.UNION_LINUX}}
+  UNION_FILES: ${{inputs.UNION_FILES}}
+  DIY_P1_SH: ${{inputs.DIY_P1_SH}}
+  DIY_P2_SH: ${{inputs.DIY_P2_SH}}
+  DIY_P3_SH: ${{inputs.DIY_P3_SH}}
+  DIY_P4_SH: ${{inputs.DIY_P4_SH}}
+  UNION_TAG: ${{inputs.UNION_TAG}}
+  UNION_STORAGE: ${{inputs.UNION_STORAGE}}
+  kernel_repo: ${{inputs.kernel_repo}}
+  kernel_usage: ${{inputs.kernel_usage}}
+  builder_name: ${{inputs.builder_name}}
+  auto_kernel: ${{inputs.auto_kernel}}
+  UNION_DOCKER: ${{inputs.UNION_DOCKER}}
+  TZ: Asia/Shanghai
+  
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+      - name: 项目检查
+        uses: actions/checkout@main
+        
+      - name: 清理服务器空间(Ubuntu)
+        uses: rmoyulong/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: true
+
+          # all of these default to true, but feel free to set to
+          # "false" if necessary for your workflow
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
+      - name: 检查分配的服务器性能
+        run: |
+          echo "警告⚠"
+          echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
+          echo -e "已知CPU型号（降序）：7763，8370C，8272CL，8171M，E5-2673 \n"
+          echo "--------------------------CPU信息--------------------------"
+          echo "CPU物理数量：$(cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l)"
+          echo -e "CPU核心信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
+          echo "--------------------------内存信息--------------------------"
+          echo "已安装内存详细信息："
+          echo -e "$(sudo lshw -short -C memory | grep GiB) \n"
+          echo "--------------------------硬盘信息--------------------------"
+          echo "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT        
+          
+      - name: 初始化编译环境
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo -E apt-get -qq update --fix-missing
+          sudo -E apt-get -qq update
+          sudo -E apt-get -y install $(cat $GITHUB_WORKSPACE/Ubuntu-2204.txt)
+          sudo -E apt-get -qq autoremove --purge
+          sudo -E apt-get -qq clean
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+          echo "status=success" >> ${GITHUB_OUTPUT}
+          df -Th 
+
+      - name: 检查脚本
+        run: |
+          dos2unix ./Scripts/*.sh
+          chmod +x ./Scripts/*.sh
+          
+          dos2unix ./soc/*.sh
+          chmod +x ./soc/*.sh
+          
+          dos2unix ./patch/*.sh
+          chmod +x ./patch/*.sh
+          
+      - name: 克隆源码库
+        working-directory: /workdir
+        run: |
+          # Set up compilation source code
+          if [[ "${{ inputs.UNION_URL }}" == *"openwrt/openwrt"* ]]; then
+              REPO_URL="https://github.com/openwrt/openwrt"
+              REPO_BRANCH="main"
+          elif [[ "${{ inputs.UNION_URL }}" == *"coolsnowwolf/lede"* ]]; then
+              REPO_URL="https://github.com/coolsnowwolf/lede"
+              REPO_BRANCH="master"
+          elif [[ "${{ inputs.UNION_URL }}" == *"immortalwrt/immortalwrt"* ]]; then
+              REPO_URL="https://github.com/immortalwrt/immortalwrt"
+              REPO_BRANCH="master"
+          else
+              REPO_URL="${{ inputs.OWRT_URL }}"
+              REPO_BRANCH="${{ inputs.OWRT_BRANCH }}"
+          fi
+          
+          df -hT $PWD
+          git clone -q --single-branch --depth=1 --branch=${REPO_BRANCH} ${REPO_URL} openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+
+      - name: 初始化变量
+        run: |
+          export UNION_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
+          export UNION_SOURCE=$(echo $UNION_URL | cut -d '/' -f 5-)
+          
+          echo "UNION_DATE=$UNION_DATE" >> $GITHUB_ENV
+          echo "UNION_SOURCE=$UNION_SOURCE" >> $GITHUB_ENV
+          echo "UNION_TARGET=$UNION_TARGET" >> $GITHUB_ENV
+          echo "UNION_THEME=$UNION_THEME" >> $GITHUB_ENV
+          echo "UNION_NAME=$UNION_NAME" >> $GITHUB_ENV
+          echo "UNION_PW=$UNION_PW" >> $GITHUB_ENV
+          echo "UNION_IP=$UNION_IP" >> $GITHUB_ENV
+          echo "UNION_URL=$UNION_URL" >> $GITHUB_ENV
+          echo "UNION_BRANCH=$UNION_BRANCH" >> $GITHUB_ENV            
+          echo "UNION_CFG=$UNION_CFG" >> $GITHUB_ENV
+          echo "UNION_other_CFG=$UNION_other_CFG" >> $GITHUB_ENV
+          echo "UNION_SOC=$UNION_SOC" >> $GITHUB_ENV
+          echo "UNION_PATCH=$UNION_PATCH" >> $GITHUB_ENV
+          echo "UNION_REMOVE=$UNION_REMOVE" >> $GITHUB_ENV
+          echo "UNION_TAGS_NAME=$UNION_TAGS_NAME" >> $GITHUB_ENV
+          echo "UNION_LINUX=$UNION_LINUX" >> $GITHUB_ENV
+          echo "UNION_FILES=$UNION_FILES" >> $GITHUB_ENV
+          echo "DIY_P1_SH=$DIY_P1_SH" >> $GITHUB_ENV
+          echo "DIY_P2_SH=$DIY_P2_SH" >> $GITHUB_ENV
+          echo "DIY_P3_SH=$DIY_P3_SH" >> $GITHUB_ENV
+          echo "DIY_P4_SH=$DIY_P4_SH" >> $GITHUB_ENV
+          echo "UNION_TAG=$UNION_TAG" >> $GITHUB_ENV
+          echo "UNION_STORAGE=$UNION_STORAGE" >> $GITHUB_ENV
+          echo "kernel_repo=$kernel_repo" >> $GITHUB_ENV
+          echo "kernel_usage=$kernel_usage" >> $GITHUB_ENV
+          echo "builder_name=$builder_name" >> $GITHUB_ENV
+          echo "auto_kernel=$auto_kernel" >> $GITHUB_ENV
+          echo "UNION_DOCKER=$UNION_DOCKER" >> $GITHUB_ENV
+ 
+      - name: 加载自定义订阅源
+        run: |
+          cd openwrt
+          ${GITHUB_WORKSPACE}/Scripts/${DIY_P1_SH}
+          echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
+
+      - name: 是否需要打补丁UNION_REMOVE
+        run: |
+          if [[ "${env.UNION_PATCH}" == *"false"* ]]; then
+            echo "不需要打补丁"
+          else
+            ${GITHUB_WORKSPACE}/patch/${env.UNION_PATCH}
+          fi
+ 
+      - name: 启动缓存[第二次起生效]
+        uses: rmoyulong/cachewrtbuild@main
+        with:
+          ccache: 'true'
+          prefix: ${{ github.workspace }}/openwrt
+          mixkey: ${{ env.REPO_URL }}/tree/${{ env.UNION_NAME }}?device=${{ env.UNION_CFG }}
+ 
+      - name: 更新订阅源
+        run: |
+          cd openwrt
+          
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+ 
+      - name: 单独处理的脚本
+        run: | 
+          if [[ "${env.UNION_SOC}" == *"false"* ]]; then
+            echo "没有需要单独处理的脚本"
+          else
+            ${GITHUB_WORKSPACE}/soc/${env.UNION_SOC}
+          fi
+ 
+      - name: 自定义设置
+        run: |
+          cd openwrt
+          curl -L -o package/base-files/files/etc/banner https://raw.githubusercontent.com/rmoyulong/AX6-Actions_Lede/master/ax6/cats_banner
+          $GITHUB_WORKSPACE/Scripts/$DIY_P2_SH
+          
+          if [ ! -d "./files" ]; then
+            mkdir -p ./files
+          fi
+          [ -e $GITHUB_WORKSPACE/patch/$UNION_FILES ] && cp -rf $GITHUB_WORKSPACE/patch/$UNION_FILES/* ./files
+          
+          rm -rf ./tmp* ./.config*
+          #rm -rf $(find ./ -type f -iname "*.config*") 
+          #make dirclean
+          if [[ "${env.UNION_other_CFG}" == *"false"* ]]; then
+            [ -e $GITHUB_WORKSPACE/config/$UNION_CFG ] && mv $GITHUB_WORKSPACE/config/$UNION_CFG .config
+          else
+            cat $GITHUB_WORKSPACE/other/UNION_other_CFG $GITHUB_WORKSPACE/config/$UNION_CFG >> .config
+          fi
+          
+          #openwrt库[不支持unblockneteasemusic unblockmusic]
+          if [[ "${{ inputs.OWRT_URL }}" == *"openwrt"* ]]; then
+            echo -e 'CONFIG_PACKAGE_luci-app-unblockmusic=n\n' >> .config
+            echo -e 'CONFIG_PACKAGE_luci-app-unblockneteasemusic=n\n' >> .config
+          fi
+          
+          if [[ "${env.DIY_P3_SH}" == *"false"* ]]; then
+            echo "没有设置DIY_P3_SH"
+          else
+            $GITHUB_WORKSPACE/Scripts/$DIY_P3_SH
+          fi
+          
+          if [[ "${env.DIY_P4_SH}" == *"false"* ]]; then
+            echo "没有设置DIY_P4_SH"
+          else
+            $GITHUB_WORKSPACE/Scripts/$DIY_P4_SH
+          fi
+          
+      - name: 是否有需要删除的插件
+        run: |
+          if [[ "${env.UNION_REMOVE}" == *"false"* ]]; then
+            echo "没有需要删除的插件"
+          else
+            ${GITHUB_WORKSPACE}/patch/${env.UNION_REMOVE}
+          fi
+  
+      - name: 下载编译环境
+        working-directory: ./openwrt
+        run: |
+          make defconfig
+          make download -j$(nproc)
+          find dl -size -1024c -exec ls -l {} \;
+          find dl -size -1024c -exec rm -f {} \;
+
+      - name: 编译固件
+        working-directory: ./openwrt
+        run: |
+          echo -e "$(nproc) thread compile"
+          make -j$(nproc) || make -j1 || make -j1 V=s
+          echo "status=success" >> $GITHUB_OUTPUT
+          echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV 
+
+      - name: 整理固件
+        id: organize
+        run: |
+          cd openwrt
+          cp -rf .config ./bin/targets/*/*/config.txt
+          cd bin/targets/*/*/
+          rm -rf ./packages
+          
+          if [[ $REPO_URL == *"immortalwrt"* ]]; then
+            gzip *.tar
+          fi
+          
+          #获得当前目录的路径信息
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          echo "::set-output name=status::success"
+          
+          #信息
+          export UNION_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
+          export UNION_SOURCE=$(echo ${{inputs.UNION_URL}} | cut -d '/' -f 5-)
+          echo "UNION_SOURCE=$OWRT_SOURCE" >> $GITHUB_ENV
+          echo "UNION_DATE=$OWRT_DATE" >> $GITHUB_ENV
+ 
+      - name: 上传固件
+        uses: rmoyulong/action-gh-release@master
+        #if: env.OWRT_DOCKER == 'false'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: OpenWrt_${{ env.UNION_SOURCE }}_${{ env.UNION_DATE }}
+          files: ${{ env.FIRMWARE }}/*
+          body: |
+            固件：${{ env.UNION_TAGS_NAME }}
+            源码：${{env.UNION_SOURCE}}
+            密码：password
+            地址：${{env.OWRT_IP}} 
+            
+      - name: 清理Releases
+        uses: rmoyulong/delete-older-releases@master
+        with:
+          keep_latest: 12
+          delete_tags: true
+          
+      - name: 清理Workflows
+        uses: rmoyulong/delete-workflow-runs@main
+        with:
+          retain_days: 0
+          keep_minimum_runs: 1 
