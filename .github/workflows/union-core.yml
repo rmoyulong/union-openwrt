@@ -1,5 +1,5 @@
 #云编译公用核心
-name: union-core
+name: 联合编译公用核心
 
 on:
   #公用核心标识
@@ -23,7 +23,61 @@ on:
       CORE_IP:
         required: true
         type: string
-
+      CORE_BRANCH:
+        required: true
+        type: string
+      CORE_tag_name:
+        required: true
+        type: string
+      CORE_header:
+        required: true
+        type: string
+      CORE_config:
+        required: true
+        type: string
+      CORE_patch:
+        required: true
+        type: string
+      CORE_soc:
+        required: true
+        type: string
+      CORE_DIY_P1_SH:
+        required: true
+        type: string
+      CORE_DIY_P2_SH:
+        required: true
+        type: string
+      CORE_DIY_P3_SH:
+        required: true
+        type: string
+      CORE_DIY_P4_SH:
+        required: true
+        type: string
+      CORE_remove:
+        required: true
+        type: string
+      CORE_LINUX:
+        required: true
+        type: string
+      CORE_FILES:
+        required: true
+        type: string
+      kernel_repo:
+        required: true
+        type: string
+      kernel_usage:
+        required: true
+        type: string
+      builder_name:
+        required: true
+        type: string
+      auto_kernel:
+        required: true
+        type: string
+      CORE_DOCKER:
+        required: true
+        type: string
+      
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   CORE_TARGET: ${{inputs.CORE_TARGET}}
@@ -32,35 +86,82 @@ env:
   CORE_URL: ${{inputs.CORE_URL}}
   CORE_PW: ${{inputs.CORE_PW}}
   CORE_IP: ${{inputs.CORE_IP}}
+  CORE_BRANCH: ${{inputs.CORE_BRANCH}}
+  CORE_tag_name: ${{inputs.CORE_tag_name}}
+  CORE_header: ${{inputs.CORE_header}}
+  CORE_config: config/${{inputs.CORE_config}}
+  CORE_patch: patch/${{inputs.CORE_patch}}
+  CORE_soc: soc/${{inputs.CORE_soc}}
+  CORE_DIY_P1_SH: Scripts/${{inputs.CORE_DIY_P1_SH}}
+  CORE_DIY_P2_SH: Scripts/${{inputs.CORE_DIY_P2_SH}}
+  CORE_DIY_P3_SH: Scripts/${{inputs.CORE_DIY_P3_SH}}
+  CORE_DIY_P4_SH: Scripts/${{inputs.CORE_DIY_P4_SH}}
+  CORE_remove: remove/${{inputs.CORE_remove}}
+  CORE_LINUX: ${{inputs.CORE_LINUX}}
+  CORE_FILES: patch/${{inputs.CORE_FILES}}
+  kernel_repo: ${{inputs.kernel_repo}}
+  kernel_usage: ${{inputs.kernel_usage}}
+  builder_name: ${{inputs.builder_name}}
+  auto_kernel: ${{inputs.auto_kernel}}
+  CORE_DOCKER: ${{inputs.CORE_DOCKER}}
 
 jobs:
   union_core:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Projects
+      - name: 清理服务器空间(Ubuntu)
+        uses: rmoyulong/free-disk-space@main
+        with:
+          # this might remove tools that are actually needed,
+          # if set to "true" but frees about 6 GB
+          tool-cache: true
+
+          # all of these default to true, but feel free to set to
+          # "false" if necessary for your workflow
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+        
+      - name: 项目检查
         uses: actions/checkout@main
 
-      - name: Initialization Environment
+      - name: 检查分配的服务器性能
+        run: |
+          echo "警告⚠"
+          echo "分配的服务器性能有限，若选择的插件过多，务必注意CPU性能！"
+          echo -e "已知CPU型号（降序）：7763，8370C，8272CL，8171M，E5-2673 \n"
+          echo "--------------------------CPU信息--------------------------"
+          echo "CPU物理数量：$(cat /proc/cpuinfo | grep "physical id" | sort | uniq | wc -l)"
+          echo -e "CPU核心信息：$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
+          echo "--------------------------内存信息--------------------------"
+          echo "已安装内存详细信息："
+          echo -e "$(sudo lshw -short -C memory | grep GiB) \n"
+          echo "--------------------------硬盘信息--------------------------"
+          echo "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT   
+
+      - name: 初始化编译环境
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          docker rmi $(docker images -q)
-          sudo -E rm -rf $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "1{s/\r$//;p;q}")
-          sudo -E apt -yqq update
-          sudo -E apt -yqq purge $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "2{s/\r$//;p;q}")
-          sudo -E apt -yqq full-upgrade
-          sudo -E apt -yqq install $(cat $GITHUB_WORKSPACE/Depends.txt | sed -n "3{s/\r$//;p;q}")
-          sudo -E apt -yqq autoremove --purge
-          sudo -E apt -yqq autoclean
-          sudo -E apt -yqq clean
+          sudo -E apt-get -qq update --fix-missing
+          sudo -E apt-get -qq full-upgrade
+          sudo -E apt-get -y install $(cat $GITHUB_WORKSPACE/Ubuntu-2204.txt)
+          sudo -E apt-get -qq autoremove --purge
+          sudo -E apt-get -qq clean
           sudo -E systemctl daemon-reload
-          sudo -E timedatectl set-timezone "Asia/Shanghai"
+          sudo timedatectl set-timezone "$TZ"
+          sudo mkdir -p /workdir
+          sudo chown $USER:$GROUPS /workdir
+          echo "status=success" >> ${GITHUB_OUTPUT}
+          df -Th              
 
-      - name: Initialization Values
+      - name: 初始化变量
         run: |
           export CORE_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
           export CORE_SOURCE=$(echo $CORE_URL | cut -d '/' -f 5-)
-          export CORE_TYPE=$(sed -n "1{s/^#//;s/\r$//;p;q}" $GITHUB_WORKSPACE/Config/$CORE_TARGET.txt)
 
           echo "CORE_SOURCE=$CORE_SOURCE" >> $GITHUB_ENV
           echo "CORE_TARGET=$CORE_TARGET" >> $GITHUB_ENV
@@ -68,17 +169,67 @@ jobs:
           echo "CORE_TYPE=$CORE_TYPE" >> $GITHUB_ENV
           echo "CORE_PW=$CORE_PW" >> $GITHUB_ENV
           echo "CORE_IP=$CORE_IP" >> $GITHUB_ENV
+          echo "CORE_BRANCH=$CORE_BRANCH" >> $GITHUB_ENV
+          echo "CORE_tag_name=$CORE_tag_name" >> $GITHUB_ENV
+          echo "CORE_header=$CORE_header" >> $GITHUB_ENV
+          echo "CORE_config=$CORE_config" >> $GITHUB_ENV
+          echo "CORE_patch=$CORE_patch" >> $GITHUB_ENV
+          echo "CORE_soc=$CORE_soc" >> $GITHUB_ENV
+          echo "CORE_DIY_P1_SH=$CORE_DIY_P1_SH" >> $GITHUB_ENV
+          echo "CORE_DIY_P2_SH=$CORE_DIY_P2_SH" >> $GITHUB_ENV
+          echo "CORE_DIY_P3_SH=$CORE_DIY_P3_SH" >> $GITHUB_ENV
+          echo "CORE_DIY_P4_SH=$CORE_DIY_P4_SH" >> $GITHUB_ENV
+          echo "CORE_remove=$CORE_remove" >> $GITHUB_ENV
+          echo "CORE_LINUX=$CORE_LINUX" >> $GITHUB_ENV
+          echo "CORE_FILES=$CORE_FILES" >> $GITHUB_ENV
+          echo "kernel_repo=$kernel_repo" >> $GITHUB_ENV
+          echo "kernel_usage=$kernel_usage" >> $GITHUB_ENV
+          echo "builder_name=$builder_name" >> $GITHUB_ENV
+          echo "auto_kernel=$auto_kernel" >> $GITHUB_ENV
+          echo "CORE_DOCKER=$CORE_DOCKER" >> $GITHUB_ENV
 
-      - name: Check Scripts
+      - name: 检查脚本
         run: |
-          cd ./Scripts
+          dos2unix ./Scripts/*.sh
+          chmod +x ./Scripts/*.sh
+          
+          dos2unix ./soc/*.sh
+          chmod +x ./soc/*.sh
+          
+          dos2unix ./patch/*.sh
+          chmod +x ./patch/*.sh
+          
+          dos2unix ./remove/*.sh
+          chmod +x ./remove/*.sh
+          
 
-          dos2unix ./*.sh
-          chmod +x ./*.sh
-
-      - name: Clone OWRT Code
+      - name: 克隆源码库
+        id: codes
+        working-directory: /workdir        
         run: |
-          git clone $CORE_URL ./owrt
+          # Set up compilation source code
+          if [[ "${{ inputs.OWRT_URL }}" == *"openwrt/openwrt"* ]]; then
+              REPO_URL="https://github.com/openwrt/openwrt"
+              REPO_BRANCH="main"
+              TAGS_NAME="official"
+          elif [[ "${{ inputs.OWRT_URL }}" == *"coolsnowwolf/lede"* ]]; then
+              REPO_URL="https://github.com/coolsnowwolf/lede"
+              REPO_BRANCH="master"
+              TAGS_NAME="lede"
+          elif [[ "${{ inputs.OWRT_URL }}" == *"immortalwrt/immortalwrt"* ]]; then
+              REPO_URL="https://github.com/immortalwrt/immortalwrt"
+              REPO_BRANCH="master"
+              TAGS_NAME="immortalwrt"
+          else
+              REPO_URL="${{ inputs.OWRT_URL }}"
+              REPO_BRANCH="${{ inputs.OWRT_BRANCH }}"
+              TAGS_NAME="${{ inputs.OWRT_TARGET }}"
+          fi
+          
+          df -hT $PWD
+          git clone -q --single-branch --depth=1 --branch=${REPO_BRANCH} ${REPO_URL} openwrt
+          #git clone $OWRT_URL openwrt
+          ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
       
       - name: Fix AX6
         run: |
