@@ -34,7 +34,7 @@ env:
   CORE_IP: ${{inputs.CORE_IP}}
 
 jobs:
-  CORE_union:
+  union_core:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Projects
