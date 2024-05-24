@@ -90,7 +90,7 @@ env:
   CORE_IP: ${{inputs.CORE_IP}}
   CORE_BRANCH: ${{inputs.CORE_BRANCH}}
   CORE_tag_name: ${{inputs.CORE_tag_name}}
-  CORE_header: ${{inputs.CORE_header}}
+  CORE_header: header/${{inputs.CORE_header}}
   CORE_config: config/${{inputs.CORE_config}}
   CORE_patch: patch/${{inputs.CORE_patch}}
   CORE_soc: soc/${{inputs.CORE_soc}}
