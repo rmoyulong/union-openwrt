@@ -1,23 +1,23 @@
 #========================================================================================================================
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
-#项目名
-name: Ax6-immortalwrt-精英版
+#CI项目名
+name: ax6-openwrt-精英版
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日12点编译一次
   #关闭则手动编译
   workflow_dispatch:
-  #schedule:
-    #- cron: 0 4 1,15 * *
+  schedule:
+    - cron: 0 4 1,15 * *
 
 #CI权限
 permissions: write-all
 
 #CI任务
 jobs:
-  UNION_config:
-    #调用公用编译核心 union-core.yml
+  owrt_config:
+    #调用公用编译核心OWRT-CORE.yml
     uses: ./.github/workflows/union-core.yml
     with:
       #编译平台，X64包含X86,arm
