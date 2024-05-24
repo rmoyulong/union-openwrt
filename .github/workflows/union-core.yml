@@ -107,6 +107,7 @@ env:
   auto_kernel: ${{inputs.auto_kernel}}
   CORE_Pack: ${{inputs.CORE_Pack}}
   CORE_feeds_conf: patch/${{inputs.CORE_feeds_conf}}
+  TZ: Asia/Shanghai
 
 jobs:
   union_core:
@@ -225,9 +226,12 @@ jobs:
               REPO_BRANCH="${{ inputs.CORE_BRANCH }}"
           fi
           
+          if [[ $OWRT_LINUX == *"5.15"* ]] ; then
+            REPO_BRANCH="${{ inputs.OWRT_BRANCH }}"
+          fi
+          
           df -hT $PWD
           git clone -q --single-branch --depth=1 --branch=${REPO_BRANCH} ${REPO_URL} openwrt
-          #git clone $OWRT_URL openwrt
           ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
   
       - name: 加载自定义订阅源
