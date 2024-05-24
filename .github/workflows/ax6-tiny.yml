@@ -2,7 +2,7 @@
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
 #CI项目名
-name: ax6-openwrt-精英版
+name: AX6精英版
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日12点编译一次
@@ -16,50 +16,19 @@ permissions: write-all
 
 #CI任务
 jobs:
-  owrt_config:
+  core_config:
     #调用公用编译核心OWRT-CORE.yml
     uses: ./.github/workflows/union-core.yml
     with:
-      #编译平台，X64包含X86,arm
-      UNION_TARGET: Redmi-AX6
+      #编译平台，X64包含X86
+      CORE_TARGET: Redmi-AX6
       #默认主题
-      UNION_THEME: argon
+      CORE_THEME: design
       #默认主机名
-      UNION_NAME: Redmi-AX6
+      CORE_NAME: Redmi-AX6
       #默认密码，仅作展示，更改无效
-      UNION_PW: password
+      CORE_PW: password
       #默认地址
-      UNION_IP: 192.168.31.1
+      CORE_IP: 192.168.31.1
       #默认源码
-      UNION_URL: https://github.com/immortalwrt/immortalwrt
-      #源码版本
-      UNION_BRANCH: master
-      #自定义配置 --在config目录下
-      UNION_CFG: tiny.config
-      #自定义其他配置 --在other目录下 没有为false
-      UNION_other_CFG: ax6.config
-      #需要单独处理的soc脚本 --在soc目录下  没有为false
-      UNION_SOC: false
-      #需要单独处理的patch脚本--在patch目录下   没有为false
-      UNION_PATCH: false
-      #需要删除的插件脚本--在patch目录下   没有为false
-      UNION_REMOVE: remove.sh
-      UNION_TAGS_NAME: AX6精英版
-      UNION_LINUX: 6.1.68
-      UNION_FILES: ax6/files
-      #Scripts目录下
-      DIY_P1_SH: immortalwrt.sh
-      DIY_P2_SH: Settings.sh
-      #需要自定义3脚本  没有为false
-      DIY_P3_SH: false
-      #需要自定义4脚本  没有为false
-      DIY_P4_SH: false
-      UNION_TAG: latest
-      #save/temp
-      UNION_STORAGE: save
-      kernel_repo: ophub/kernel
-      #stable/flippy/dev/beta
-      kernel_usage: stable
-      builder_name: ophub
-      auto_kernel: true
-      UNION_DOCKER: false
+      CORE_URL: https://github.com/coolsnowwolf/lede.git
