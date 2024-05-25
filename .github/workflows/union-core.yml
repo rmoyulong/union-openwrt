@@ -336,7 +336,7 @@ jobs:
              cat $GITHUB_WORKSPACE/${CORE_header}  > .config
              cat $GITHUB_WORKSPACE/${CORE_config} >> .config
           fi
-          echo .config
+          cat .config
           
           make defconfig
 
