@@ -38,18 +38,18 @@ jobs:
       # 头部 配置文件 --- header 目录
       CORE_header: N1.config
       # 配置文件 -- config 目录
-      CORE_config: N1_latest.config
-      # 补丁脚本 -- patch 目录 不执行: false
+      CORE_config: N1_latest.config 
+      # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
       CORE_patch: nftables.sh
-      # 单独处理脚本 -- soc 目录 不执行: false
+      # 单独处理脚本 -- soc 目录 不执行: false 没有执行cd openwrt
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
-      # 通用脚本 -- Scripts  目录 不执行: false
+      # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
       CORE_DIY_P1_SH: lede.sh
       CORE_DIY_P2_SH: Settings.sh
       CORE_DIY_P3_SH: N1_init.sh
       CORE_DIY_P4_SH: false
-      # 删除不兼容的插件 -- remove 目录 不执行: false
+      # 删除不兼容的插件 -- remove 目录 不执行: false 已经执行cd openwrt
       CORE_remove: lede_remove.sh
       # linux 内核
       CORE_LINUX: 6.6.30
