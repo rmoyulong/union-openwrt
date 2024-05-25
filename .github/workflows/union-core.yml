@@ -292,7 +292,7 @@ jobs:
         run: |
           cd openwrt
           
-          ${GITHUB_WORKSPACE}/${CORE_DIY_P2_SH}
+          ${GITHUB_WORKSPACE}/${CORE_DIY_P2_SH} ${{ env.CORE_IP }} ${{ env.CORE_NAME }} ${{ env.CORE_THEME }}
           
           if [[ "${{ inputs.CORE_DIY_P3_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_DIY_P3_SH"
