@@ -50,6 +50,7 @@ sed -i 's/luci-theme-bootstrap/${ithemes}/g' feeds/luci/collections/luci/Makefil
 sed -i 's/luci-theme-argon/${ithemes}/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-design/${ithemes}/g' feeds/luci/collections/luci/Makefile
 rm -rf /feeds/luci/luci
+rm -rf package/feeds/luci/luci
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
