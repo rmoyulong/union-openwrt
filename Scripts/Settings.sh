@@ -1,7 +1,7 @@
 #!/bin/bash
 ip="192.168.2.1"
-iname="mojialin"
-ithemes="argon"
+iname="Openwrt"
+ithemes="luci-theme-material"
 if [ ! -z "$1" ];then
 	ip=$1
 fi
@@ -9,7 +9,8 @@ if [ ! -z "$2" ];then
 	iname=$2
 fi
 if [ ! -z "$3" ];then
-	ithemes=$3
+    ithemes=$3
+	ithemes="luci-theme-${ithemes}"
 fi
 
 #修改默认主题
@@ -45,9 +46,9 @@ sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_gen
 #[ -e package/lean/default-settings/files/zzz-default-settings ] && rm -rf feeds/luci/applications/luci-app-design-config && git clone --depth 1 https://github.com/gngpp/luci-app-design-config feeds/luci/applications/luci-app-design-config
 
 # 修改 argon 为默认主题
-sed -i 's/luci-theme-bootstrap/luci-theme-${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-argon/luci-theme-${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-design/luci-theme-${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-argon/${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-design/${ithemes}/g' feeds/luci/collections/luci/Makefile
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
