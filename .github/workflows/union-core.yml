@@ -38,7 +38,10 @@ on:
       CORE_patch:
         required: true
         type: string
-      CORE_soc:
+      CORE_SOC_P1_SH:
+        required: true
+        type: string
+      CORE_SOC_P2_SH:
         required: true
         type: string
       CORE_DIY_P1_SH:
@@ -93,7 +96,8 @@ env:
   CORE_header: header/${{inputs.CORE_header}}
   CORE_config: config/${{inputs.CORE_config}}
   CORE_patch: patch/${{inputs.CORE_patch}}
-  CORE_soc: soc/${{inputs.CORE_soc}}
+  CORE_SOC_P1_SH: soc/${{inputs.CORE_SOC_P1_SH}}
+  CORE_SOC_P2_SH: soc/${{inputs.CORE_SOC_P2_SH}}
   CORE_DIY_P1_SH: Scripts/${{inputs.CORE_DIY_P1_SH}}
   CORE_DIY_P2_SH: Scripts/${{inputs.CORE_DIY_P2_SH}}
   CORE_DIY_P3_SH: Scripts/${{inputs.CORE_DIY_P3_SH}}
@@ -177,7 +181,8 @@ jobs:
           echo "CORE_header=$CORE_header" >> $GITHUB_ENV
           echo "CORE_config=$CORE_config" >> $GITHUB_ENV
           echo "CORE_patch=$CORE_patch" >> $GITHUB_ENV
-          echo "CORE_soc=$CORE_soc" >> $GITHUB_ENV
+          echo "CORE_SOC_P1_SH=$CORE_SOC_P1_SH" >> $GITHUB_ENV
+          echo "CORE_SOC_P2_SH=$CORE_SOC_P2_SH" >> $GITHUB_ENV
           echo "CORE_DIY_P1_SH=$CORE_DIY_P1_SH" >> $GITHUB_ENV
           echo "CORE_DIY_P2_SH=$CORE_DIY_P2_SH" >> $GITHUB_ENV
           echo "CORE_DIY_P3_SH=$CORE_DIY_P3_SH" >> $GITHUB_ENV
@@ -268,15 +273,7 @@ jobs:
           
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-
-      - name: 单独处理脚本
-        run: |
-          if [[ "${{ inputs.CORE_soc }}" == *"false"* ]]; then
-            echo "没有需要单独处理的脚本"
-          else
-            ${GITHUB_WORKSPACE}/${CORE_soc}
-          fi
-          
+         
       - name: 通用脚本
         run: |
           cd openwrt
@@ -348,6 +345,20 @@ jobs:
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV 
 
+      - name: 单独处理脚本
+        run: |
+          if [[ "${{ inputs.CORE_SOC_P1_SH }}" == *"false"* ]]; then
+            echo "没有需要单独处理的脚本1"
+          else
+            ${GITHUB_WORKSPACE}/${CORE_SOC_P1_SH}
+          fi
+          
+          if [[ "${{ inputs.CORE_SOC_P2_SH }}" == *"false"* ]]; then
+            echo "没有需要单独处理的脚本2"
+          else
+            ${GITHUB_WORKSPACE}/${CORE_SOC_P2_SH}
+          fi
+          
       - name: 整理固件--qualcommax
         if: env.CORE_Pack == 'qualcommax'
         run: |
