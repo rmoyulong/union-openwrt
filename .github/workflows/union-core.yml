@@ -340,11 +340,6 @@ jobs:
           
           make defconfig
 
-      - name: 清除Toolchain
-        run: |
-          cd openwrt
-          make dirclean
-
       - name: 下载编译依赖
         working-directory: ./openwrt
         run: |
