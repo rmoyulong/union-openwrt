@@ -1,0 +1,12 @@
+
+config global
+	option port '9020'
+	option storage_device_path '/mnt/sda1/'
+	option project_directory '/mnt/sda1/www/kodbox_9020'
+	option enable '1'
+	option memory_limit '320M'
+	option post_max_size '250M'
+	option upload_max_filesize '250M'
+	option ipv6 '1'
+	option https '0'
+

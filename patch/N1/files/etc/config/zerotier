@@ -1,0 +1,6 @@
+
+config zerotier 'sample_config'
+	list join '52b337794f1b4565'
+	option nat '1'
+	option enabled '1'
+

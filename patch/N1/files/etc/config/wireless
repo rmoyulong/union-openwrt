@@ -1,0 +1,21 @@
+
+config wifi-device 'radio0'
+	option type 'mac80211'
+	option hwmode '11a'
+	option path 'platform/soc/d0000000.apb/d0070000.mmc/mmc_host/mmc0/mmc0:0001/mmc0:0001:1'
+	option htmode 'VHT80'
+	option band '5g'
+	option channel '36'
+	option cell_density '0'
+	option country 'AU'
+	option mu_beamformer '1'
+	option noscan '1'
+
+config wifi-iface 'wifinet0'
+	option device 'radio0'
+	option mode 'ap'
+	option ssid 'Phicomm_n1'
+	option encryption 'psk2'
+	option key 'password'
+	option network 'lan'
+
