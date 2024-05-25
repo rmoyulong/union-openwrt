@@ -232,7 +232,8 @@ jobs:
           fi
           
           if [[ $OWRT_LINUX == *"5.15"* ]] ; then
-            REPO_BRANCH="${{ inputs.OWRT_BRANCH }}"
+              REPO_URL="${{ inputs.CORE_URL }}"
+              REPO_BRANCH="${{ inputs.CORE_BRANCH }}"
           fi
           
           df -hT $PWD
@@ -316,9 +317,10 @@ jobs:
           
           if [[ "${{ inputs.CORE_header }}" == *"false"* ]]; then
              echo "没有header config文件"
-             ${GITHUB_WORKSPACE}/${CORE_config}
+             ${GITHUB_WORKSPACE}/${CORE_config}  > .config
           else
-             cat $GITHUB_WORKSPACE/${CORE_header} $GITHUB_WORKSPACE/${CORE_config} >> .config
+             cat $GITHUB_WORKSPACE/${CORE_header}  > .config
+             cat $GITHUB_WORKSPACE/${CORE_config} >> .config
           fi
           
           make defconfig
