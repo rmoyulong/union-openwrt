@@ -1,12 +1,24 @@
 #!/bin/bash
+ip="192.168.2.1"
+iname="mojialin"
+ithemes="argon"
+if [ ! -z "$1" ];then
+	ip=$1
+fi
+if [ ! -z "$2" ];then
+	iname=$2
+fi
+if [ ! -z "$3" ];then
+	ithemes=$3
+fi
 
 #修改默认主题
 #替换主题为原版argon
 #rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 #修改默认IP地址
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/$1/g" ./package/base-files/files/bin/config_generate
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/${ip}/g" ./package/base-files/files/bin/config_generate
 #修改默认主机名
-sed -i "s/hostname='.*'/hostname='$2'/g" ./package/base-files/files/bin/config_generate
+sed -i "s/hostname='.*'/hostname='${iname}'/g" ./package/base-files/files/bin/config_generate
 #修改默认时区
 sed -i "s/timezone='.*'/timezone='CST-8'/g" ./package/base-files/files/bin/config_generate
 sed -i "/timezone='.*'/a\\\t\t\set system.@system[-1].zonename='Asia/Shanghai'" ./package/base-files/files/bin/config_generate
@@ -33,9 +45,9 @@ sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_gen
 #[ -e package/lean/default-settings/files/zzz-default-settings ] && rm -rf feeds/luci/applications/luci-app-design-config && git clone --depth 1 https://github.com/gngpp/luci-app-design-config feeds/luci/applications/luci-app-design-config
 
 # 修改 argon 为默认主题
-sed -i 's/luci-theme-bootstrap/luci-theme-$3/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-argon/luci-theme-$3/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-design/luci-theme-$3/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-argon/luci-theme-${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-design/luci-theme-${ithemes}/g' feeds/luci/collections/luci/Makefile
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
