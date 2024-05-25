@@ -42,7 +42,8 @@ jobs:
       # 补丁脚本 -- patch 目录 不执行: false
       CORE_patch: false
       # 单独处理脚本 -- soc 目录 不执行: false
-      CORE_soc: false
+      CORE_SOC_P1_SH: false
+      CORE_SOC_P2_SH: false
       # 通用脚本 -- Scripts  目录 不执行: false
       CORE_DIY_P1_SH: immortalwrt.sh
       CORE_DIY_P2_SH: Settings.sh
@@ -61,7 +62,7 @@ jobs:
       kernel_usage: stable
       builder_name: ophub
       auto_kernel: true
-      #打包的方式
+      #整理固件的方式
       CORE_Pack: qualcommax
       #feeds.conf.default  -- patch 目录 使用默认的：false
       CORE_feeds_conf: false
