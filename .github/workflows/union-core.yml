@@ -292,7 +292,7 @@ jobs:
         run: |
           cd openwrt
           
-          ${GITHUB_WORKSPACE}/${CORE_DIY_P2_SH} ${{ env.CORE_IP }} ${{ env.CORE_NAME }} ${{ env.CORE_THEME }}
+          ${GITHUB_WORKSPACE}/${CORE_DIY_P2_SH} "${{ env.CORE_IP }}" "${{ env.CORE_NAME }}" "${{ env.CORE_THEME }}"
           
           if [[ "${{ inputs.CORE_DIY_P3_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_DIY_P3_SH"
@@ -327,14 +327,16 @@ jobs:
           [ -e $GITHUB_WORKSPACE/$CORE_FILES ] && cp -rf $GITHUB_WORKSPACE/$CORE_FILES/* ./files
           
           rm -rf ./tmp* ./.config*
+          rm -rf ./.config
           
           if [[ "${{ inputs.CORE_header }}" == *"false"* ]]; then
              echo "没有header config文件"
-             ${GITHUB_WORKSPACE}/${CORE_config}  > .config
+             cat ${GITHUB_WORKSPACE}/${CORE_config}  > .config
           else
              cat $GITHUB_WORKSPACE/${CORE_header}  > .config
              cat $GITHUB_WORKSPACE/${CORE_config} >> .config
           fi
+          echo .config
           
           make defconfig
 
