@@ -3,14 +3,14 @@ ip="192.168.2.1"
 iname="Openwrt"
 ithemes="luci-theme-material"
 if [ ! -z "$1" ];then
-	ip=$1
+    ip=$1
 fi
 if [ ! -z "$2" ];then
-	iname=$2
+    iname=$2
 fi
 if [ ! -z "$3" ];then
     ithemes=$3
-	ithemes="luci-theme-${ithemes}"
+    ithemes="luci-theme-${ithemes}"
 fi
 
 #修改默认主题
