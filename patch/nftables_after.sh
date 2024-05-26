@@ -12,4 +12,5 @@ function git_sparse_clone_base() {
 }
 
 # patch luci
-patch -d feeds/luci -p1 -i $1/patch/fullconenat-luci.patch
+cd feeds/luci
+git apply $1/patch/fullconenat-luci.patch
