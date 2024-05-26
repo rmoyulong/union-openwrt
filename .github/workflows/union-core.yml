@@ -370,6 +370,20 @@ jobs:
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV 
  
+       - name: 单独处理脚本
+        run: |
+          if [[ "${{ inputs.CORE_SOC_P1_SH }}" == *"false"* ]]; then
+            echo "没有需要单独处理的脚本1"
+          else
+            ${GITHUB_WORKSPACE}/${CORE_SOC_P1_SH} "${GITHUB_WORKSPACE}"
+          fi
+          
+          if [[ "${{ inputs.CORE_SOC_P2_SH }}" == *"false"* ]]; then
+            echo "没有需要单独处理的脚本2"
+          else
+            ${GITHUB_WORKSPACE}/${CORE_SOC_P2_SH} "${GITHUB_WORKSPACE}"
+          fi
+          
       - name: 整理固件
         run: |
           cd openwrt && mkdir ./upload
@@ -403,21 +417,7 @@ jobs:
           kernel_repo: ${{ inputs.kernel_repo }}
           kernel_usage: ${{ inputs.kernel_usage }}
           builder_name: ${{ inputs.builder_name }}
-          
-      - name: 单独处理脚本
-        run: |
-          if [[ "${{ inputs.CORE_SOC_P1_SH }}" == *"false"* ]]; then
-            echo "没有需要单独处理的脚本1"
-          else
-            ${GITHUB_WORKSPACE}/${CORE_SOC_P1_SH} "${GITHUB_WORKSPACE}"
-          fi
-          
-          if [[ "${{ inputs.CORE_SOC_P2_SH }}" == *"false"* ]]; then
-            echo "没有需要单独处理的脚本2"
-          else
-            ${GITHUB_WORKSPACE}/${CORE_SOC_P2_SH} "${GITHUB_WORKSPACE}"
-          fi
-          
+         
       - name: 生成固件标签
         uses: rmoyulong/action-gh-release@master
         with:
