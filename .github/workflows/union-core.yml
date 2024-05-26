@@ -369,7 +369,41 @@ jobs:
           make -j$(nproc) || make -j1 || make -j1 V=s
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV 
+ 
+      - name: 整理固件
+        run: |
+          cd openwrt && mkdir ./upload
+          
+          rm -rf $(find ./bin/targets/ -iregex ".*\(json\|manifest\|buildinfo\|sha256sums\|packages\)$")
+          cp -rf $(find ./bin/targets/ -type f -iname "*.*") ./upload/
+          cp -rf ./.config ./upload/Config.txt
+          
+          export CORE_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
+          echo "CORE_DATE=$CORE_DATE" >> $GITHUB_ENV
+          show_tag_name=${{env.CORE_TARGET}}_${{env.CORE_SOURCE}}_${{env.CORE_DATE}}
+          echo "show_tag_name=$show_tag_name" >> $GITHUB_ENV
+          #获得当前目录的路径信息
+          cd ./upload
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          
+          #如有.tar文件就转化为.gz
+          files=$(ls *.tar 2> /dev/null | wc -l)
+          if [ "$files" != "0" ] ;then
+            gzip *.tar
+          fi
 
+      - name: Armv8打包OpenWrt
+        if: env.CORE_Pack == 'Armv8'
+        uses: ophub/amlogic-s9xxx-openwrt@main
+        with:
+          openwrt_path: openwrt/upload/*rootfs.tar.gz
+          openwrt_board: ${{ env.OWRT_TARGET }}
+          openwrt_kernel: ${{ env.OWRT_LINUX }}
+          auto_kernel: ${{ inputs.auto_kernel }}
+          kernel_repo: ${{ inputs.kernel_repo }}
+          kernel_usage: ${{ inputs.kernel_usage }}
+          builder_name: ${{ inputs.builder_name }}
+          
       - name: 单独处理脚本
         run: |
           if [[ "${{ inputs.CORE_SOC_P1_SH }}" == *"false"* ]]; then
@@ -384,23 +418,11 @@ jobs:
             ${GITHUB_WORKSPACE}/${CORE_SOC_P2_SH} "${GITHUB_WORKSPACE}"
           fi
           
-      - name: 整理固件--qualcommax
-        if: env.CORE_Pack == 'qualcommax'
-        run: |
-          cd openwrt && mkdir ./upload
-          
-          rm -rf $(find ./bin/targets/ -iregex ".*\(json\|manifest\|buildinfo\|sha256sums\|packages\)$")
-          cp -rf $(find ./bin/targets/ -type f -iname "*.*") ./upload/
-          cp -rf ./.config ./upload/Config.txt
-          
-          export CORE_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
-          echo "CORE_DATE=$CORE_DATE" >> $GITHUB_ENV
-
       - name: 生成固件标签
         uses: rmoyulong/action-gh-release@master
         with:
-          tag_name: ${{env.CORE_TARGET}}_${{env.CORE_SOURCE}}_${{env.CORE_DATE}}
-          files: openwrt/upload/*.*
+          tag_name: ${{env.show_tag_name}}
+          files: ${{ env.FIRMWARE }}/*
           body: |
             路由器固件：${{env.CORE_NAME}} ${{env.CORE_tag_name}}
             刷机有风险！刷前需谨慎！
