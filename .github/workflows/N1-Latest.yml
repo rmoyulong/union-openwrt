@@ -21,11 +21,11 @@ jobs:
     uses: ./.github/workflows/union-core.yml
     with:
       #编译平台，X64包含X86
-      CORE_TARGET: s905d
+      CORE_TARGET: s905d_s912
       #默认主题
       CORE_THEME: material
       #默认主机名
-      CORE_NAME: Phicomm_n1
+      CORE_NAME: Armv8_OpenWrt
       #默认密码，仅作展示，更改无效
       CORE_PW: password
       #默认地址
@@ -55,7 +55,7 @@ jobs:
       # 删除不兼容的插件 -- remove 目录 不执行: false 已经执行cd openwrt
       CORE_remove: lede_remove.sh
       # linux 内核
-      CORE_LINUX: 6.6.30
+      CORE_LINUX: 6.6.y_6.1.y
       # 固件初始设置 -- patch 目录 不执行: false
       CORE_FILES: N1/files
       #打包的一些设置
