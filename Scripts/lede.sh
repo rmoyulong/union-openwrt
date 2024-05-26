@@ -25,8 +25,11 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-byp
 #######################################################################################
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages dnsforwarder
 git_sparse_clone master https://github.com/rmoyulong/AX6-Actions_Lede aria2
-rm -rf  package/openwrt-passwall/shadowsocks-rust
+####################################################
+git clone --depth=1 https://github.com/pexcn/openwrt-chinadns-ng chinadns-ng
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
+####################################################
+git_sparse_clone master https://github.com/rmoyulong/AX6-Actions_Lede aria2
 git_sparse_clone main https://github.com/kenzok8/small-package luci-app-kodexplorer
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
