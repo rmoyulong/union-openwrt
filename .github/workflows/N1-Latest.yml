@@ -65,8 +65,8 @@ jobs:
       kernel_usage: stable
       builder_name: ophub
       auto_kernel: true
-      #整理固件的方式
-      CORE_Pack: qualcommax
+      #特殊固件的方式 使用默认的：false
+      CORE_Pack: Armv8
       #feeds.conf.default  -- patch 目录 使用默认的：false
       CORE_feeds_conf: false
       
