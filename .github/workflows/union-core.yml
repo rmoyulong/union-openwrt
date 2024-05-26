@@ -411,8 +411,8 @@ jobs:
         uses: ophub/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: openwrt/upload/*rootfs.tar.gz
-          openwrt_board: ${{ env.OWRT_TARGET }}
-          openwrt_kernel: ${{ env.OWRT_LINUX }}
+          openwrt_board: ${{ env.CORE_TARGET }}
+          openwrt_kernel: ${{ env.CORE_LINUX }}
           auto_kernel: ${{ inputs.auto_kernel }}
           kernel_repo: ${{ inputs.kernel_repo }}
           kernel_usage: ${{ inputs.kernel_usage }}
