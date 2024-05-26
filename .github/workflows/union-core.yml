@@ -417,7 +417,14 @@ jobs:
           kernel_repo: ${{ inputs.kernel_repo }}
           kernel_usage: ${{ inputs.kernel_usage }}
           builder_name: ${{ inputs.builder_name }}
-         
+          
+      - name: 合并原始资料和打包文件
+        if: env.CORE_Pack == 'Armv8'
+        run: |
+          cp -f openwrt/upload/*.* ${{ env.PACKAGED_OUTPUTPATH }}/
+          cd ${{ env.PACKAGED_OUTPUTPATH }}/
+          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+          
       - name: 生成标签，上传固件
         uses: rmoyulong/action-gh-release@master
         env:
