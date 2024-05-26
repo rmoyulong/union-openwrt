@@ -11,3 +11,6 @@ rm -rf feeds/small/mosdns
 rm -rf feeds/small/luci-app-mosdns
 rm -rf feeds/small/shadowsocksr-libev
 rm -rf feeds/small/luci-app-ssr-plus
+####################################################
+rm -rf package/openwrt-passwall/shadowsocks-rust
+rm -rf package/openwrt-passwall chinadns-ng
