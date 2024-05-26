@@ -9,7 +9,7 @@ config system
 	option conloglevel '8'
 	option cronloglevel '8'
 	option zram_comp_algo 'lzo'
-	option hostname 'Phicomm_n1'
+	option hostname 'Armv8_OpenWrt'
 
 config timeserver 'ntp'
 	list server 'ntp.aliyun.com'
