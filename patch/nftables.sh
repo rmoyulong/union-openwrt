@@ -24,3 +24,5 @@ cp -rf ./immortalwrt/package/network/utils/nftables package/network/utils/
 # firewall4
 rm -rf ./package/network/config/firewall4
 cp -rf ./immortalwrt/package/network/config/firewall4 package/network/config/
+# patch luci
+patch -d feeds/luci -p1 -i ../../../patch/fullconenat-luci.patch
