@@ -418,8 +418,10 @@ jobs:
           kernel_usage: ${{ inputs.kernel_usage }}
           builder_name: ${{ inputs.builder_name }}
          
-      - name: 生成固件标签，上传固件
+      - name: 生成标签，上传固件
         uses: rmoyulong/action-gh-release@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{env.show_tag_name}}
           files: ${{ env.FIRMWARE }}/*
