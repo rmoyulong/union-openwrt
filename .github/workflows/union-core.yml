@@ -38,6 +38,9 @@ on:
       CORE_patch:
         required: true
         type: string
+      CORE_patch_after:
+        required: true
+        type: string
       CORE_SOC_P1_SH:
         required: true
         type: string
@@ -96,6 +99,7 @@ env:
   CORE_header: header/${{inputs.CORE_header}}
   CORE_config: config/${{inputs.CORE_config}}
   CORE_patch: patch/${{inputs.CORE_patch}}
+  CORE_patch_after: patch/${{inputs.CORE_patch_after}}
   CORE_SOC_P1_SH: soc/${{inputs.CORE_SOC_P1_SH}}
   CORE_SOC_P2_SH: soc/${{inputs.CORE_SOC_P2_SH}}
   CORE_DIY_P1_SH: Scripts/${{inputs.CORE_DIY_P1_SH}}
@@ -194,6 +198,7 @@ jobs:
           echo "CORE_header=$CORE_header" >> $GITHUB_ENV
           echo "CORE_config=$CORE_config" >> $GITHUB_ENV
           echo "CORE_patch=$CORE_patch" >> $GITHUB_ENV
+          echo "CORE_patch_after=$CORE_patch_after" >> $GITHUB_ENV
           echo "CORE_SOC_P1_SH=$CORE_SOC_P1_SH" >> $GITHUB_ENV
           echo "CORE_SOC_P2_SH=$CORE_SOC_P2_SH" >> $GITHUB_ENV
           echo "CORE_DIY_P1_SH=$CORE_DIY_P1_SH" >> $GITHUB_ENV
@@ -266,10 +271,10 @@ jobs:
           ${GITHUB_WORKSPACE}/${CORE_DIY_P1_SH} "${GITHUB_WORKSPACE}"
           echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
           
-      - name: 补丁
+      - name: 前置补丁
         run: |
           if [[ "${{ inputs.CORE_patch }}" == *"false"* ]]; then
-            echo "不需要打补丁"
+            echo "不需要打前置补丁"
           else
             ${GITHUB_WORKSPACE}/${CORE_patch} "${GITHUB_WORKSPACE}"
           fi
@@ -287,6 +292,14 @@ jobs:
           
           ./scripts/feeds update -a
           ./scripts/feeds install -a
+          
+      - name: 后置补丁
+        run: |
+          if [[ "${{ inputs.CORE_patch_after }}" == *"false"* ]]; then
+            echo "不需要打后置补丁"
+          else
+            ${GITHUB_WORKSPACE}/${CORE_patch_after} "${GITHUB_WORKSPACE}"
+          fi
          
       - name: 通用脚本
         run: |
