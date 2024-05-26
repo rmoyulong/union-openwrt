@@ -370,7 +370,7 @@ jobs:
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV 
  
-       - name: 单独处理脚本
+      - name: 单独处理脚本
         run: |
           if [[ "${{ inputs.CORE_SOC_P1_SH }}" == *"false"* ]]; then
             echo "没有需要单独处理的脚本1"
