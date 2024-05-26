@@ -263,7 +263,7 @@ jobs:
             cp -rf $GITHUB_WORKSPACE/${{ env.CORE_feeds_conf }} ./feeds.conf.default
           fi
           
-          ${GITHUB_WORKSPACE}/${CORE_DIY_P1_SH}
+          ${GITHUB_WORKSPACE}/${CORE_DIY_P1_SH} "${GITHUB_WORKSPACE}"
           echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
           
       - name: 补丁
@@ -271,7 +271,7 @@ jobs:
           if [[ "${{ inputs.CORE_patch }}" == *"false"* ]]; then
             echo "不需要打补丁"
           else
-            ${GITHUB_WORKSPACE}/${CORE_patch}
+            ${GITHUB_WORKSPACE}/${CORE_patch} "${GITHUB_WORKSPACE}"
           fi
 
       - name: 启动缓存[第二次起生效]
@@ -297,13 +297,13 @@ jobs:
           if [[ "${{ inputs.CORE_DIY_P3_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_DIY_P3_SH"
           else
-            ${GITHUB_WORKSPACE}/${CORE_DIY_P3_SH}
+            ${GITHUB_WORKSPACE}/${CORE_DIY_P3_SH} "${GITHUB_WORKSPACE}" "${CORE_FILES}"
           fi
           
           if [[ "${{ inputs.CORE_DIY_P4_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_DIY_P4_SH"
           else
-            ${GITHUB_WORKSPACE}/${CORE_DIY_P4_SH}
+            ${GITHUB_WORKSPACE}/${CORE_DIY_P4_SH} "${GITHUB_WORKSPACE}"
           fi 
 
       - name: 删除冲突的插件
@@ -313,7 +313,7 @@ jobs:
           if [[ "${{ inputs.CORE_remove }}" == *"false"* ]]; then
             echo "不需要删除冲突的插件"
           else
-            ${GITHUB_WORKSPACE}/${CORE_remove}
+            ${GITHUB_WORKSPACE}/${CORE_remove} "${GITHUB_WORKSPACE}"
           fi
           
       - name: 拷贝设置文件
@@ -362,13 +362,13 @@ jobs:
           if [[ "${{ inputs.CORE_SOC_P1_SH }}" == *"false"* ]]; then
             echo "没有需要单独处理的脚本1"
           else
-            ${GITHUB_WORKSPACE}/${CORE_SOC_P1_SH}
+            ${GITHUB_WORKSPACE}/${CORE_SOC_P1_SH} "${GITHUB_WORKSPACE}"
           fi
           
           if [[ "${{ inputs.CORE_SOC_P2_SH }}" == *"false"* ]]; then
             echo "没有需要单独处理的脚本2"
           else
-            ${GITHUB_WORKSPACE}/${CORE_SOC_P2_SH}
+            ${GITHUB_WORKSPACE}/${CORE_SOC_P2_SH} "${GITHUB_WORKSPACE}"
           fi
           
       - name: 整理固件--qualcommax
