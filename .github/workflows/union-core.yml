@@ -402,7 +402,7 @@ jobs:
           
           #如有.tar文件就转化为.gz
           files=$(ls *.tar 2> /dev/null | wc -l)
-          if [ "$files" != "0" ] ;then
+          if [ "$files" != "0" ]; then
             gzip *.tar
           fi
 
