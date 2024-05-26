@@ -13,4 +13,4 @@ rm -rf feeds/small/shadowsocksr-libev
 rm -rf feeds/small/luci-app-ssr-plus
 ####################################################
 rm -rf package/openwrt-passwall/shadowsocks-rust
-rm -rf package/openwrt-passwall chinadns-ng
+rm -rf package/openwrt-passwall/chinadns-ng
