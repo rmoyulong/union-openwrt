@@ -13,3 +13,8 @@ rm -rf feeds/small/luci-app-ssr-plus
 ####################################################
 rm -rf package/openwrt-passwall/shadowsocks-rust
 rm -rf package/openwrt-passwall/chinadns-ng
+####################################################
+rm -rf feeds/packages/net/homeproxy
+rm -rf feeds/luci/applications/luci-app-homeproxy
+rm -rf feeds/kenzo/homeproxy
+rm -rf feeds/kenzo/luci-app-homeproxy
