@@ -17,9 +17,15 @@ fi
 #替换主题为原版argon
 if [[ "$4" == *"lede"* ]]; then
   rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+  
+  #修改lede默认时间格式
+  sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %A")/g' $(find ./package/*/autocore/files/ -type f -name "index.htm")
 else  
   rm -rf feeds/luci/themes/luci-theme-argon && git clone -b master https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 fi
+
+#最新golang
+git clone https://github.com/kenzok8/golang feeds/packages/lang/golang
 
 #修改默认IP地址
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/${ip}/g" ./package/base-files/files/bin/config_generate
@@ -28,12 +34,6 @@ sed -i "s/hostname='.*'/hostname='${iname}'/g" ./package/base-files/files/bin/co
 #修改默认时区
 sed -i "s/timezone='.*'/timezone='CST-8'/g" ./package/base-files/files/bin/config_generate
 sed -i "/timezone='.*'/a\\\t\t\set system.@system[-1].zonename='Asia/Shanghai'" ./package/base-files/files/bin/config_generate
-
-#根据源码来修改
-if [[ $OWRT_URL == *"lede"* ]] ; then
-  #修改默认时间格式
-  sed -i 's/os.date()/os.date("%Y-%m-%d %H:%M:%S %A")/g' $(find ./package/*/autocore/files/ -type f -name "index.htm")
-fi
 
 # Modify default NTP server
 echo 'Modify default NTP server...'
@@ -54,6 +54,9 @@ sed -i 's/luci-theme-bootstrap/${ithemes}/g' feeds/luci/collections/luci/Makefil
 sed -i 's/luci-theme-argon/${ithemes}/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-design/${ithemes}/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-material/${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-openwrt-2020/${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-openwrt/${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-ifit/${ithemes}/g' feeds/luci/collections/luci/Makefile
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
