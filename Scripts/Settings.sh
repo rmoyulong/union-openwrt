@@ -15,7 +15,7 @@ fi
 
 #修改默认主题
 #替换主题为原版argon
-if if [[ "$4" == *"lede"* ]]; then
+if [[ "$4" == *"lede"* ]]; then
   rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
 else  
   rm -rf feeds/luci/themes/luci-theme-argon && git clone -b master https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
