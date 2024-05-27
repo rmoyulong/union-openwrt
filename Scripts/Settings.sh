@@ -42,21 +42,14 @@ sed -i 's/time1.cloud.tencent.com/ntp.aliyun.com/' package/base-files/files/bin/
 sed -i 's/time.ustc.edu.cn/cn.ntp.org.cn/' package/base-files/files/bin/config_generate
 sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_generate
 
-#5.更换lede源码中自带argon主题
-#git clone --depth 1来只克隆最近一次提交的仓库。
-#[ -e package/lean/default-settings/files/zzz-default-settings ] && rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
-#[ -e package/lean/default-settings/files/zzz-default-settings ] && rm -rf feeds/luci/themes/luci-theme-argon && git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
-#[ -e package/lean/default-settings/files/zzz-default-settings ] && rm -rf feeds/luci/themes/luci-theme-design && git clone --depth 1 https://github.com/gngpp/luci-theme-design feeds/luci/themes/luci-theme-design
-#[ -e package/lean/default-settings/files/zzz-default-settings ] && rm -rf feeds/luci/applications/luci-app-design-config && git clone --depth 1 https://github.com/gngpp/luci-app-design-config feeds/luci/applications/luci-app-design-config
-
 # 修改 argon 为默认主题
-sed -i 's/luci-theme-bootstrap/${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-argon/${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-design/${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-material/${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-openwrt-2020/${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-openwrt/${ithemes}/g' feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-ifit/${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's|luci-theme-bootstrap|${ithemes}|g' feeds/luci/collections/luci/Makefile
+sed -i 's|luci-theme-argon|${ithemes}|g' feeds/luci/collections/luci/Makefile
+sed -i 's|luci-theme-design|${ithemes}|g' feeds/luci/collections/luci/Makefile
+sed -i 's|luci-theme-material|${ithemes}|g' feeds/luci/collections/luci/Makefile
+sed -i 's|luci-theme-openwrt-2020|${ithemes}|g' feeds/luci/collections/luci/Makefile
+sed -i 's|luci-theme-openwrt|${ithemes}|g' feeds/luci/collections/luci/Makefile
+sed -i 's|luci-theme-ifit|${ithemes}|g' feeds/luci/collections/luci/Makefile
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
