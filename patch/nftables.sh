@@ -22,6 +22,6 @@ cp -rf $1/patch/nftables_Makefile package/network/config/firewall/Makefile
 # firewall4
 rm -rf ./package/network/config/firewall4
 cp -rf ./immortalwrt/package/network/config/firewall4 package/network/config/
-cp -rf $1/patch/nftables4_Makefile package/network/config/firewall/Makefile
+cp -rf $1/patch/nftables4_Makefile package/network/config/firewall4/Makefile
 
 rm -rf immortalwrt
