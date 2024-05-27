@@ -15,7 +15,12 @@ fi
 
 #修改默认主题
 #替换主题为原版argon
-#rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+if if [[ "$4" == *"lede"* ]]; then
+  rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+else  
+  rm -rf feeds/luci/themes/luci-theme-argon && git clone -b master https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+fi
+
 #修改默认IP地址
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/${ip}/g" ./package/base-files/files/bin/config_generate
 #修改默认主机名
@@ -37,7 +42,6 @@ sed -i 's/time1.cloud.tencent.com/ntp.aliyun.com/' package/base-files/files/bin/
 sed -i 's/time.ustc.edu.cn/cn.ntp.org.cn/' package/base-files/files/bin/config_generate
 sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_generate
 
-
 #5.更换lede源码中自带argon主题
 #git clone --depth 1来只克隆最近一次提交的仓库。
 #[ -e package/lean/default-settings/files/zzz-default-settings ] && rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
@@ -49,6 +53,7 @@ sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_gen
 sed -i 's/luci-theme-bootstrap/${ithemes}/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-argon/${ithemes}/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-design/${ithemes}/g' feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-material/${ithemes}/g' feeds/luci/collections/luci/Makefile
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
