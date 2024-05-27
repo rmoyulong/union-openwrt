@@ -284,7 +284,7 @@ jobs:
         with:
           ccache: 'true'
           prefix: ${{ github.workspace }}/openwrt
-          mixkey: ${{ env.CORE_URL }}/tree/${{ env.CORE_TARGET }}?device=${{ env.CORE_config }}
+          mixkey: ${{ env.CORE_SOURCE }}/tree/${{ env.CORE_TARGET }}?device=${{ env.CORE_header }}-${{ env.CORE_config }}
           
       - name: 更新订阅源
         run: |
