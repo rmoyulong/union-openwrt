@@ -1,45 +1,7 @@
 #!/bin/bash
 
-# 移除要替换的包
-rm -rf feeds/packages/net/alist
-rm -rf feeds/packages/net/aria2
-rm -rf feeds/packages/net/ariang
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/packages/net/msd_lite
-rm -rf feeds/packages/net/smartdns
-rm -rf feeds/luci/applications/luci-app-mosdns
-rm -rf feeds/luci/applications/luci-app-msd_lite
-rm -rf feeds/luci/applications/luci-app-smartdns
-rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/luci/themes/luci-theme-netgear
-rm -rf feeds/luci/applications/luci-app-netdata
-rm -rf feeds/luci/applications/luci-app-serverchan
-#rm -rf feeds/luci/applications/luci-app-homeproxy
-rm -rf feeds/luci/applications/luci-app-openclash
-rm -rf feeds/luci/applications/luci-app-passwall
-rm -rf feeds/luci/applications/luci-app-passwall2
-rm -rf feeds/luci/applications/luci-app-turboacc
-#rm -rf feeds/packages/net/shadowsocks-libev
-
-# Git稀疏克隆，只克隆指定目录到本地 ./package 目录
-function git_sparse_clone() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../package
-  cd .. && rm -rf $repodir
-}
-
-# Git稀疏克隆，只克隆指定目录到本地 ./ 目录
-function git_sparse_clone_base() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../
-  cd .. && rm -rf $repodir
-}
+#公用函数
+source $GITHUB_WORKSPACE/Scripts/functions.sh
 
 echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> feeds.conf.default
 #echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
