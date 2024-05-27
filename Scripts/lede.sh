@@ -39,8 +39,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-firewall
-#git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-turboacc
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-turboacc
 #使用package/openwrt-passwall/shadowsocksr-libev
 #git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr-libev
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
