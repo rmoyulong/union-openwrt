@@ -330,7 +330,7 @@ jobs:
             ${GITHUB_WORKSPACE}/${CORE_remove}
           fi
           
-      - name: 拷贝设置文件
+      - name: 拷贝编译配置文件和插件初始化文件
         run: |
           cd openwrt
           
