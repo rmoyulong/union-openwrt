@@ -433,11 +433,11 @@ jobs:
           tag_name: ${{env.show_tag_name}}
           files: ${{ env.FIRMWARE }}/*
           body: |
-            *********************🧊固件信息🧊**********************
+            ====================🧊固件信息🧊=======================
             ➦ 📒 固件名称：${{env.CORE_NAME}} ${{env.CORE_tag_name}}
             ➦ 💻 固件平台：${{ env.CORE_TARGET }}
             ➦ ⚽ 固件源码：${{ env.CORE_SOURCE }}
-            ➦ 💝 源码分支：${{ env.REPO_BRANCH }}
+            ➦ 💝 源码分支：${{ env.CORE_BRANCH }}
             ➦ 🌐 默认地址：${{env.CORE_IP}}
             ➦ 🔑 默认密码：password            
 
