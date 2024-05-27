@@ -2,16 +2,6 @@
 
 cd openwrt
 
-function git_sparse_clone_base() {
-  branch="$1" repourl="$2" && shift 2
-  git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
-  repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
-  cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../
-  cd .. && rm -rf $repodir
-}
-
-
 git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/immortalwrt immortalwrt
 # fullconenat-nft
 cp -rf ./immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
@@ -27,9 +17,11 @@ cp -rf ./immortalwrt/package/network/utils/nftables package/network/utils/
 # firewall
 rm -rf ./package/network/config/firewall
 cp -rf ./immortalwrt/package/network/config/firewall package/network/config/
+cp -rf $1/patch/nftables_Makefile package/network/config/firewall/Makefile
 
 # firewall4
 rm -rf ./package/network/config/firewall4
 cp -rf ./immortalwrt/package/network/config/firewall4 package/network/config/
+cp -rf $1/patch/nftables4_Makefile package/network/config/firewall/Makefile
 
 rm -rf immortalwrt
