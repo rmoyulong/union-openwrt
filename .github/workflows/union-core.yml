@@ -268,7 +268,7 @@ jobs:
             cp -rf $GITHUB_WORKSPACE/${{ env.CORE_feeds_conf }} ./feeds.conf.default
           fi
           
-          ${GITHUB_WORKSPACE}/${CORE_DIY_P1_SH} "${GITHUB_WORKSPACE}"
+          ${GITHUB_WORKSPACE}/${CORE_DIY_P1_SH}
           echo "COMMIT_HASH=$(git rev-parse HEAD)" >> $GITHUB_ENV
           
       - name: 前置补丁
