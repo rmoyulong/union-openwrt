@@ -22,5 +22,8 @@ cp -rf ./immortalwrt/package/libs/libnftnl package/libs/
 rm -rf ./package/network/utils/nftables/
 cp -rf ./immortalwrt/package/network/utils/nftables package/network/utils/
 # firewall4
+rm -rf ./package/network/config/firewall
+cp -rf ./immortalwrt/package/network/config/firewall package/network/config/
+# firewall4
 rm -rf ./package/network/config/firewall4
 cp -rf ./immortalwrt/package/network/config/firewall4 package/network/config/
