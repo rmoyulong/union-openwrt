@@ -3,6 +3,10 @@ cd openwrt
 sudo chmod +x $GITHUB_WORKSPACE/patch/ax6/*.sh
 sudo chmod -Rf 755 $GITHUB_WORKSPACE/patch/ax6/*
 
+sudo dos2unix $GITHUB_WORKSPACE/patch/breeze303/*.sh
+sudo chmod +x $GITHUB_WORKSPACE/patch/breeze303/*.sh
+sudo chmod -Rf 755 $GITHUB_WORKSPACE/patch/breeze303/*
+
 sudo mv $GITHUB_WORKSPACE/patch/ax6/01_leds target/linux/qualcommax/ipq807x/base-files/etc/board.d/01_leds
 sudo mv $GITHUB_WORKSPACE/patch/ax6/02_network target/linux/qualcommax/ipq807x/base-files/etc/board.d/02_network
 sudo mv $GITHUB_WORKSPACE/patch/ax6/11-ath10k-caldata target/linux/qualcommax/ipq807x/base-files/etc/hotplug.d/firmware/11-ath10k-caldata
