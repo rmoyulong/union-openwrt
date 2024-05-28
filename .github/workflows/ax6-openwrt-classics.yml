@@ -68,6 +68,6 @@ jobs:
       #特殊固件的方式 使用默认的：false
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
-      CORE_feeds_conf: false
+      CORE_feeds_conf: breeze303_feeds.conf.default
       
       
