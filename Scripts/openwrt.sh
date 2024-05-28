@@ -26,6 +26,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocksr
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-zerotier
 ####################################################################################
+git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages vlmcsd
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages vsftpd-alt
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-vlmcsd
@@ -33,7 +34,6 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-kod
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-usb-printer
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-vsftpd
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ramfree
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
 
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
