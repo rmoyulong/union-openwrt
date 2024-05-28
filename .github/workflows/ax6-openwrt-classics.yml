@@ -36,7 +36,7 @@ jobs:
       CORE_BRANCH: main
       CORE_tag_name: 精英版
       # 头部 配置文件 --- header 目录
-      CORE_header: ax6.config
+      CORE_header: breeze303.config
       # 配置文件 -- config 目录
       CORE_config: classics.config
       # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
@@ -68,6 +68,6 @@ jobs:
       #特殊固件的方式 使用默认的：false
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
-      CORE_feeds_conf: breeze303_feeds.conf.default
+      CORE_feeds_conf: breeze303/breeze303_feeds.conf.default
       
       
