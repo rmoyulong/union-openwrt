@@ -311,7 +311,7 @@ jobs:
           if [[ "${{ inputs.CORE_DIY_P3_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_DIY_P3_SH"
           else
-            ${GITHUB_WORKSPACE}/${CORE_DIY_P3_SH} "${CORE_FILES}"
+            ${GITHUB_WORKSPACE}/${CORE_DIY_P3_SH} "${CORE_FILES}" "${CORE_header}"
           fi
           
           if [[ "${{ inputs.CORE_DIY_P4_SH }}" == *"false"* ]]; then
