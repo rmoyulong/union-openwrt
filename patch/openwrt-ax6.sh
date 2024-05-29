@@ -1,5 +1,9 @@
 #!/bin/bash
 cd openwrt
+sudo dos2unix $GITHUB_WORKSPACE/patch/ax6/*.sh
+sudo dos2unix $GITHUB_WORKSPACE/patch/ax6/*
+sudo dos2unix $GITHUB_WORKSPACE/patch/ax6/*.mk
+sudo dos2unix $GITHUB_WORKSPACE/patch/ax6/*.dts
 sudo chmod +x $GITHUB_WORKSPACE/patch/ax6/*.sh
 sudo chmod -Rf 755 $GITHUB_WORKSPACE/patch/ax6/*
 
