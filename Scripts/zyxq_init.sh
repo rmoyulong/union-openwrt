@@ -11,4 +11,3 @@ chmod -R 777 ${GITHUB_WORKSPACE}/$1/mnt/sda1/aria2/download
 chmod -R 755 ${GITHUB_WORKSPACE}/$1/mnt/sda1/share
 		  
 sed -i 's/REENTRANT -D_GNU_SOURCE/LARGEFILE64_SOURCE/g' feeds/packages/lang/perl/perlmod.mk
-sed -i 's#GO_PKG_TARGET_VARS.*# #g' feeds/packages/utils/v2dat/Makefile
