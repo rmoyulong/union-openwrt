@@ -2,7 +2,7 @@
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
 #CI项目名
-name: AX6经典版-openwrt[breeze303]
+name: AX6经典版-openwrt
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日12点编译一次
@@ -31,19 +31,19 @@ jobs:
       #默认地址
       CORE_IP: 192.168.31.1
       #默认源码
-      CORE_URL: https://github.com/breeze303/openwrt-6.x
+      CORE_URL: https://github.com/openwrt/openwrt
       #源码版本
       CORE_BRANCH: main
       CORE_tag_name: 经典版
       # 头部 配置文件 --- header 目录
-      CORE_header: breeze303.config
+      CORE_header: ax6.config
       # 配置文件 -- config 目录
       CORE_config: classics.config
       # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
       #前置补丁 -- 在【更新订阅源】前执行
-      CORE_patch: breeze303_openwrt-ax6.sh
+      CORE_patch: openwrt-ax6.sh
       #后置补丁 -- 在【更新订阅源】后执行
-      CORE_patch_after: breeze303/after.sh
+      CORE_patch_after: false
       # 单独处理脚本 -- soc 目录 不执行: false 没有执行cd openwrt
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
@@ -68,6 +68,6 @@ jobs:
       #特殊固件的方式 使用默认的：false
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
-      CORE_feeds_conf: breeze303/breeze303_feeds.conf.default
+      CORE_feeds_conf: false
       
       
