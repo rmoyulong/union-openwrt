@@ -1,6 +1,14 @@
 #!/bin/bash
 #
 
+#删除以前设置的所有openclash
+rm -rf ./package/OpenClash
+rm -rf ./package/luci-app-openclash
+rm -rf feeds/kenzo/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-openclash
+
+cd ./package
+
 #Open Clash
 git clone --depth=1 --single-branch --branch "dev" https://github.com/vernesong/OpenClash.git
 

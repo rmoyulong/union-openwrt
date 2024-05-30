@@ -36,7 +36,7 @@ jobs:
       CORE_BRANCH: main
       CORE_tag_name: 最新版
       # 头部 配置文件 --- header 目录
-      CORE_header: N1.config
+      CORE_header: armsr_armv8_DEVICE_generic.config
       # 配置文件 -- config 目录
       CORE_config: zyxq_latest.config 
       # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
@@ -51,7 +51,7 @@ jobs:
       CORE_DIY_P1_SH: openwrt.sh
       CORE_DIY_P2_SH: Settings.sh
       CORE_DIY_P3_SH: zyxq_init.sh
-      CORE_DIY_P4_SH: false
+      CORE_DIY_P4_SH: openclash64.sh
       # 删除不兼容的插件 -- remove 目录 不执行: false 已经执行cd openwrt
       CORE_remove: openwrt_remove.sh
       # linux 内核

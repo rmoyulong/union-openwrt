@@ -15,7 +15,7 @@ if [ ! -d "./files" ]; then
 fi
 
 cp -rf OneCloud/onecloud/files/* ./files
-rm -rf OneCloud
+rm -rm OneCloud
 ##############################################
 
 dos2unix ./files/etc/*.sh
