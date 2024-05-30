@@ -4,6 +4,5 @@
 mount -o remount rw /
 resize2fs /dev/mmcblk1p2
 sh  /etc/1.sh
-
 exit 0
 
