@@ -13,6 +13,9 @@ if [ ! -z "$3" ];then
     ithemes="luci-theme-${ithemes}"
 fi
 
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+
 #修改默认主题
 #替换主题为原版argon
 if [[ "$4" == *"lede"* ]]; then
