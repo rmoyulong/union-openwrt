@@ -18,6 +18,7 @@ git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-hom
 #git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall2 openwrt-passwall2
 git_sparse_clone master https://github.com/rmoyulong/AX6-Actions_Lede pcre
 git_sparse_clone master https://github.com/rmoyulong/AX6-Actions_Lede aria2
+git_sparse_clone master https://github.com/rmoyulong/AX6-Actions_Lede luci-app-overwall
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages dnsforwarder
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
 git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
