@@ -2,7 +2,9 @@
 ###拷贝meson amlogic soc架构
 git clone https://github.com/rmoyulong/OneCloud_OpenWrt OneCloud
 if [[ "$2" == *"onecloud-amlogic.config"* ]]; then
-  mv OneCloud/lede6.6/target/linux/amlogic target/linux/amlogic
+  #mv OneCloud/lede6.6/target/linux/amlogic target/linux/amlogic
+  cp ${GITHUB_WORKSPACE}/patch/target.tar.gz .
+  tar zxvfp target.tar.gz
   chmod -Rf 755 target/linux/amlogic
 else
   mv OneCloud/lede6.6/target/linux/meson target/linux/meson
