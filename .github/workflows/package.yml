@@ -140,6 +140,9 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         cp -rf ../lede/package/qca package/qca
+        
+        #需要删除 feeds/packages/net/shadowsocks-libev
+        merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-libev
         ##########################################################################################
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages dnsforwarder
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
