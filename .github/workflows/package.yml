@@ -203,6 +203,11 @@ jobs:
         #需要删除 feeds/luci/applications/luci-app-kodexplorer
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-kodexplorer
         
+        ##########################################################################################
+        #需要删除 feeds/packages/net/aria2
+        merge_package master https://github.com/immortalwrt/packages package net/aria2
+        
+        ##########################################################################################        
         #theme
         merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt-2020
         merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt
@@ -212,10 +217,6 @@ jobs:
         tar zcvfp $GITHUB_WORKSPACE/outfile/lede.tar.gz .
         ##########################################################################################
         
-        #需要删除 feeds/packages/net/aria2
-        merge_package master https://github.com/immortalwrt/packages package net/aria2
-        
-        ##########################################################################################
         rm -rf package/luci-theme-openwrt
         rm -rf package/luci-theme-openwrt-2020
         
