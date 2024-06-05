@@ -151,6 +151,9 @@ jobs:
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
         
+        #需要删除 package/openwrt-passwall/hysteria
+        git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria
+        
         #需要删除 feeds/luci/applications/luci-app-mosdns
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
         
