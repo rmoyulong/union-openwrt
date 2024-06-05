@@ -120,11 +120,8 @@ jobs:
         
     - name: 打包自定义订阅源
       run: |
-        REPO_URL="https://github.com/immortalwrt/immortalwrt"
-        git clone -q --single-branch --depth=1 --branch=mian ${REPO_URL} immortalwrt
-        
-        REPO_URL="https://github.com/coolsnowwolf/lede"
-        git clone -q --single-branch --depth=1 --branch=master ${REPO_URL} lede
+        git clone -q --single-branch --depth=1 --branch=mian https://github.com/immortalwrt/immortalwrt immortalwrt
+        git clone -q --single-branch --depth=1 --branch=master https://github.com/coolsnowwolf/lede lede
         
         #建立上传目录
         mkdir -p outfile
