@@ -134,6 +134,7 @@ jobs:
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ssr-plus
         ##########################################################################################
         #插件需要的依赖
+        mkdir -p package/libs
         cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
         cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
         cp -rf ../lede/package/libs/uclient package/libs/uclient
