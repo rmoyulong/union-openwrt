@@ -37,23 +37,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-    - name: 清理服务器空间(Ubuntu)
-      uses: rmoyulong/free-disk-space@main
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: true
-
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        docker-images: true
-        swap-storage: true
-        
     - name: 检查项目
       uses: actions/checkout@main
  
@@ -160,11 +143,13 @@ jobs:
         ##########################################################################################
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages dnsforwarder
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages v2dat
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
+        
+        #需要删除 feeds/luci/applications/luci-app-mosdns
+        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
         
         #需要删除 feeds/luci/applications/luci-app-turboacc
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-turboacc
@@ -193,10 +178,6 @@ jobs:
         #需要删除 feeds/packages/net/mosdns
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
         
-        #需要删除 feeds/luci/applications/luci-app-mosdns
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
-        
-        ##########################################################################################
         #需要删除 feeds/luci/applications/luci-app-kodexplorer
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-kodexplorer
         
@@ -223,6 +204,9 @@ jobs:
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-vsftpd
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-usb-printer
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-ramfree
+        
+        #需要删除 feeds/luci/applications/luci-app-zerotier
+        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-zerotier
         
         ##########################################################################################
         #openwrt 打包需要的插件
