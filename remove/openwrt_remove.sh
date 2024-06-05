@@ -10,6 +10,7 @@ rm -rf feeds/luci/applications/luci-app-kodexplorer
 rm -rf feeds/luci/applications/luci-app-zerotier
 ###############################
 rm -rf  package/openwrt-passwall/shadowsocks-rust
+rm -rf  package/openwrt-passwall/hysteria
 ####################################################
 #解决shadowsocks-libev编译错误
 rm -rf feeds/packages/net/shadowsocks-libev
