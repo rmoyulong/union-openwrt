@@ -167,7 +167,7 @@ jobs:
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
         
         #需要删除 feeds/luci/applications/luci-app-turboacc
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-turboac
+        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-turboacc
         
         #需要删除 package/openwrt-passwall/shadowsocks-rust
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadowsocks-rust
