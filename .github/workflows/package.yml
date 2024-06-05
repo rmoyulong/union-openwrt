@@ -152,7 +152,7 @@ jobs:
         ##########################################################################################
         #插件需要的依赖
         cp -rf ../lede/package/libs/mbedtls package/libs/
-        cp -rf ./lede/package/libs/ustream-ssl package/libs/
+        cp -rf ../lede/package/libs/ustream-ssl package/libs/
         cp -rf ../lede/package/libs/uclient package/libs/
         cp -rf ../lede/package/libs/pcre package/libs/
         cp -rf ../lede/package/qca package
