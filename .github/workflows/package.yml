@@ -140,6 +140,8 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         cp -rf ../lede/package/qca package/qca
+        mkdir -p package/network/services
+        cp -rf ../immortalwrt/package/network/services/hostapd package/network/services/hostapd
         #删除qca不兼容的部分
         rm -rf package/qca/qca-nss-dp
         rm -rf package/qca/qca-ssdk
