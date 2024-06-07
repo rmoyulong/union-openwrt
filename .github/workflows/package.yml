@@ -140,8 +140,6 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         cp -rf ../lede/package/qca package/qca
-        mkdir -p package/network/services
-        cp -rf ../immortalwrt/package/network/services/hostapd package/network/services/hostapd
         #删除qca不兼容的部分
         rm -rf package/qca/qca-nss-dp
         rm -rf package/qca/qca-ssdk
@@ -204,6 +202,14 @@ jobs:
         ##########################################################################################
         #lede 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/lede.tar.gz .
+        ##########################################################################################
+        
+        #openwrt需要的依赖
+        mkdir -p package/network/services
+        cp -rf ../immortalwrt/package/network/services/hostapd package/network/services/hostapd
+        
+        #需要删除 feeds/packages/net/curl
+        merge_package master https://github.com/immortalwrt/packages package net/curl        
         ##########################################################################################
         
         rm -rf package/luci-theme-openwrt
