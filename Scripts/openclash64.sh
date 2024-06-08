@@ -1,5 +1,9 @@
 #!/bin/bash
 #
+meta="openclash"
+if [ ! -z "$1" ];then
+    meta=$1
+fi
 
 #删除以前设置的所有openclash
 rm -rf ./package/OpenClash
@@ -36,7 +40,11 @@ mkdir ./core && cd ./core
 curl -sfL -o ./tun.gz "$CORE_TUN"-"$CORE_TYPE"-"$TUN_VER".gz
 gzip -d ./tun.gz && mv ./tun ./clash_tun
 
-curl -sfL -o ./meta.tar.gz "$CORE_MATE"-"$CORE_TYPE".tar.gz
+if [ "${meta}" == *"openclash"* ];then
+  curl -sfL -o ./meta.tar.gz "$CORE_MATE"-"$CORE_TYPE".tar.gz
+else
+  curl -sfL -o ./meta.tar.gz "https://github.com/DustinWin/clash_singbox-tools/raw/main/mihomo-meta/mihomo-linux-armv8.tar.gz"
+fi
 tar -zxf ./meta.tar.gz && mv ./clash ./clash_meta
 
 curl -sfL -o ./dev.tar.gz "$CORE_DEV"-"$CORE_TYPE".tar.gz
