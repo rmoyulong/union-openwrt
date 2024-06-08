@@ -85,7 +85,10 @@ on:
         type: string
       CORE_feeds_conf:
         required: true
-        type: string      
+        type: string
+      CORE_META:
+        required: true
+        type: string
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   CORE_TARGET: ${{inputs.CORE_TARGET}}
@@ -115,6 +118,7 @@ env:
   auto_kernel: ${{inputs.auto_kernel}}
   CORE_Pack: ${{inputs.CORE_Pack}}
   CORE_feeds_conf: patch/${{inputs.CORE_feeds_conf}}
+  CORE_META: patch/${{inputs.CORE_META}}
   TZ: Asia/Shanghai
 
 jobs:
@@ -214,6 +218,12 @@ jobs:
           echo "auto_kernel=$auto_kernel" >> $GITHUB_ENV
           echo "CORE_Pack=$CORE_Pack" >> $GITHUB_ENV
           echo "CORE_feeds_conf=$CORE_feeds_conf" >> $GITHUB_ENV
+          echo "CORE_THEME=$CORE_THEME" >> $GITHUB_ENV
+          echo "CORE_META=$CORE_META" >> $GITHUB_ENV
+          
+          echo "CORE_META: ${{ inputs.CORE_META }}"
+          echo "CORE_IP: ${{ inputs.CORE_IP }}"
+          echo "CORE_THEME: ${{ inputs.CORE_THEME }}"
 
       - name: 检查脚本
         run: |
@@ -317,7 +327,7 @@ jobs:
           if [[ "${{ inputs.CORE_DIY_P4_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_DIY_P4_SH"
           else
-            ${GITHUB_WORKSPACE}/${CORE_DIY_P4_SH}
+            ${GITHUB_WORKSPACE}/${CORE_DIY_P4_SH} "${{ inputs.CORE_META }}" "${CORE_header}"
           fi 
 
       - name: 删除冲突的插件
