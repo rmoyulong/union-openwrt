@@ -8,6 +8,31 @@ on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日12点编译一次
   #关闭则手动编译
   workflow_dispatch:
+    inputs:
+      theme:
+        description: '主题'     
+        required: true
+        default: 'material' 
+        type: choice
+        options:
+        - material
+        - argon
+
+      OP_IP:
+        description: 'IP选项'     
+        required: true
+        default: '192.168.31.1'  
+        type: string
+
+      openclash_meta:
+        description: 'meta内核'     
+        required: true
+        default: 'openclash' 
+        type: choice
+        options:
+        - openclash
+        - opencrash
+        
   schedule:
     - cron: 0 4 1,15 * *
 
@@ -23,13 +48,13 @@ jobs:
       #编译平台，X64包含X86
       CORE_TARGET: Redmi-AX6
       #默认主题
-      CORE_THEME: material
+      CORE_THEME: ${{ github.event.inputs.theme }}
       #默认主机名
       CORE_NAME: Redmi-AX6
       #默认密码，仅作展示，更改无效
       CORE_PW: password
       #默认地址
-      CORE_IP: 192.168.31.1
+      CORE_IP: ${{ github.event.inputs.OP_IP }}
       #默认源码
       CORE_URL: https://github.com/immortalwrt/immortalwrt
       #源码版本
@@ -54,6 +79,8 @@ jobs:
       CORE_DIY_P4_SH: false
       # 删除不兼容的插件 -- remove 目录 不执行: false 已经执行cd openwrt
       CORE_remove: remove.sh
+      # 修正files配置文件脚本 -- remove  目录 不执行: false 已经执行cd openwrt
+      CORE_Files_SH: false
       # linux 内核
       CORE_LINUX: 6.6.30
       # 固件初始设置 -- patch 目录 不执行: false
@@ -69,5 +96,6 @@ jobs:
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
       CORE_feeds_conf: false
+      CORE_META: ${{ github.event.inputs.openclash_meta }}
       
       
