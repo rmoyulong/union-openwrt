@@ -229,7 +229,15 @@ jobs:
           echo "CORE_META: ${{ inputs.CORE_META }}"
           echo "CORE_IP: ${{ inputs.CORE_IP }}"
           echo "CORE_THEME: ${{ inputs.CORE_THEME }}"
-
+          
+          # 使用正则表达式校验IP地址格式是否符合规范
+          if [[ $CORE_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "IP地址 $CORE_IP 符合规范。"
+          else
+            echo "IP地址 $CORE_IP 不符合规范。"
+            exit 1
+          fi
+  
       - name: 检查脚本
         run: |
           dos2unix ./Scripts/*.sh
