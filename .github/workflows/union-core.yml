@@ -92,6 +92,9 @@ on:
       CORE_Files_SH:
         required: true
         type: string
+      OP_router:
+        required: true
+        type: string
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   CORE_TARGET: ${{inputs.CORE_TARGET}}
@@ -123,6 +126,7 @@ env:
   CORE_feeds_conf: patch/${{inputs.CORE_feeds_conf}}
   CORE_META: ${{inputs.CORE_META}}
   CORE_Files_SH: remove/${{inputs.CORE_Files_SH}}
+  OP_router: ${{inputs.OP_router}}
   TZ: Asia/Shanghai
 
 jobs:
@@ -225,6 +229,7 @@ jobs:
           echo "CORE_THEME=$CORE_THEME" >> $GITHUB_ENV
           echo "CORE_META=$CORE_META" >> $GITHUB_ENV
           echo "CORE_Files_SH=$CORE_Files_SH" >> $GITHUB_ENV
+          echo "OP_router=$OP_router" >> $GITHUB_ENV
           
           echo "CORE_META: ${{ inputs.CORE_META }}"
           echo "CORE_IP: ${{ inputs.CORE_IP }}"
@@ -382,7 +387,7 @@ jobs:
           if [[ "${{ inputs.CORE_Files_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_Files_SH"
           else
-            ${GITHUB_WORKSPACE}/${CORE_Files_SH} "${CORE_FILES}" "${CORE_header}" "${{ inputs.CORE_IP }}"
+            ${GITHUB_WORKSPACE}/${CORE_Files_SH} "${OP_router}" "${CORE_header}" "${{ inputs.CORE_IP }}"
           fi
           
       - name: 下载编译依赖
