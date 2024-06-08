@@ -1,5 +1,5 @@
 #!/bin/bash
-ip="192.168.2.1"
+ip="192.168.31.1"
 iname="Openwrt"
 ithemes="luci-theme-material"
 if [ ! -z "$1" ];then
