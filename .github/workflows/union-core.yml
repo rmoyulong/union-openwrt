@@ -327,7 +327,7 @@ jobs:
           if [[ "${{ inputs.CORE_DIY_P4_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_DIY_P4_SH"
           else
-            ${GITHUB_WORKSPACE}/${CORE_DIY_P4_SH} "${{ inputs.CORE_META }}" "${CORE_header}"
+            ${GITHUB_WORKSPACE}/${CORE_DIY_P4_SH} "${{ inputs.CORE_META }}" "${{ inputs.CORE_IP }}"
           fi 
 
       - name: 删除冲突的插件
