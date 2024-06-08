@@ -89,6 +89,9 @@ on:
       CORE_META:
         required: true
         type: string
+      CORE_Files_SH:
+        required: true
+        type: string
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   CORE_TARGET: ${{inputs.CORE_TARGET}}
@@ -118,7 +121,8 @@ env:
   auto_kernel: ${{inputs.auto_kernel}}
   CORE_Pack: ${{inputs.CORE_Pack}}
   CORE_feeds_conf: patch/${{inputs.CORE_feeds_conf}}
-  CORE_META: patch/${{inputs.CORE_META}}
+  CORE_META: ${{inputs.CORE_META}}
+  CORE_Files_SH: remove/${{inputs.CORE_Files_SH}}
   TZ: Asia/Shanghai
 
 jobs:
@@ -220,6 +224,7 @@ jobs:
           echo "CORE_feeds_conf=$CORE_feeds_conf" >> $GITHUB_ENV
           echo "CORE_THEME=$CORE_THEME" >> $GITHUB_ENV
           echo "CORE_META=$CORE_META" >> $GITHUB_ENV
+          echo "CORE_Files_SH=$CORE_Files_SH" >> $GITHUB_ENV
           
           echo "CORE_META: ${{ inputs.CORE_META }}"
           echo "CORE_IP: ${{ inputs.CORE_IP }}"
@@ -360,13 +365,22 @@ jobs:
              cat $GITHUB_WORKSPACE/${CORE_header}  > .config
              cat $GITHUB_WORKSPACE/${CORE_config} >> .config
           fi
-          cat .config
-          
-          make defconfig
+          #cat .config          
 
+      - name: 修正files文件配置
+        run: |
+          cd openwrt
+          
+          if [[ "${{ inputs.CORE_Files_SH }}" == *"false"* ]]; then
+            echo "不需要执行 CORE_Files_SH"
+          else
+            ${GITHUB_WORKSPACE}/${CORE_Files_SH} "${CORE_FILES}" "${CORE_header}" "${{ inputs.CORE_IP }}"
+          fi
+          
       - name: 下载编译依赖
         working-directory: ./openwrt
         run: |
+          make defconfig
           make download -j$(nproc)
           #make download -j8
           #make -j16 download
