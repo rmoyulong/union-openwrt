@@ -44,13 +44,53 @@ sed -i 's/time.ustc.edu.cn/cn.ntp.org.cn/' package/base-files/files/bin/config_g
 sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_generate
 
 # 修改 argon 为默认主题
-sed -i 's|luci-theme-bootstrap|${ithemes}|g' feeds/luci/collections/luci/Makefile
-sed -i 's|luci-theme-argon|${ithemes}|g' feeds/luci/collections/luci/Makefile
-sed -i 's|luci-theme-design|${ithemes}|g' feeds/luci/collections/luci/Makefile
-sed -i 's|luci-theme-material|${ithemes}|g' feeds/luci/collections/luci/Makefile
-sed -i 's|luci-theme-openwrt-2020|${ithemes}|g' feeds/luci/collections/luci/Makefile
-sed -i 's|luci-theme-openwrt|${ithemes}|g' feeds/luci/collections/luci/Makefile
-sed -i 's|luci-theme-ifit|${ithemes}|g' feeds/luci/collections/luci/Makefile
+if [[ "$4" == *"lede"* ]]; then
+  echo "# Copyright (C) 2008-2014 The LuCI Team <luci@lists.subsignal.org>
+#
+# This is free software, licensed under the Apache License, Version 2.0 .
+#
+
+include $(TOPDIR)/rules.mk
+
+LUCI_TYPE:=col
+LUCI_BASENAME:=luci
+
+LUCI_TITLE:=Standard OpenWrt set including full admin with ppp support and the default Bootstrap theme
+LUCI_DEPENDS:= \
+	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +${ithemes} \
+	+luci-app-firewall +luci-proto-ppp +libiwinfo-lua \
+	+rpcd-mod-rrdns
+
+PKG_LICENSE:=Apache-2.0
+
+include ../../luci.mk
+
+# call BuildPackage - OpenWrt buildroot signature">feeds/luci/collections/luci/Makefile
+
+else
+  echo "# Copyright (C) 2008-2014 The LuCI Team <luci@lists.subsignal.org>
+#
+# This is free software, licensed under the Apache License, Version 2.0 .
+#
+
+include $(TOPDIR)/rules.mk
+
+LUCI_TYPE:=col
+LUCI_BASENAME:=luci
+
+LUCI_TITLE:=LuCI interface with Uhttpd as Webserver (default)
+LUCI_DESCRIPTION:=Standard OpenWrt set including package management and attended sysupgrades support
+LUCI_DEPENDS:= \
+    +${ithemes} \
+	+luci-light \
+	+luci-app-opkg
+
+PKG_LICENSE:=Apache-2.0
+
+include ../../luci.mk
+
+# call BuildPackage - OpenWrt buildroot signature">feeds/luci/collections/luci/Makefile
+fi
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
