@@ -23,6 +23,15 @@ on:
         required: true
         default: '192.168.1.110'
         type: string
+        
+      OP_router:
+        description: '路由器类型'     
+        required: true
+        default: '旁路由' 
+        type: choice
+        options:
+        - 旁路由
+        - 主路由     
 
       openclash_meta:
         description: 'meta内核'     
@@ -97,5 +106,4 @@ jobs:
       #feeds.conf.default  -- patch 目录 使用默认的：false
       CORE_feeds_conf: false
       CORE_META: ${{ github.event.inputs.openclash_meta }}
-      
-      
+      OP_router: ${{ github.event.inputs.OP_router }}
