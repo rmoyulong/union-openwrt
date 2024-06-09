@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ ! -z  ];then
+if [ ! -z "$3" ];then
     ip="$3"
     ip_server=${ip%.*}.1
 fi
 
-if [ "$1" == *"旁路由"* ];then
+if [[ "$1" == *"旁路由"* ]]; then
     echo "config dnsmasq
 	option domainneeded '1'
 	option localise_queries '1'
