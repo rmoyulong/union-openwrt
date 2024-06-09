@@ -5,6 +5,10 @@ if [ ! -z "$3" ];then
     ip_server=${ip%.*}.1
 fi
 
+#默认主路由
+rm -rf ./files/etc/config/dhcp
+rm -rf ./files/etc/config/network
+   
 if [[ "$1" == *"旁路由"* ]]; then
     echo "config dnsmasq
 	option domainneeded '1'
@@ -90,9 +94,6 @@ config interface 'lan6'
 	option reqaddress 'try'
 	option reqprefix 'auto'
 	option device 'br-lan'">files/etc/config/network
-else
-   rm -rf ./files/etc/config/dhcp
-   rm -rf ./files/etc/config/network
 fi
 
 
