@@ -231,10 +231,10 @@ jobs:
           echo "CORE_Files_SH=$CORE_Files_SH" >> $GITHUB_ENV
           echo "OP_router=$OP_router" >> $GITHUB_ENV
           
-          echo "CORE_META: ${{ inputs.CORE_META }}"
-          echo "CORE_IP: ${{ inputs.CORE_IP }}"
-          echo "CORE_THEME: ${{ inputs.CORE_THEME }}"
-          echo "OP_router: ${{ inputs.OP_router }}"
+          echo "CORE_META: $CORE_META"
+          echo "CORE_IP: $CORE_IP"
+          echo "CORE_THEME: $CORE_THEME"
+          echo "OP_router: $OP_router"
           
           # 使用正则表达式校验IP地址格式是否符合规范
           if [[ $CORE_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -388,7 +388,7 @@ jobs:
           if [[ "${{ inputs.CORE_Files_SH }}" == *"false"* ]]; then
             echo "不需要执行 CORE_Files_SH"
           else
-            ${GITHUB_WORKSPACE}/${CORE_Files_SH} "${OP_router}" "${CORE_header}" "${{ inputs.CORE_IP }}"
+            ${GITHUB_WORKSPACE}/${CORE_Files_SH} "$OP_router" "$CORE_header" "${{ inputs.CORE_IP }}"
           fi
           
       - name: 下载编译依赖
