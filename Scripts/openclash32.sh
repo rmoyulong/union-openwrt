@@ -33,7 +33,15 @@ GEO_MMDB_URL="https://github.com/alecthw/mmdb_china_ip_list/raw/release/lite/Cou
 
 wget -qO- $CLASH_DEV_URL | tar xOvz > files/etc/openclash/core/clash
 wget -qO- $CLASH_TUN_URL | gunzip -c > files/etc/openclash/core/clash_tun
-wget -qO- $CLASH_META_URL | tar xOvz > files/etc/openclash/core/clash_meta
+#wget -qO- $CLASH_META_URL | tar xOvz > files/etc/openclash/core/clash_meta
 wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
 wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $GEO_MMDB_URL > files/etc/openclash/Country.mmdb
+
+if [ "${meta}" == *"openclash"* ];then
+  curl -sfL -o ./meta.tar.gz $CLASH_META_URL
+  tar -zxf ./meta.tar.gz && mv ./clash ./files/etc/openclash/core/clash_meta
+else
+  curl -sfL -o ./meta.tar.gz $CLASH_META_URL
+  tar -zxf ./meta.tar.gz && mv ./CrashCore ./files/etc/openclash/core/clash_meta
+fi
