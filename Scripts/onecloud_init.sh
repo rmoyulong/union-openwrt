@@ -1,14 +1,14 @@
 #############################################
 ###拷贝meson amlogic soc架构
 
-git clone https://github.com/rmoyulong/AX6-Actions_Lede OneCloud
+git clone https://github.com/rmoyulong/AX6-Actions_Lede AX6-Actions_Lede
 if [[ "$2" == *"amlogic_meson8b_DEVICE_thunder-onecloud.config"* ]]; then
-  cp -rf OneCloud/union_files/lede6.6/target/linux/amlogic target/linux
+  cp -rf AX6-Actions_Lede/union_files/lede6.6/target/linux/amlogic target/linux
   #cp ${GITHUB_WORKSPACE}/patch/target.tar.gz .
   #tar zxvfp target.tar.gz
   chmod -Rf 755 target/linux/amlogic
 else
-  cp -rf OneCloud/union_files/lede6.6/target/linux/meson target/linux
+  cp -rf AX6-Actions_Lede/union_files/lede6.6/target/linux/meson target/linux
   chmod -Rf 755 target/linux/meson
 fi
 
@@ -17,8 +17,8 @@ if [ ! -d "./files" ]; then
   mkdir ./files
 fi
 
-cp -rf OneCloud/union_files/onecloud/files/* ./files
-rm -rf OneCloud
+cp -rf AX6-Actions_Lede/union_files/$1/* ./files
+rm -rf AX6-Actions_Lede
 ##############################################
 
 dos2unix ./files/etc/*.sh
