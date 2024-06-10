@@ -91,6 +91,7 @@ if [ ! -d "./feeds/luci/collections/luci" ]; then
 fi
 
 cp -rf ./Makefile ./feeds/luci/collections/luci
+rm -rf ./Makefile
 ######################################################################################################
 
 #固件版本号添加个人标识和日期
