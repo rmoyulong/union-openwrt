@@ -1,13 +1,14 @@
 #############################################
 ###拷贝meson amlogic soc架构
-git clone https://github.com/rmoyulong/OneCloud_OpenWrt OneCloud
+
+git clone https://github.com/rmoyulong/AX6-Actions_Lede OneCloud
 if [[ "$2" == *"amlogic_meson8b_DEVICE_thunder-onecloud.config"* ]]; then
-  mv OneCloud/lede6.6/target/linux/amlogic target/linux/amlogic
+  cp -rf OneCloud/union_files/lede6.6/target/linux/amlogic target/linux
   #cp ${GITHUB_WORKSPACE}/patch/target.tar.gz .
   #tar zxvfp target.tar.gz
   chmod -Rf 755 target/linux/amlogic
 else
-  mv OneCloud/lede6.6/target/linux/meson target/linux/meson
+  cp -rf OneCloud/union_files/lede6.6/target/linux/meson target/linux
   chmod -Rf 755 target/linux/meson
 fi
 
@@ -16,7 +17,7 @@ if [ ! -d "./files" ]; then
   mkdir ./files
 fi
 
-cp -rf OneCloud/onecloud/files/* ./files
+cp -rf OneCloud/union_files/onecloud/files/* ./files
 rm -rf OneCloud
 ##############################################
 
