@@ -8,7 +8,8 @@ if [ ! -d "./files" ]; then
   mkdir ./files
 fi
 
-cp -rf AX6-Actions_Lede/union_files/$1/* ./files
+word=$1
+cp -rf AX6-Actions_Lede/union_files${word/patch/} /* ./files
 rm -rf AX6-Actions_Lede
 ##############################################
 
