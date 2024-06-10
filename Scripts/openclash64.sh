@@ -35,20 +35,20 @@ curl -sfL -o ./Country.mmdb $GEO_MMDB
 curl -sfL -o ./GeoSite.dat $GEO_SITE
 curl -sfL -o ./GeoIP.dat $GEO_IP
 
-mkdir ./core && cd ./core
+mkdir -p ./core
 
 curl -sfL -o ./tun.gz "$CORE_TUN"-"$CORE_TYPE"-"$TUN_VER".gz
-gzip -d ./tun.gz && mv ./tun ./clash_tun
+gzip -d ./tun.gz && cp -rf ./tun ./core/clash_tun
 
 if [ "${meta}" == *"openclash"* ];then
   curl -sfL -o ./meta.tar.gz "$CORE_MATE"-"$CORE_TYPE".tar.gz
-  tar -zxf ./meta.tar.gz && mv ./clash ./clash_meta
+  tar -zxf ./meta.tar.gz && cp -rf ./clash ./core/clash_meta
 else
   curl -sfL -o ./meta.tar.gz "https://github.com/DustinWin/clash_singbox-tools/raw/main/mihomo-meta/mihomo-linux-armv8.tar.gz"
-  tar -zxf ./meta.tar.gz && mv ./CrashCore ./clash_meta
+  tar -zxf ./meta.tar.gz && cp -rf ./CrashCore ./core/clash_meta
 fi
 
-
+cd core
 curl -sfL -o ./dev.tar.gz "$CORE_DEV"-"$CORE_TYPE".tar.gz
 tar -zxf ./dev.tar.gz
 
