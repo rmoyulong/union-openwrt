@@ -43,7 +43,7 @@ sed -i 's/time.ustc.edu.cn/cn.ntp.org.cn/' package/base-files/files/bin/config_g
 sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_generate
 
 ######################################################################################################
-#luci 配置
+#luci Makefile基础配置
 cp -rf $GITHUB_WORKSPACE/patch/luci/Makefile .
 # 修改 argon 为默认主题
 if [[ "$4" == *"lede"* ]]; then
