@@ -44,10 +44,15 @@ sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_gen
 
 ######################################################################################################
 #luci Makefile基础配置
-cp -rf $GITHUB_WORKSPACE/patch/luci/luci_Makefile .
+
+if [ ! -d "./feeds/luci/collections/luci" ]; then
+  mkdir -p ./feeds/luci/collections/luci
+fi
+
+cp -rf $GITHUB_WORKSPACE/patch/luci/Makefile ./feeds/luci/collections/luci
 # 修改 argon 为默认主题
 if [[ "$4" == *"lede"* ]]; then
-  cat <<EOF >>./luci_Makefile
+  cat <<EOF >>./feeds/luci/collections/luci/Makefile
 
 LUCI_TYPE:=col
 LUCI_BASENAME:=luci
@@ -65,7 +70,7 @@ include ../../luci.mk
 # call BuildPackage - OpenWrt buildroot signature
 EOF
 else
-  cat <<EOF >>./luci_Makefile
+  cat <<EOF >>./feeds/luci/collections/luci/Makefile
 
 LUCI_TYPE:=col
 LUCI_BASENAME:=luci
@@ -86,12 +91,6 @@ include ../../luci.mk
 EOF
 fi
 
-if [ ! -d "./feeds/luci/collections/luci" ]; then
-  mkdir -p ./feeds/luci/collections/luci
-fi
-
-cp -rf ./luci_Makefile ./feeds/luci/collections/luci/Makefile
-rm -rf ./luci_Makefile
 ######################################################################################################
 
 #固件版本号添加个人标识和日期
