@@ -9,8 +9,7 @@ if [ ! -z "$2" ];then
     iname=$2
 fi
 if [ ! -z "$3" ];then
-    ithemes=$3
-    ithemes="luci-theme-${ithemes}"
+    ithemes="luci-theme-$3"
 fi
 
 #修改默认主题
@@ -43,37 +42,30 @@ sed -i 's/time1.cloud.tencent.com/ntp.aliyun.com/' package/base-files/files/bin/
 sed -i 's/time.ustc.edu.cn/cn.ntp.org.cn/' package/base-files/files/bin/config_generate
 sed -i 's/cn.pool.ntp.org/pool.ntp.org/' package/base-files/files/bin/config_generate
 
+######################################################################################################
+#luci 配置
+cp -rf $GITHUB_WORKSPACE/patch/luci/Makefile .
 # 修改 argon 为默认主题
 if [[ "$4" == *"lede"* ]]; then
-  echo "# Copyright (C) 2008-2014 The LuCI Team <luci@lists.subsignal.org>
-#
-# This is free software, licensed under the Apache License, Version 2.0 .
-#
-
-include $(TOPDIR)/rules.mk
+  cat <<EOF >>./Makefile
 
 LUCI_TYPE:=col
 LUCI_BASENAME:=luci
 
 LUCI_TITLE:=Standard OpenWrt set including full admin with ppp support and the default Bootstrap theme
 LUCI_DEPENDS:= \
-	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +${ithemes} \
-	+luci-app-firewall +luci-proto-ppp +libiwinfo-lua \
+	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +luci-theme-$3 \
+	+dos2unix +luci-proto-ppp +libiwinfo-lua \
 	+rpcd-mod-rrdns
 
 PKG_LICENSE:=Apache-2.0
 
 include ../../luci.mk
 
-# call BuildPackage - OpenWrt buildroot signature">feeds/luci/collections/luci/Makefile
-
+# call BuildPackage - OpenWrt buildroot signature
+EOF
 else
-  echo "# Copyright (C) 2008-2014 The LuCI Team <luci@lists.subsignal.org>
-#
-# This is free software, licensed under the Apache License, Version 2.0 .
-#
-
-include $(TOPDIR)/rules.mk
+  cat <<EOF >>./Makefile
 
 LUCI_TYPE:=col
 LUCI_BASENAME:=luci
@@ -81,16 +73,25 @@ LUCI_BASENAME:=luci
 LUCI_TITLE:=LuCI interface with Uhttpd as Webserver (default)
 LUCI_DESCRIPTION:=Standard OpenWrt set including package management and attended sysupgrades support
 LUCI_DEPENDS:= \
-    +${ithemes} \
+    +luci-theme-$3 \
 	+luci-light \
+	+dos2unix \
 	+luci-app-opkg
 
 PKG_LICENSE:=Apache-2.0
 
 include ../../luci.mk
 
-# call BuildPackage - OpenWrt buildroot signature">feeds/luci/collections/luci/Makefile
+# call BuildPackage - OpenWrt buildroot signature
+EOF
 fi
+
+if [ ! -d "./feeds/luci/collections/luci" ]; then
+  mkdir -p ./feeds/luci/collections/luci
+fi
+
+cp -rf ./Makefile ./feeds/luci/collections/luci
+######################################################################################################
 
 #固件版本号添加个人标识和日期
 [ -e package/lean/default-settings/files/zzz-default-settings ] && sed -i "s/DISTRIB_DESCRIPTION='.*OpenWrt '/DISTRIB_DESCRIPTION='莫小小($(TZ=UTC-8 date +%Y.%m.%d))@OpenWrt '/g" package/lean/default-settings/files/zzz-default-settings
