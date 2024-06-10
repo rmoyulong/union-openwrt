@@ -1,8 +1,0 @@
-# Put your custom commands here that should be executed once
-# the system init finished. By default this file does nothing.
-
-mount -o remount rw /
-resize2fs /dev/mmcblk1p2
-sh  /etc/1.sh
-exit 0
-
