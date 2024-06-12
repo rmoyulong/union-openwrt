@@ -206,6 +206,7 @@ jobs:
         
         #openwrt需要的依赖
         mkdir -p package/network/services
+        #需要删除 package/network/services/hostapd
         cp -rf ../immortalwrt/package/network/services/hostapd package/network/services/hostapd
         
         #需要删除 feeds/packages/net/curl
