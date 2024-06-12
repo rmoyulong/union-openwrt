@@ -209,7 +209,7 @@ jobs:
         cp -rf ../immortalwrt/package/network/services/hostapd package/network/services/hostapd
         
         #需要删除 feeds/packages/net/curl
-        merge_package master https://github.com/immortalwrt/packages package net/curl        
+        merge_package master https://github.com/coolsnowwolf/packages package net/curl
         ##########################################################################################
         
         rm -rf package/luci-theme-openwrt
