@@ -31,16 +31,7 @@ on:
         type: choice
         options:
         - 主路由
-        - 旁路由     
-
-      openclash_meta:
-        description: 'meta内核'     
-        required: true
-        default: 'openclash' 
-        type: choice
-        options:
-        - openclash
-        - opencrash
+        - 旁路由
         
   schedule:
     - cron: 0 4 1,15 * *
@@ -75,7 +66,7 @@ jobs:
       CORE_config: tiny.config
       # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
       #前置补丁 -- 在【更新订阅源】前执行
-      CORE_patch: before-remove-qca-patch.sh
+      CORE_patch: false
       #后置补丁 -- 在【更新订阅源】后执行
       CORE_patch_after: false
       # 单独处理脚本 -- soc 目录 不执行: false 没有执行cd openwrt
@@ -105,5 +96,5 @@ jobs:
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
       CORE_feeds_conf: false
-      CORE_META: ${{ github.event.inputs.openclash_meta }}
+      CORE_META: openclash
       OP_router: ${{ github.event.inputs.OP_router }}
