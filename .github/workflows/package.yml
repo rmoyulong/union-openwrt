@@ -140,14 +140,14 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ################################################################
-        #cp -rf ../lede/package/qca package/qca
+        cp -rf ../lede/package/qca package/qca
         #删除qca不兼容的部分
-        #rm -rf package/qca/qca-nss-dp
-        #rm -rf package/qca/qca-ssdk
+        rm -rf package/qca/qca-nss-dp
+        rm -rf package/qca/qca-ssdk
         ##########################################################################################
         #nss
-        git clone --depth=1 https://github.com/breeze303/nss-packages.git package/nss_packages
-        git clone --depth=1 https://github.com/qosmio/sqm-scripts-nss.git package/sqm_scripts_nss
+        #git clone --depth=1 https://github.com/breeze303/nss-packages.git package/nss_packages
+        #git clone --depth=1 https://github.com/qosmio/sqm-scripts-nss.git package/sqm_scripts_nss
         
         #需要删除 feeds/packages/net/shadowsocks-libev
         merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-libev
