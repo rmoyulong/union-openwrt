@@ -215,9 +215,6 @@ jobs:
         
         rm -rf package/luci-theme-openwrt
         rm -rf package/luci-theme-openwrt-2020
-        ##########################################################################################        
-        #theme       
-        merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-argon
         
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages vlmcsd
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-vlmcsd   
