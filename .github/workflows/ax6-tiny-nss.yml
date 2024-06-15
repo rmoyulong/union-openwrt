@@ -46,11 +46,11 @@ jobs:
     uses: ./.github/workflows/union-core.yml
     with:
       #编译平台，X64包含X86
-      CORE_TARGET: Redmi-AX6
+      CORE_TARGET: Redmi-AX6_nss
       #默认主题
       CORE_THEME: ${{ github.event.inputs.theme }}
       #默认主机名
-      CORE_NAME: Redmi-AX6
+      CORE_NAME: Redmi-AX6_nss
       #默认密码，仅作展示，更改无效
       CORE_PW: password
       #默认地址
