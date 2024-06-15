@@ -220,6 +220,7 @@ jobs:
         rm -rf package/luci-theme-openwrt
         rm -rf package/luci-theme-openwrt-2020
         
+        git_sparse_clone master https://github.com/kiddin9/openwrt-packages cpufreq
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages vlmcsd
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-vlmcsd   
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages vsftpd-alt

@@ -145,8 +145,7 @@ jobs:
         #cp -rf ../lede/package/qca/shortcut-fe package/qca/shortcut-fe
         ##########################################################################################
         #nss
-        git clone --depth=1 https://github.com/qosmio/nss-packages package/nss_packages
-        git clone --depth=1 https://github.com/qosmio/sqm-scripts-nss package/sqm_scripts_nss
+        git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss_packages
         
         #需要删除 feeds/packages/net/shadowsocks-libev
         merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-libev
@@ -220,6 +219,7 @@ jobs:
         rm -rf package/luci-theme-openwrt
         rm -rf package/luci-theme-openwrt-2020
         
+        git_sparse_clone master https://github.com/kiddin9/openwrt-packages cpufreq
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages vlmcsd
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-vlmcsd   
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages vsftpd-alt
