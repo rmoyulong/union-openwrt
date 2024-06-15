@@ -73,7 +73,11 @@ jobs:
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
+      ##################################################
+      #自定义插件扩展源
       CORE_DIY_P1_SH: immortalwrt.sh
+      ########################################
+      #通用固件信息设置
       CORE_DIY_P2_SH: Settings.sh
       #####################################
       #固件初始设置files soc 远程公用files文件夹下载 不适用设置为: false
