@@ -84,12 +84,16 @@ jobs:
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
       CORE_DIY_P1_SH: openwrt.sh
       CORE_DIY_P2_SH: Settings.sh
-      CORE_DIY_P3_SH: false
+      #####################################
+      #固件初始设置files soc 远程公用files文件夹下载 不适用设置为: false
+      CORE_DIY_P3_SH: universal_init.sh
+      #######################################
+      #openclash
       CORE_DIY_P4_SH: false
       # 删除不兼容的插件 -- remove 目录 不执行: false 已经执行cd openwrt
       CORE_remove: openwrt_remove.sh
       # 修正files配置文件脚本 -- remove  目录 不执行: false 已经执行cd openwrt
-      CORE_Files_SH: false
+      CORE_Files_SH: edit_files.sh
       # linux 内核
       CORE_LINUX: 6.6.30
       # 固件初始设置 -- patch 目录 不执行: false
