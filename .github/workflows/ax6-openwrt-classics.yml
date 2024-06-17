@@ -2,7 +2,7 @@
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
 #CI项目名 #Nss精英版=homeproxy #Nss经典版=ssrplus
-name: AX6经典版-openwrt
+name: AX6 Nss经典版-openwrt
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日12点编译一次
@@ -82,7 +82,7 @@ jobs:
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
-      CORE_DIY_P1_SH: openwrt.sh
+      CORE_DIY_P1_SH: openwrt-nss.sh
       CORE_DIY_P2_SH: Settings.sh
       #####################################
       #固件初始设置files soc 远程公用files文件夹下载 不适用设置为: false
