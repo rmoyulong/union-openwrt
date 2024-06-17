@@ -139,15 +139,9 @@ jobs:
         cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
-        ################################################################
-        #mkdir -p package/qca/shortcut-fe
-        #拷贝turboacc需要的依赖
-        #cp -rf ../lede/package/qca/shortcut-fe package/qca/shortcut-fe
-        mkdir -p package/qca
-        cp -rf ../lede/package/qca package/qca
         ##########################################################################################
         #nss
-        #git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss_packages
+        git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss_packages
         
         #需要删除 feeds/packages/net/shadowsocks-libev
         merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-libev
