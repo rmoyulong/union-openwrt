@@ -65,7 +65,7 @@ jobs:
       #默认地址
       CORE_IP: ${{ github.event.inputs.OP_IP }}
       #默认源码
-      CORE_URL: https://github.com/openwrt/openwrt
+      CORE_URL: https://github.com/AgustinLorenzo/openwrt
       #源码版本
       CORE_BRANCH: main
       CORE_tag_name: Nss经典版
@@ -82,7 +82,7 @@ jobs:
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
-      CORE_DIY_P1_SH: openwrt-nss.sh
+      CORE_DIY_P1_SH: openwrt.sh
       CORE_DIY_P2_SH: Settings.sh
       #####################################
       #固件初始设置files soc 远程公用files文件夹下载 不适用设置为: false
@@ -108,6 +108,6 @@ jobs:
       #特殊固件的方式 使用默认的：false
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
-      CORE_feeds_conf: false
+      CORE_feeds_conf: ax6-nss-feeds.conf.default-openwrt
       CORE_META: ${{ github.event.inputs.openclash_meta }}
       OP_router: ${{ github.event.inputs.OP_router }}
