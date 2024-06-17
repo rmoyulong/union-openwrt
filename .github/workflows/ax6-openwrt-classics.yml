@@ -1,8 +1,8 @@
 #========================================================================================================================
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
-#CI项目名 #Nss精英版=homeproxy #Nss经典版=ssrplus  #Nss经典版=ssrplus
-name: AX6 Nss经典版-openwrt
+#CI项目名 #Nss精英版=homeproxy #Nss经典版=ssrplus
+name: AX6-Nss经典版-openwrt
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日12点编译一次
@@ -31,19 +31,10 @@ on:
         type: choice
         options:
         - 主路由
-        - 旁路由     
-
-      openclash_meta:
-        description: 'meta内核'     
-        required: true
-        default: 'openclash' 
-        type: choice
-        options:
-        - openclash
-        - opencrash
+        - 旁路由
         
   #schedule:
-    #- cron: 0 4 2,16 * *
+    #- cron: 0 4 1,15 * *
 
 #CI权限
 permissions: write-all
@@ -67,7 +58,7 @@ jobs:
       #默认源码
       CORE_URL: https://github.com/AgustinLorenzo/openwrt
       #源码版本
-      CORE_BRANCH: main
+      CORE_BRANCH: main_nss
       CORE_tag_name: Nss经典版
       # 头部 配置文件 --- header 目录
       CORE_header: qualcommax_ipq807x_DEVICE_redmi_ax6-stock.config
@@ -109,5 +100,5 @@ jobs:
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
       CORE_feeds_conf: ax6-nss-feeds.conf.default-openwrt
-      CORE_META: ${{ github.event.inputs.openclash_meta }}
+      CORE_META: openclash
       OP_router: ${{ github.event.inputs.OP_router }}
