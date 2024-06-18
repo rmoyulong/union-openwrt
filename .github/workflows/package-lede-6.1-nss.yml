@@ -134,9 +134,6 @@ jobs:
         mkdir -p target/linux/qualcommax/files/arch/arm64/boot/dts/qcom
         cp -rf ../lede/target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq8074-nss.dtsi target/linux/qualcommax/files/arch/arm64/boot/dts/qcom
         cat <<EOF >target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq8071-ax3600.dtsi
-// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-/* Copyright (c) 2021, Robert Marko <robimarko@gmail.com> */
-
 #include "ipq8074-512m.dtsi"
 #include "ipq8074-ac-cpu.dtsi"
 #include "ipq8074-ess.dtsi"
@@ -449,9 +446,6 @@ jobs:
 EOF
 
         cat <<EOF >target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq8072-ax9000.dts
-// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-/* Copyright (c) 2021, Robert Marko <robimarko@gmail.com> */
-
 /dts-v1/;
 
 #include "ipq8074.dtsi"
