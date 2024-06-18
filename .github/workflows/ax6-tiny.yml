@@ -75,7 +75,7 @@ jobs:
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
       ##################################################
       #自定义插件扩展源
-      CORE_DIY_P1_SH: lede-nss.sh
+      CORE_DIY_P1_SH: lede.sh
       ########################################
       #通用固件信息设置
       CORE_DIY_P2_SH: Settings.sh
@@ -103,7 +103,7 @@ jobs:
       #特殊固件的方式 使用默认的：false
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
-      CORE_feeds_conf: false
+      CORE_feeds_conf: ax6-nss-feeds.conf.default-openwrt
       ##########################
       #只有CORE_DIY_P4_SH设置了才生效
       CORE_META: openclash
