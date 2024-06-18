@@ -2,7 +2,7 @@
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
 #CI项目名 #Nss精英版=homeproxy #Nss经典版=ssrplus 【更新订阅源】:下载feeds.conf.default定义的源
-name: AX6精英版-lede
+name: AX6-Nss精英版-lede
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月1日/15日12点编译一次
@@ -59,14 +59,14 @@ jobs:
       CORE_URL: https://github.com/coolsnowwolf/lede
       #源码版本
       CORE_BRANCH: master
-      CORE_tag_name: 精英版
+      CORE_tag_name: Nss精英版
       # 头部 配置文件 --- header 目录
       CORE_header: qualcommax_ipq807x_DEVICE_redmi_ax6-stock.config
       # 配置文件 -- config 目录
       CORE_config: tiny.config
       # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
       #前置补丁 -- 在【更新订阅源】前执行
-      CORE_patch: false
+      CORE_patch: before-add-config-patch.sh
       #后置补丁 -- 在【更新订阅源】后执行
       CORE_patch_after: openwrt-ax6.sh
       # 单独处理脚本 -- soc 目录 不执行: false 没有执行cd openwrt
@@ -75,7 +75,7 @@ jobs:
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
       ##################################################
       #自定义插件扩展源
-      CORE_DIY_P1_SH: lede.sh
+      CORE_DIY_P1_SH: lede-nss.sh
       ########################################
       #通用固件信息设置
       CORE_DIY_P2_SH: Settings.sh
@@ -104,5 +104,7 @@ jobs:
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
       CORE_feeds_conf: false
+      ##########################
+      #只有CORE_DIY_P4_SH设置了才生效
       CORE_META: openclash
       OP_router: ${{ github.event.inputs.OP_router }}
