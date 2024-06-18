@@ -120,10 +120,21 @@ jobs:
         mkdir -p package/qca
         cp -rf ../lede/package/qca package/qca
         
-        mkdir -p target/linux/qualcommax
-        cp -rf ../lede/target/linux/qualcommax/patches-6.1 target/linux/qualcommax
-        cp -rf ../lede/target/linux/qualcommax/Makefile target/linux/qualcommax
-        cp -rf ../lede/target/linux/qualcommax/config-6.1 target/linux/qualcommax
+        mkdir -p target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0133-arm64-dts-ipq6018-add-reserved-memory-nodes.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0102-arm64-dts-ipq8074-add-reserved-memory-nodes.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0600-3-qca-nss-ecm-support-net-bonding.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0600-5-qca-nss-ecm-support-macvlan.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0600-8-qca-nss-ecm-support-MLO-bonding.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0603-1-qca-nss-clients-add-qdisc-support.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0603-2-qca-nss-clients-add-l2tp-support.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0603-3-qca-nss-clients-add-PPTP-support.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0603-6-qca-nss-clients-add-l2tp-offloading-support.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0603-8-qca-nss-clients-add-tls-mgr-support.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0605-qca-nss-cfi-support.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0611-ipv6-Fix-null-pointer-dereference-in-ipv6-output.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0605-qca-nss-cfi-support.patch target/linux/qualcommax/patches-6.6
+        cp -rf ../lede/target/linux/qualcommax/patches-6.1/0611-ipv6-Fix-null-pointer-dereference-in-ipv6-output.patch target/linux/qualcommax/patches-6.6
         
         mkdir -p target/linux/qualcommax/files/include
         cp -rf ../lede/target/linux/qualcommax/files/include target/linux/qualcommax/files/include
