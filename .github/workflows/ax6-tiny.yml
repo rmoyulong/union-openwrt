@@ -1,7 +1,7 @@
 #========================================================================================================================
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
-#CI项目名 #Nss精英版=homeproxy #Nss经典版=ssrplus
+#CI项目名 #Nss精英版=homeproxy #Nss经典版=ssrplus 【更新订阅源】:下载feeds.conf.default定义的源
 name: AX6精英版-immortalwrt
 
 on:
@@ -66,9 +66,9 @@ jobs:
       CORE_config: tiny.config
       # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
       #前置补丁 -- 在【更新订阅源】前执行
-      CORE_patch: patch/patch-lede-6.1-nss.sh
+      CORE_patch: false
       #后置补丁 -- 在【更新订阅源】后执行
-      CORE_patch_after: false
+      CORE_patch_after: patch-lede-6.1-nss.sh
       # 单独处理脚本 -- soc 目录 不执行: false 没有执行cd openwrt
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
