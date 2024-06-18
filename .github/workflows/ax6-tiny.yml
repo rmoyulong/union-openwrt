@@ -103,7 +103,7 @@ jobs:
       #特殊固件的方式 使用默认的：false
       CORE_Pack: false
       #feeds.conf.default  -- patch 目录 使用默认的：false
-      CORE_feeds_conf: ax6-nss-feeds.conf.default-openwrt
+      CORE_feeds_conf: ax6-nss-feeds.conf.default-lede
       ##########################
       #只有CORE_DIY_P4_SH设置了才生效
       CORE_META: openclash
