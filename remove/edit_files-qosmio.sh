@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#添加turboacc
-echo "CONFIG_PACKAGE_luci-app-turboacc=y" >> .config
-
 if [ ! -z "$3" ];then
     ip="$3"
     ip_server=${ip%.*}.1
@@ -121,6 +118,14 @@ config timeserver 'ntp'
 	list server 'time1.cloud.tencent.com'
 	list server 'time.ustc.edu.cn'
 	list server 'cn.pool.ntp.org'">files/etc/config/system
+
+
+#添加turboacc
+rm -rf ./package/luci-app-turboacc
+echo -e '\n' >> .config
+echo -e 'CONFIG_PACKAGE_luci-app-turboacc=y' >> .config
+
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 
 
