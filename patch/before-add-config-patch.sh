@@ -5,6 +5,7 @@ source $GITHUB_WORKSPACE/Scripts/functions.sh
 cd openwrt
 #rm -rf ./package/qca
 rm -rf ./package/qca/qca-nss-dp
+rm -rf ./package/qca/qca-nss-ecm
 
 #添加nss 附加依赖
 # AgustinLorenzo/openwrt 自带qca-nss-dp
