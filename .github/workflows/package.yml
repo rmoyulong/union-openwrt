@@ -195,7 +195,8 @@ jobs:
         ###########################################################################################
         #mod_nftables_full
         mkdir -p package/network/utils
-        cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
+        cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
+        cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat
         cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
         ##########################################################################################
         #需要删除 feeds/packages/net/aria2
