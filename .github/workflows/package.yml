@@ -202,7 +202,7 @@ jobs:
         mkdir -p package/network/utils
         cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
         cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat
-        #cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
+        cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
         ###########################################################################################       
         #theme
         merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt-2020
@@ -230,7 +230,7 @@ jobs:
         mkdir -p package/network/utils
         cp -rf ../breeze303/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
         cp -rf ../breeze303/package/network/utils/fullconenat package/network/utils/fullconenat
-        cp -rf ../breeze303/package/network/utils/nftables package/network/utils/nftables
+        cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
         ###########################################################################################
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages cpufreq
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages vlmcsd
