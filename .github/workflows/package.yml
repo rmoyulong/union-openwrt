@@ -142,7 +142,6 @@ jobs:
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################
         ##需要删除 package/network/utils/nftables
-        mkdir -p package/network/utils/nftables
         cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
         ##########################################################################################
         #nss
