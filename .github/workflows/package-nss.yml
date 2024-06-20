@@ -141,7 +141,7 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################
-        mkdir -p package/network/utils/nftables
+        mkdir -p package/network/utils
         cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
         cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
         ##########################################################################################
