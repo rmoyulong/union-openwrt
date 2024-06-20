@@ -92,8 +92,8 @@ jobs:
         dos2unix ./Scripts/*.sh
         chmod +x ./Scripts/*.sh
         
-        dos2unix ./patch/*.sh
-        chmod +x ./patch/*.sh
+        #dos2unix ./patch/*.sh
+        #chmod +x ./patch/*.sh
         
     - name: 克隆源仓库
       working-directory: /workdir
