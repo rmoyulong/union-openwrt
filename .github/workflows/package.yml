@@ -3,7 +3,7 @@
 # Description: Use Releases file to packaging
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
-name: 自用源打包脚本-nss
+name: 自用源打包脚本
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每天10点编译一次
@@ -33,7 +33,7 @@ env:
   TZ: Asia/Shanghai
 
 jobs:
-  build_burn_onecloud_quick:
+  build_package:
     runs-on: ubuntu-latest
 
     steps:
@@ -184,7 +184,7 @@ jobs:
         
         ##########################################################################################
         #immortalwrt 打包需要的插件
-        tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt-nss.tar.gz .
+        tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt.tar.gz .
         ##########################################################################################
         
         #需要删除 feeds/packages/net/mosdns
@@ -209,7 +209,7 @@ jobs:
         
         ##########################################################################################
         #lede 打包需要的插件
-        tar zcvfp $GITHUB_WORKSPACE/outfile/lede-nss.tar.gz .
+        tar zcvfp $GITHUB_WORKSPACE/outfile/lede.tar.gz .
         ##########################################################################################
         
         #openwrt需要的依赖
@@ -237,7 +237,7 @@ jobs:
         
         ##########################################################################################
         #openwrt 打包需要的插件
-        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt-nss.tar.gz .
+        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         
  

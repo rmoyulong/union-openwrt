@@ -33,7 +33,7 @@ env:
   TZ: Asia/Shanghai
 
 jobs:
-  build_burn_onecloud_quick:
+  build_package_nss:
     runs-on: ubuntu-latest
 
     steps:
