@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2016
 
-cd openwrt
-
 trap 'rm -rf "$TMPDIR"' EXIT
 TMPDIR=$(mktemp -d) || exit 1
 
@@ -18,7 +16,6 @@ echo "kernel version: $kernel_versions"
 if [ -d "./package/turboacc" ]; then
     rm -rf "./package/turboacc"
 fi
-
 
 git clone --depth=1 --single-branch https://github.com/fullcone-nat-nftables/nft-fullcone "$TMPDIR/turboacc/nft-fullcone" || exit 1
 git clone --depth=1 --single-branch https://github.com/chenmozhijin/turboacc "$TMPDIR/turboacc/turboacc" || exit 1
