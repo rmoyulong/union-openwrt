@@ -21,7 +21,7 @@ else
 fi
 cp -r "$TMPDIR/turboacc/turboacc/luci-app-turboacc" "$TMPDIR/turboacc/luci-app-turboacc"
 rm -rf "$TMPDIR/turboacc/turboacc"
-cp -r "$TMPDIR/package/shortcut-fe" "$TMPDIR/turboacc/shortcut-fe"
+#cp -r "$TMPDIR/package/shortcut-fe" "$TMPDIR/turboacc/shortcut-fe"
 
 
 cp -rf "$TMPDIR/turboacc" "./package"
