@@ -89,10 +89,11 @@ jobs:
     
     - name: 检查脚本
       run: |
-        cd ./Scripts
-
-        dos2unix ./*.sh
-        chmod +x ./*.sh
+        dos2unix ./Scripts/*.sh
+        chmod +x ./Scripts/*.sh
+        
+        dos2unix ./patch/*.sh
+        chmod +x ./patch/*.sh
 
     - name: 克隆源仓库
       working-directory: /workdir
