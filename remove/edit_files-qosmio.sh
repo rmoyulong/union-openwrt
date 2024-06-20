@@ -124,10 +124,11 @@ config timeserver 'ntp'
 #rm -rf ./package/luci-app-turboacc
 echo -e '\n' >> .config
 echo -e 'CONFIG_PACKAGE_luci-app-turboacc=y' >> .config
-cat .config
+#cat .config
 
 #curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 bash $GITHUB_WORKSPACE/patch/add_turboacc.sh
+ls -l ./package/turboacc
 
 
 
