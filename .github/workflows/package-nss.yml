@@ -141,10 +141,6 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################
-        mkdir -p package/network/utils
-        cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
-        cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
-        ##########################################################################################
         #nss
         git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss-packages
         
@@ -196,7 +192,11 @@ jobs:
         
         #需要删除 feeds/luci/applications/luci-app-kodexplorer
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-kodexplorer
-        
+        ###########################################################################################
+        #mod_nftables_full
+        mkdir -p package/network/utils
+        cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
+        cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
         ##########################################################################################
         #需要删除 feeds/packages/net/aria2
         merge_package master https://github.com/immortalwrt/packages package net/aria2

@@ -3,7 +3,7 @@
 # Description: Use Releases file to packaging
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
-name: 自用源打包脚本
+name: 自用源打包脚本-nss
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每天10点编译一次
@@ -94,7 +94,7 @@ jobs:
         
         #dos2unix ./patch/*.sh
         #chmod +x ./patch/*.sh
-        
+
     - name: 克隆源仓库
       working-directory: /workdir
       run: |
@@ -141,10 +141,6 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################
-        mkdir -p package/network/utils
-        cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
-        cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
-        ##########################################################################################
         #nss
         #git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss-packages
         
@@ -188,7 +184,7 @@ jobs:
         
         ##########################################################################################
         #immortalwrt 打包需要的插件
-        tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt.tar.gz .
+        tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt-nss.tar.gz .
         ##########################################################################################
         
         #需要删除 feeds/packages/net/mosdns
@@ -196,7 +192,11 @@ jobs:
         
         #需要删除 feeds/luci/applications/luci-app-kodexplorer
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-kodexplorer
-        
+        ###########################################################################################
+        #mod_nftables_full
+        mkdir -p package/network/utils
+        cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
+        cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
         ##########################################################################################
         #需要删除 feeds/packages/net/aria2
         merge_package master https://github.com/immortalwrt/packages package net/aria2
@@ -208,7 +208,7 @@ jobs:
         
         ##########################################################################################
         #lede 打包需要的插件
-        tar zcvfp $GITHUB_WORKSPACE/outfile/lede.tar.gz .
+        tar zcvfp $GITHUB_WORKSPACE/outfile/lede-nss.tar.gz .
         ##########################################################################################
         
         #openwrt需要的依赖
@@ -236,7 +236,7 @@ jobs:
         
         ##########################################################################################
         #openwrt 打包需要的插件
-        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
+        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt-nss.tar.gz .
         ##########################################################################################
         
  
