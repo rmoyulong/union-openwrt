@@ -4,7 +4,6 @@
 trap 'rm -rf "$TMPDIR"' EXIT
 TMPDIR=$(mktemp -d) || exit 1
 
-
 VERSION_NUMBER=$(sed -n '/VERSION_NUMBER:=$(if $(VERSION_NUMBER),$(VERSION_NUMBER),.*)/p' include/version.mk|sed -e 's/.*$(VERSION_NUMBER),//' -e 's/)//')
 kernel_versions="$(find "./include"|sed -n '/kernel-[0-9]/p'|sed -e "s@./include/kernel-@@" |sed ':a;N;$!ba;s/\n/ /g')"
 if [ -z "$kernel_versions" ]; then
@@ -15,6 +14,7 @@ echo "kernel version: $kernel_versions"
 
 if [ -d "./package/turboacc" ]; then
     rm -rf "./package/turboacc"
+    mkdir -p ./package/turboacc
 fi
 
 git clone --depth=1 --single-branch https://github.com/fullcone-nat-nftables/nft-fullcone "$TMPDIR/turboacc/nft-fullcone" || exit 1
@@ -63,7 +63,7 @@ for kernel_version in $kernel_versions ;do
     fi
 done
 
-cp -r "$TMPDIR/turboacc" "./package/turboacc"
+cp -rf "$TMPDIR/turboacc" "./package"
 rm -rf ./package/libs/libnftnl ./package/network/config/firewall4 ./package/network/utils/nftables ./package/luci-app-turboacc
 
 mkdir -p ./package/network/config/firewall4
