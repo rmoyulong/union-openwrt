@@ -143,7 +143,7 @@ jobs:
         ###########################################################################################
         ##需要删除 package/network/utils/nftables
         mkdir -p package/network/utils/nftables
-        cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
+        cp -rf ../immortalwrt/package/network/utils/nftables package/nftables
         ##########################################################################################
         #nss
         git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss-packages
