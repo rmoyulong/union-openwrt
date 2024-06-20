@@ -140,14 +140,13 @@ jobs:
         cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
-        ################################################################
-        #mkdir -p package/qca/shortcut-fe
-        #拷贝turboacc需要的依赖
-        #cp -rf ../lede/package/qca/shortcut-fe package/qca/shortcut-fe
+        ###########################################################################################
+        ##需要删除 package/network/utils/nftables
+        mkdir -p package/network/utils/nftables
+        cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/nftables
         ##########################################################################################
         #nss
-        #git clone --depth=1 https://github.com/breeze303/nss-packages.git package/nss_packages
-        #git clone --depth=1 https://github.com/qosmio/sqm-scripts-nss.git package/sqm_scripts_nss
+        #git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss-packages
         
         #需要删除 feeds/packages/net/shadowsocks-libev
         merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-libev
