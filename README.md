@@ -11,3 +11,4 @@ Nss 依赖 => https://github.com/AgustinLorenzo/nss-packages.git   分支 main_n
 qosmio<br>
 Nss openwrt库 => https://github.com/qosmio/openwrt-ipq   分支 qualcommax-6.x-nss-wifi <br>
 Nss 依赖 => https://github.com/qosmio/nss-packages.git   分支 NSS-12.5-K6.x <br>
+Nss 依赖 => https://github.com/King-Of-Knights/nss-packages.git    分支 NSS-12.5-K6.x <br> (增强了ip60xx)
