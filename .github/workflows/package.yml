@@ -242,7 +242,9 @@ jobs:
         
         #需要删除 feeds/luci/applications/luci-app-zerotier
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-zerotier
-        
+        ###########################################################################################       
+        #theme
+        merge_package master https://github.com/immortalwrt/luci/ package themes/lluci-theme-argon   
         ##########################################################################################
         #openwrt 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
