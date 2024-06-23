@@ -184,6 +184,10 @@ jobs:
         git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
         
         ##########################################################################################
+        # luci-app-amlogic
+        git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
+        
+        ##########################################################################################
         #immortalwrt 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt.tar.gz .
         ##########################################################################################
