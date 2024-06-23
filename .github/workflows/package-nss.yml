@@ -203,7 +203,7 @@ jobs:
         mkdir -p package/network/utils
         cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
         cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat
-        cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
+        cp -rf ../breeze303/package/network/utils/nftables package/network/utils/nftables
         ###########################################################################################  
         #需要删除 feeds/packages/net/aria2
         merge_package master https://github.com/immortalwrt/packages package net/aria2
@@ -235,7 +235,7 @@ jobs:
         mkdir -p package/network/utils
         cp -rf ../breeze303/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
         cp -rf ../breeze303/package/network/utils/fullconenat package/network/utils/fullconenat
-        cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
+        cp -rf ../breeze303/package/network/utils/nftables package/network/utils/nftables
         ###########################################################################################
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages cpufreq
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages vlmcsd
