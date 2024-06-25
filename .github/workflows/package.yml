@@ -212,7 +212,7 @@ jobs:
         merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt
         
         #lede专用 cryptodev-linux
-        mkdir -p package/kernel/cryptodev-linux
+        mkdir -p package/kernel
         cp -rf ../immortalwrt/package/kernel/cryptodev-linux package/kernel/cryptodev-linux
         ##########################################################################################
         #lede 打包需要的插件
