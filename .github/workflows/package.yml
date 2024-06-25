@@ -262,6 +262,7 @@ jobs:
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         
         rm -rf package/network
+        mkdir -p package/network/services
         mkdir -p package/network/utils
         cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
         cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat        
