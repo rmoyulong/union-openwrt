@@ -263,8 +263,8 @@ jobs:
         
         rm -rf package/network
         mkdir -p package/network/utils
-        cp -rf ../openwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
-        cp -rf ../openwrt/package/network/utils/fullconenat package/network/utils/fullconenat        
+        cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
+        cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat        
         cp -rf ../openwrt/package/network/services/hostapd package/network/services/hostapd
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt-base.tar.gz .
         ##########################################################################################        
