@@ -158,8 +158,10 @@ jobs:
         #需要删除 package/openwrt-passwall/hysteria
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria
         
-        #需要删除 feeds/luci/applications/luci-app-mosdns
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-mosdns
+        #需要删除 feeds/packages/net/mosdns feeds/luci/applications/luci-app-mosdns
+        #需要删除 feeds/packages/net/v2ray-geodata
+        git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+        git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
         
         #需要删除 feeds/packages/lang/ruby
         merge_package master https://github.com/coolsnowwolf/packages package lang/ruby
@@ -191,9 +193,6 @@ jobs:
         #immortalwrt 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt.tar.gz .
         ##########################################################################################
-        
-        #需要删除 feeds/packages/net/mosdns
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages mosdns
         
         #需要删除 feeds/luci/applications/luci-app-kodexplorer
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-kodexplorer
