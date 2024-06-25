@@ -254,6 +254,21 @@ jobs:
         #openwrt 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt-nss.tar.gz .
         ##########################################################################################
+        #openwrt-k2 k2t youku_l1 打包需要的插件 使用本身插件依赖
+        rm -rf package/libs
+        mkdir -p package/libs
+        cp -rf ../openwrt/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../openwrt/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../openwrt/package/libs/uclient package/libs/uclient
+        cp -rf ../lede/package/libs/pcre package/libs/pcre
+        
+        rm -rf package/network
+        mkdir -p package/network/utils
+        cp -rf ../openwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
+        cp -rf ../openwrt/package/network/utils/fullconenat package/network/utils/fullconenat        
+        cp -rf ../openwrt/package/network/services/hostapd package/network/services/hostapd
+        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt-nss-base.tar.gz .
+        ##########################################################################################         
         
  
     - name: 上传插件源包
