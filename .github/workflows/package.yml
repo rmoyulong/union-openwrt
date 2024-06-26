@@ -249,17 +249,6 @@ jobs:
         #openwrt 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
-        #openwrt youku_l1 打包需要的插件 使用本身插件依赖
-        rm -rf package/libs
-        mkdir -p package/libs
-        cp -rf ../lede/package/libs/pcre package/libs/pcre
-        
-        rm -rf package/network
-        mkdir -p package/network/utils
-        cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
-        cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat        
-        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt-base.tar.gz .
-        ##########################################################################################        
         
  
     - name: 上传插件源包
