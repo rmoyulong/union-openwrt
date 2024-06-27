@@ -122,10 +122,11 @@ jobs:
         ##########################################################################################
         #师夷长技以制夷类插件A
         #需要删除 feeds/packages/net/homeproxy feeds/kenzo/homeproxy
-        git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+        #git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+        git clone --depth=1 https://github.com/bulianglin/homeproxy package/homeproxy
         
         #需要删除 feeds/luci/applications/luci-app-homeproxy  feeds/kenzo/luci-app-homeproxy
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-homeproxy
+        #git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-homeproxy
         ##########################################################################################
         #师夷长技以制夷类插件B
         git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
