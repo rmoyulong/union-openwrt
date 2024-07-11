@@ -157,7 +157,8 @@ jobs:
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
         
         #需要删除 package/openwrt-passwall/hysteria
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria
+        #git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria
+        git_sparse_clone main https://github.com/stupidloud/helloworld hysteria
         
         #需要删除 feeds/packages/net/mosdns feeds/luci/applications/luci-app-mosdns
         #需要删除 feeds/packages/net/v2ray-geodata
