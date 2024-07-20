@@ -179,6 +179,7 @@ jobs:
         git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
         git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
         git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+        git clone https://github.com/pexcn/openwrt-chinadns-ng --depth=1 package/openwrt-chinadns-ng
         ##########################################################################################
         # 在线用户
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-onliner
@@ -221,6 +222,10 @@ jobs:
         rm -rf package/luci-theme-openwrt
         rm -rf package/luci-theme-openwrt-2020
         rm -rf package/kernel/cryptodev-linux
+        ##########################################################################################
+        #luci-theme-argon
+        git clone https://github.com/jerrykuku/luci-theme-argon.git --depth=1 package/luci-theme-argon
+        git clone https://github.com/jerrykuku/luci-app-argon-config --depth=1 package/luci-app-argon-config
         
         ###########################################################################################
         #openwrt需要的依赖
