@@ -155,7 +155,7 @@ jobs:
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages shadow-tls
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-neturl
         git_sparse_clone master https://github.com/kiddin9/openwrt-packages redsocks2
-        git_sparse_clone master https://github.com/kiddin9/openwrt-packages lua-maxminddb
+        git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb
         
         #需要删除 package/openwrt-passwall/hysteria
         #git_sparse_clone master https://github.com/kiddin9/openwrt-packages hysteria
