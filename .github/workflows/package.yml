@@ -257,6 +257,12 @@ jobs:
         #openwrt 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
+        rm -rf package/homeproxy
+        git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+        ##########################################################################################
+        #openwrt_orther 打包需要的插件
+        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_orther.tar.gz .
+        ##########################################################################################
         
  
     - name: 上传插件源包
