@@ -75,7 +75,7 @@ jobs:
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
       ##################################################
       #自定义插件扩展源
-      CORE_DIY_P1_SH: openwrt.sh
+      CORE_DIY_P1_SH: openwrt_orther.sh
       ########################################
       #通用固件信息设置
       CORE_DIY_P2_SH: Settings.sh
