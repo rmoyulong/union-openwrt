@@ -39,9 +39,9 @@ wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
 wget -qO- $GEO_MMDB_URL > files/etc/openclash/Country.mmdb
 
 if [ "${meta}" == *"openclash"* ];then
-  curl -sfL -o ./meta.tar.gz $CLASH_META_URL
-  tar -zxf ./meta.tar.gz && cp -rf ./clash ./files/etc/openclash/core/clash_meta
+  curl -sfL -o  ./meta.tar.gz $CLASH_META_URL
+  tar -zxf ./meta.tar.gz && cp -rf ./clash files/etc/openclash/core/clash_meta
 else
   curl -sfL -o ./meta.tar.gz $CLASH_META_URL
-  tar -zxf ./meta.tar.gz && cp -rf ./CrashCore ./files/etc/openclash/core/clash_meta
+  tar -zxf ./meta.tar.gz && cp -rf ./CrashCore files/etc/openclash/core/clash_meta
 fi
