@@ -40,8 +40,12 @@ wget -qO- $GEO_MMDB_URL > files/etc/openclash/Country.mmdb
 
 if [ "${meta}" == *"openclash"* ];then
   curl -sfL -o  ./meta.tar.gz $CLASH_META_URL
-  tar -zxf ./meta.tar.gz && mv -f ./clash files/etc/openclash/core/clash_meta
+  tar -zxf ./meta.tar.gz 
+  mv -f ./clash files/etc/openclash/core/clash_meta
 else
   curl -sfL -o ./meta.tar.gz $CLASH_META_URL
-  tar -zxf ./meta.tar.gz && mv -f ./CrashCore files/etc/openclash/core/clash_meta
+  tar -zxf ./meta.tar.gz
+  mv -f ./CrashCore files/etc/openclash/core/clash_meta
 fi
+
+echo  $CLASH_META_URL
