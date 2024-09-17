@@ -263,6 +263,12 @@ jobs:
         #openwrt_orther 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_orther.tar.gz .
         ##########################################################################################
+        rm -rf package/libs
+        mkdir -p package/libs
+        cp -rf ../lede/package/libs/pcre package/libs/pcre        
+        #openwrt_k2 打包需要的插件
+        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_k2.tar.gz .
+        ##########################################################################################
         
  
     - name: 上传插件源包
