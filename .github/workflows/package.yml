@@ -283,7 +283,7 @@ jobs:
           =============基本信息============
 
           作者：rmoyulong
-          打包世界：${{env.OWRT_DATE}}
+          打包时间：${{env.OWRT_DATE}}
 
 
     - name: 清理Workflows
