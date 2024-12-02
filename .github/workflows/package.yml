@@ -256,6 +256,7 @@ jobs:
         ##########################################################################################
         #openwrt 打包需要的插件
         rm -rf package/lua-neturl
+        rm -rf package/vlmcsd
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         rm -rf package/homeproxy
