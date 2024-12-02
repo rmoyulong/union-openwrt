@@ -255,6 +255,7 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-zerotier
         ##########################################################################################
         #openwrt 打包需要的插件
+        rm -rf package/lua-neturl
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         rm -rf package/homeproxy
