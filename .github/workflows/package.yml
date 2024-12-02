@@ -164,7 +164,7 @@ jobs:
         #需要删除 feeds/packages/net/mosdns feeds/luci/applications/luci-app-mosdns
         #需要删除 feeds/packages/net/v2ray-geodata
         git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-        git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+        git_sparse_clone main https://github.com/kenzok8/small-package v2ray-geodata
         
         #需要删除 feeds/packages/lang/ruby
         merge_package master https://github.com/coolsnowwolf/packages package lang/ruby
