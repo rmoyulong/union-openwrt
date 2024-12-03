@@ -261,6 +261,8 @@ jobs:
         rm -rf package/vlmcsd
         rm -rf package/libs/mbedtls
         cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
+        rm -rf package/libs/ustream-ssl
+        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         rm -rf package/homeproxy
