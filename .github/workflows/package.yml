@@ -279,7 +279,6 @@ jobs:
         rm -rf package/libs/ustream-ssl
         cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
         cp -rf ../lede/package/libs/pcre package/libs/pcre
-        merge_package master https://github.com/immortalwrt/packages package lang/lua-neturl
         rm -rf package/network/services/hostapd
         cp -rf ../lede/package/network/services/hostapd package/network/services/hostapd
         #openwrt_k2 打包需要的插件
