@@ -153,7 +153,10 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages dnsforwarder
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages v2dat
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadow-tls
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages lua-neturl
+        
+        merge_package master https://github.com/immortalwrt/packages package net/vlmcsd
+        merge_package master https://github.com/immortalwrt/packages package lang/lua-neturl
+        
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages redsocks2
         git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb
         
@@ -246,7 +249,6 @@ jobs:
         #cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
         ###########################################################################################
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages cpufreq
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages vlmcsd
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vlmcsd   
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages vsftpd-alt
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vsftpd
@@ -257,10 +259,6 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-zerotier
         ##########################################################################################
         #openwrt 打包需要的插件
-        rm -rf package/lua-neturl
-        merge_package master https://github.com/immortalwrt/packages package lang/lua-neturl
-        rm -rf package/vlmcsd
-        merge_package master https://github.com/immortalwrt/packages package net/vlmcsd
         rm -rf package/libs/mbedtls
         cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
         rm -rf package/libs/ustream-ssl
