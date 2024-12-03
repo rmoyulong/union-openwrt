@@ -278,7 +278,7 @@ jobs:
         cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         rm -rf package/network/services/hostapd
-        cp -rf ../lede/package/network/services/hostapd package/network/services/hostapd
+        cp -rf ../immortalwrt/package/network/services/hostapd package/network/services/hostapd
         #openwrt_k2 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_k2.tar.gz .
         ##########################################################################################
