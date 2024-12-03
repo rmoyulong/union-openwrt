@@ -258,7 +258,9 @@ jobs:
         ##########################################################################################
         #openwrt 打包需要的插件
         rm -rf package/lua-neturl
+        merge_package master https://github.com/immortalwrt/packages package lang/lua-neturl
         rm -rf package/vlmcsd
+        merge_package master https://github.com/immortalwrt/packages package net/vlmcsd
         rm -rf package/libs/mbedtls
         cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
         rm -rf package/libs/ustream-ssl
@@ -277,7 +279,7 @@ jobs:
         rm -rf package/libs/ustream-ssl
         cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
         cp -rf ../lede/package/libs/pcre package/libs/pcre
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages lua-neturl
+        merge_package master https://github.com/immortalwrt/packages package lang/lua-neturl
         rm -rf package/network/services/hostapd
         cp -rf ../lede/package/network/services/hostapd package/network/services/hostapd
         #openwrt_k2 打包需要的插件
