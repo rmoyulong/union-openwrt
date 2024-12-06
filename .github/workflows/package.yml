@@ -123,15 +123,17 @@ jobs:
         #师夷长技以制夷类插件A
         #需要删除 feeds/packages/net/homeproxy feeds/kenzo/homeproxy
         #git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
-        git clone --depth=1 https://github.com/bulianglin/homeproxy package/homeproxy
+        #git clone --depth=1 https://github.com/bulianglin/homeproxy package/homeproxy
+        merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-homeproxy
         
         #需要删除 feeds/luci/applications/luci-app-homeproxy  feeds/kenzo/luci-app-homeproxy
         #git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-homeproxy
         ##########################################################################################
         #师夷长技以制夷类插件B
         git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-        git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+        #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
         git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+        merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-passwall
         merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-openclash
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-bypass
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-ssr-plus
@@ -167,7 +169,7 @@ jobs:
         #需要删除 feeds/packages/net/mosdns feeds/luci/applications/luci-app-mosdns
         #需要删除 feeds/packages/net/v2ray-geodata
         git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages v2ray-geodata
+        merge_package master https://github.com/immortalwrt/packages package net/v2ray-geodata
         
         #需要删除 feeds/packages/lang/ruby
         merge_package master https://github.com/coolsnowwolf/packages package lang/ruby
