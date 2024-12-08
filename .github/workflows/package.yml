@@ -122,9 +122,8 @@ jobs:
         ##########################################################################################
         #师夷长技以制夷类插件A
         #需要删除 feeds/packages/net/homeproxy feeds/kenzo/homeproxy
-        #git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
         #git clone --depth=1 https://github.com/bulianglin/homeproxy package/homeproxy
-        merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-homeproxy
+        git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
         
         #需要删除 feeds/luci/applications/luci-app-homeproxy  feeds/kenzo/luci-app-homeproxy
         #git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-homeproxy
@@ -268,6 +267,7 @@ jobs:
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         rm -rf package/homeproxy
+        rm -rf package/luci-app-homeproxy
         git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
         ##########################################################################################
         #openwrt_orther 打包需要的插件
