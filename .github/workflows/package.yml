@@ -252,7 +252,7 @@ jobs:
         ###########################################################################################
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages cpufreq
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vlmcsd   
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages vsftpd-alt
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages vsftpd
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vsftpd
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-usb-printer
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-ramfree
