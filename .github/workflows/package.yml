@@ -287,20 +287,20 @@ jobs:
         ##########################################################################################
         
  
-    - name: 上传插件源包
-      uses: rmoyulong/action-gh-release@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: 生成标签，上传固件
+      uses: ncipollo/release-action@v1
       with:
-        tag_name: union_package
-        files: outfile/*
+        allowUpdates: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: union_package
+        name: union_package
         body: |
           自用插件源包！
           =============基本信息============
 
           作者：rmoyulong
           打包时间：${{env.OWRT_DATE}}
-
+        artifacts: outfile/*
 
     - name: 清理Workflows
       uses: rmoyulong/delete-workflow-runs@main
