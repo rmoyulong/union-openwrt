@@ -2,7 +2,7 @@
 # Cron: min (0 - 59) / hour (0 - 23) / day of month (1 - 31) / month (1 - 12) / day of week (0 - 6)(Sunday - Saturday)
 #========================================================================================================================
 #CI项目名
-name: J1900精简版-immortalwrt
+name: J1900精简版-lede
 
 on:
   #对应的是 UTC 时间，需要转换，0 代表北京时间8点，每个月5日/19日12点编译一次
@@ -65,7 +65,7 @@ jobs:
       #默认地址
       CORE_IP: ${{ github.event.inputs.OP_IP }}
       #默认源码
-      CORE_URL: https://github.com/immortalwrt/immortalwrt
+      CORE_URL: https://github.com/coolsnowwolf/lede
       #源码版本
       CORE_BRANCH: master
       CORE_tag_name: J1900精简版
@@ -82,12 +82,12 @@ jobs:
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
-      CORE_DIY_P1_SH: immortalwrt.sh
+      CORE_DIY_P1_SH: lede.sh
       CORE_DIY_P2_SH: Settings.sh
       CORE_DIY_P3_SH: false
       CORE_DIY_P4_SH: false
       # 删除不兼容的插件 -- remove 目录 不执行: false 已经执行cd openwrt
-      CORE_remove: remove.sh
+      CORE_remove: remove_lede.sh
       # 修正files配置文件脚本 -- remove  目录 不执行: false 已经执行cd openwrt
       CORE_Files_SH: edit_files.sh
       # linux 内核
