@@ -130,7 +130,7 @@ jobs:
         ##########################################################################################
         #师夷长技以制夷类插件B
         git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-        git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+        merge_package main https://github.com/xiaorouji/openwrt-passwall package passwall
         merge_package main https://github.com/xiaorouji/openwrt-passwall2 package luci-app-passwall2
         merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-passwall
         merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-openclash
