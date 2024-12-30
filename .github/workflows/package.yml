@@ -130,8 +130,8 @@ jobs:
         ##########################################################################################
         #师夷长技以制夷类插件B
         git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-        #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
-        git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+        git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+        merge_package main https://github.com/xiaorouji/openwrt-passwall2 package luci-app-passwall2
         merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-passwall
         merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-openclash
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-bypass
@@ -184,7 +184,7 @@ jobs:
         git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
         git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
         git clone https://github.com/pexcn/openwrt-chinadns-ng --depth=1 package/openwrt-chinadns-ng
-        git clone https://github.com/rmoyulong/luci-app-omcproxy package/luci-app-omcproxy
+        #git clone https://github.com/rmoyulong/luci-app-omcproxy package/luci-app-omcproxy
         ##########################################################################################
         # 在线用户
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-onliner
