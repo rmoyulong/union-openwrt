@@ -1,4 +1,5 @@
 #!/bin/bash
+source $GITHUB_WORKSPACE/Scripts/functions.sh
 ip="192.168.31.1"
 iname="Openwrt"
 ithemes="luci-theme-material"
@@ -18,6 +19,8 @@ if [[ "$4" == *"lede"* ]]; then
 
   if [[ "$5" == *"x86_64"* ]]; then
     rm -rf feeds/luci/themes/luci-theme-argon && git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
+	rm -rf feeds/packages/utils/coremark
+	merge_package master https://github.com/coolsnowwolf/packages package utils/coremark
   else
     rm -rf feeds/luci/themes/luci-theme-argon && git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git feeds/luci/themes/luci-theme-argon
   fi
