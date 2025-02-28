@@ -119,6 +119,8 @@ jobs:
         cd package_file
         ##########################################################################################
         git clone --depth=1 https://github.com/kenzok8/openwrt-packages feeds/kenzo
+        rm -rf feeds/kenzo/taskd
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages taskd
         ##########################################################################################
         #师夷长技以制夷类插件A
         #需要删除 feeds/packages/net/homeproxy feeds/kenzo/homeproxy
@@ -155,7 +157,6 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages v2dat
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadow-tls
         
-        merge_package master https://github.com/immortalwrt/packages package net/vlmcsd
         merge_package master https://github.com/immortalwrt/packages package lang/lua-neturl
         
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages redsocks2
@@ -221,8 +222,6 @@ jobs:
         merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt
         ##########################################################################################
         #lede 打包需要的插件
-        rm -rf feeds/kenzo/taskd
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages taskd
         tar zcvfp $GITHUB_WORKSPACE/outfile/lede.tar.gz .
         ##########################################################################################
         #去掉lede专用
@@ -251,7 +250,8 @@ jobs:
         #cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
         ###########################################################################################
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages cpufreq
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vlmcsd   
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vlmcsd
+        merge_package master https://github.com/immortalwrt/packages package net/vlmcsd
         git_sparse_clone main https://github.com/kenzok8/small-package vsftpd
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vsftpd
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-usb-printer
