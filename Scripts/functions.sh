@@ -38,7 +38,7 @@ function git_sparse_clone_base() {
   git clone --depth=1 -b $branch --single-branch --filter=blob:none --sparse $repourl
   repodir=$(echo $repourl | awk -F '/' '{print $(NF)}')
   cd $repodir && git sparse-checkout set $@
-  mv -f $@ ../
+  mv -f $@ ../base
   cd .. && rm -rf $repodir
 }
 
