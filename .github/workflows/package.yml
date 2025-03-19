@@ -198,7 +198,12 @@ jobs:
         ##########################################################################################
         # luci-app-amlogic
         git clone https://github.com/ophub/luci-app-amlogic.git package/luci-app-amlogic
-        
+        ########################################################################################## 
+        # Easytier
+        git clone --depth 1 -b main https://github.com/EasyTier/luci-app-easytier.git luci-app-easytier
+        mv luci-app-easytier/easytier package/easytier
+        mv luci-app-easytier/luci-app-easytier package/luci-app-easytier
+        rm -rf luci-app-easytier
         ##########################################################################################
         #immortalwrt 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt.tar.gz .
@@ -259,7 +264,7 @@ jobs:
         
         #需要删除 feeds/luci/applications/luci-app-zerotier
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-zerotier
-        ##########################################################################################
+        ##########################################################################################      
         #openwrt 打包需要的插件
         rm -rf package/libs/mbedtls
         cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
