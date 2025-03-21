@@ -282,15 +282,17 @@ jobs:
         rm -rf package/libs
         mkdir -p package/libs
         rm -rf package/network/utils
-        cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
         rm -rf package/libs/ustream-ssl
-        cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
-        cp -rf ../lede/package/libs/pcre package/libs/pcre
+        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
+        rm -rf package/libs/uclient
+        cp -rf ../immortalwrt/package/libs/uclient package/libs/uclient
+        cp -rf ../immortalwrt/package/libs/pcre package/libs/pcre
         rm -rf package/network/services/hostapd
         rm -rf package/luci-app-turboacc
         merge_package master https://github.com/coolsnowwolf/luci package applications/luci-app-turboacc
         #openwrt_k2 打包需要的插件
-        tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_k2.tar.gz .
+        tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt_k2.tar.gz .
         ##########################################################################################
         
  
