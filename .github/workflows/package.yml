@@ -299,7 +299,7 @@ jobs:
         mkdir -p target/linux
         cp -rf ../lede/target/linux/mediatek target/linux
         cp -rf $GITHUB_WORKSPACE/patch/mt7981/filogic.mk target/linux/mediatek/image/filogic.mk
-        cp -rf $GITHUB_WORKSPACE/patch/mt7981/mt7981-cmcc-rax3000me.dts target/linux/mediatek/dts/mt7981-cmcc-rax3000me.dts
+        cp -rf $GITHUB_WORKSPACE/patch/mt7981/mt7981b-cmcc-rax3000me.dts target/linux/mediatek/dts/mt7981b-cmcc-rax3000me.dts
         #mediatek 架构打包
         tar zcvfp $GITHUB_WORKSPACE/outfile/mediatek.gz .        
         ##########################################################################################
