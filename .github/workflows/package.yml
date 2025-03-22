@@ -296,6 +296,8 @@ jobs:
         ##########################################################################################
         ###删除所有源 准备备份lede库的mediatek（联发科技）架构
         rm -rf package
+        rm -rf base
+        rm -rf feeds
         mkdir -p target/linux
         cp -rf ../lede/target/linux/mediatek target/linux
         cp -rf $GITHUB_WORKSPACE/patch/mt7981/filogic.mk target/linux/mediatek/image/filogic.mk
