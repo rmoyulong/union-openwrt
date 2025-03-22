@@ -294,6 +294,15 @@ jobs:
         #openwrt_k2 打包需要的插件
         tar zcvfp $GITHUB_WORKSPACE/outfile/immortalwrt_k2.tar.gz .
         ##########################################################################################
+        ###删除所有源 准备备份lede库的mediatek（联发科技）架构
+        rm -rf .
+        mkdir -p lede/mediatek
+        cp -rf ../lede/target/linux/mediatek target/linux/mediatek
+        cp -rf $GITHUB_WORKSPACE/patch/mt7981/filogic.mk target/linux/mediatek/image
+        cp -rf $GITHUB_WORKSPACE/patch/mt7981/mt7981-cmcc-rax3000me.dts target/linux/mediatek/dts
+        #mediatek 架构打包
+        tar zcvfp $GITHUB_WORKSPACE/outfile/mediatek.gz .        
+        ##########################################################################################
         
  
     - name: 生成标签，上传固件
