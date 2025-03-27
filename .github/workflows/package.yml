@@ -137,7 +137,7 @@ jobs:
         #merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-passwall
         merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-openclash
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-bypass
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-ssr-plus
+        git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
         ##########################################################################################
         #插件需要的依赖
         mkdir -p package/libs
@@ -165,6 +165,10 @@ jobs:
         #需要删除 package/openwrt-passwall/hysteria
         #git_sparse_clone main https://github.com/kiddin9/kwrt-packages hysteria
         git_sparse_clone main https://github.com/stupidloud/helloworld hysteria
+        
+        # iStore
+        git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
+        git_sparse_clone main https://github.com/linkease/istore luci
         
         #需要删除 feeds/packages/net/mosdns feeds/luci/applications/luci-app-mosdns
         #需要删除 feeds/packages/net/v2ray-geodata
