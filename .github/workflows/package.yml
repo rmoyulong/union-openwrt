@@ -158,7 +158,7 @@ jobs:
        
         git_sparse_clone main https://github.com/kenzok8/small-package redsocks2
         git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb
-        git_sparse_clone main https://github.com/kenzok8/small-package lua-neturl
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages lua-neturl
         git_sparse_clone main https://github.com/kenzok8/small-package luci-app-ssr-plus
         git_sparse_clone main https://github.com/kenzok8/small-package v2ray-core
         git_sparse_clone main https://github.com/kenzok8/small-package dns2tcp
@@ -271,9 +271,6 @@ jobs:
         #需要删除 feeds/luci/applications/luci-app-zerotier
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-zerotier
         ##########################################################################################   
-        rm -rf package/lua-neturl
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages lua-neturl
-        ##########################################################################################        
         #openwrt 打包需要的插件
         rm -rf package/libs/mbedtls
         cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
