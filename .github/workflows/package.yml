@@ -286,8 +286,8 @@ jobs:
         git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
         ##########################################################################################
         #openwrt_orther 打包需要的插件
-        rm -rf package/network
-        rm -rf package/libs
+        #rm -rf package/network
+        #rm -rf package/libs
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_orther.tar.gz .
         ##########################################################################################
         rm -rf package/libs
