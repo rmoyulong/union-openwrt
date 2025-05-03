@@ -119,9 +119,9 @@ jobs:
         cd package_file
         ##########################################################################################
         #需要删除 feeds/packages/net/aria2 feeds/packages/net/ariang feeds/luci/luci-app-aria2
-        git_sparse_clone_base_1 main https://github.com/kiddin9/kwrt-packages aria2
-        git_sparse_clone_base_1 main https://github.com/kiddin9/kwrt-packages ariang
-        git_sparse_clone_base_1 main https://github.com/kiddin9/kwrt-packages luci-app-aria2
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages aria2
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages ariang
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-aria2
         ###########################################################################################        
         git clone --depth=1 https://github.com/kenzok8/openwrt-packages feeds/kenzo
         rm -rf feeds/kenzo/taskd
