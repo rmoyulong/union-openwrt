@@ -150,7 +150,7 @@ jobs:
         mkdir -p package/libs
         cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
         cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
-        cp -rf ../lede/package/libs/uclient package/libs/uclient
+        cp -rf ../immortalwrt/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################
         #nss
@@ -158,7 +158,7 @@ jobs:
         
         #需要删除 feeds/packages/net/shadowsocks-libev
         #merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-libev
-        merge_package master https://github.com/coolsnowwolf/packages package net/shadowsocks-libev
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadowsocks-libev
         ##########################################################################################
         git_sparse_clone main https://github.com/kenzok8/small-package dnsforwarder
         git_sparse_clone main https://github.com/kenzok8/small-package v2dat
@@ -232,6 +232,12 @@ jobs:
         cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
         cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat
         #cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
+        rm -rf package/libs
+        mkdir -p package/libs
+        cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../lede/package/libs/uclient package/libs/uclient
+        cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################       
         #lede专用 theme
         merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt-2020
@@ -277,10 +283,6 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-zerotier
         ##########################################################################################   
         #openwrt 打包需要的插件
-        rm -rf package/libs/mbedtls
-        cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
-        rm -rf package/libs/ustream-ssl
-        cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         rm -rf package/homeproxy
@@ -288,18 +290,19 @@ jobs:
         git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
         ##########################################################################################
         #openwrt_orther 打包需要的插件
-        #rm -rf package/network
-        #rm -rf package/libs
+        rm -rf package/libs
+        mkdir -p package/libs
+        cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../immortalwrt/package/libs/uclient package/libs/uclient
+        cp -rf ../lede/package/libs/pcre package/libs/pcre
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_orther.tar.gz .
         ##########################################################################################
         rm -rf package/libs
         mkdir -p package/libs
-        rm -rf package/network/utils
-        cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
-        rm -rf package/libs/ustream-ssl
-        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
-        rm -rf package/libs/uclient
-        cp -rf ../immortalwrt/package/libs/uclient package/libs/uclient
+        cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         rm -rf package/network/services/hostapd
         rm -rf package/luci-app-turboacc
