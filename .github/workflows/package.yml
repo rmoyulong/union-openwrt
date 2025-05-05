@@ -148,8 +148,8 @@ jobs:
         ##########################################################################################
         #插件需要的依赖
         mkdir -p package/libs
-        cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
-        cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################
@@ -278,9 +278,9 @@ jobs:
         ##########################################################################################   
         #openwrt 打包需要的插件
         rm -rf package/libs/mbedtls
-        cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
         rm -rf package/libs/ustream-ssl
-        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         rm -rf package/homeproxy
