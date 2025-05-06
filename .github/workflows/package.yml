@@ -198,7 +198,7 @@ jobs:
         git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
         git clone --depth=1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
         git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
-        git clone https://github.com/pexcn/openwrt-chinadns-ng --depth=1 package/openwrt-chinadns-ng
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages chinadns-ng
         #git clone https://github.com/rmoyulong/luci-app-omcproxy package/luci-app-omcproxy
         ##########################################################################################
         # 在线用户
