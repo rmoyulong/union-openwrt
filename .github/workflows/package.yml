@@ -283,6 +283,12 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-zerotier
         ##########################################################################################   
         #openwrt 打包需要的插件
+        rm -rf package/libs
+        mkdir -p package/libs
+        cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../immortalwrt/package/libs/uclient package/libs/uclient
+        cp -rf ../lede/package/libs/pcre package/libs/pcre        
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt.tar.gz .
         ##########################################################################################
         rm -rf package/homeproxy
@@ -292,9 +298,9 @@ jobs:
         #openwrt_orther 打包需要的插件
         rm -rf package/libs
         mkdir -p package/libs
-        cp -rf ../immortalwrt/package/libs/mbedtls package/libs/mbedtls
-        cp -rf ../immortalwrt/package/libs/ustream-ssl package/libs/ustream-ssl
-        cp -rf ../immortalwrt/package/libs/uclient package/libs/uclient
+        cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
+        cp -rf ../lede/package/libs/ustream-ssl package/libs/ustream-ssl
+        cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_orther.tar.gz .
         ##########################################################################################
