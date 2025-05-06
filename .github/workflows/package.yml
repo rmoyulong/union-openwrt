@@ -125,7 +125,7 @@ jobs:
         ###########################################################################################        
         git clone --depth=1 https://github.com/kenzok8/openwrt-packages feeds/kenzo
         rm -rf feeds/kenzo/taskd
-        merge_package main https://github.com/kiddin9/kwrt-packages package/taskd taskd
+        merge_package main https://github.com/kiddin9/kwrt-packages package taskd
         ##########################################################################################
         #师夷长技以制夷类插件A
         #需要删除 feeds/packages/net/homeproxy feeds/kenzo/homeproxy
