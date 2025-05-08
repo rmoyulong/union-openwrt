@@ -7,8 +7,25 @@ curl -L -o ./uboot.img https://github.com/rmoyulong/u-boot-onecloud/releases/dow
 
 mkdir rootfs_path
 mkdir mount_rootfs
+
+files=$(ls openwrt/bin/targets/*/*/*.tar 2> /dev/null | wc -l)
 cd rootfs_path
-gunzip ../openwrt/bin/targets/*/*/*rootfs.tar.gz
+if [ "$files" != "0" ]; then
+    tarfile=$(ls ../openwrt/bin/targets/*/*/*rootfs.tar)
+    #sudo cp $tarfile .
+    #tarfile=$(ls ./*rootfs.tar)
+    sudo tar xvfp $tarfile
+	#sudo rm -r *.tar
+    echo "解压$tarfile"
+  else
+    tarfile=$(ls ../openwrt/bin/targets/*/*/*rootfs.tar.gz)
+    #sudo cp $tarfile .
+    #tarfile=$(ls ./*rootfs.tar.gz)
+    sudo tar zxvfp $tarfile
+	#sudo rm -r *.tar.gz
+    echo "解压$tarfile"
+fi
+
 cd ..
 sudo dd if=/dev/zero of=openwrt.img bs=1M count=2000
 sudo mkfs.ext4 openwrt.img
@@ -28,7 +45,7 @@ cat <<EOF >>burn/commands.txt
 PARTITION:boot:sparse:boot.simg
 PARTITION:rootfs:sparse:rootfs.simg
 EOF
-prefix=$(ls openwrt/bin/targets/*/*/*.rootfs.tar.gz | sed 's/\.rootfs.tar.gz$//')
+prefix=$(ls openwrt/bin/targets/*/*/*rootfs.tar.gz | sed 's/\rootfs.tar.gz$//')
 burnimg=${prefix}.burn.img
 ./AmlImg pack $burnimg burn/
 for f in openwrt/bin/targets/*/*/*.burn.img; do
