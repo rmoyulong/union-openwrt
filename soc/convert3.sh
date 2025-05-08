@@ -30,18 +30,22 @@ if [ "$files" != "0" ]; then
     echo "解压$tarfile"
 fi
 
+git clone  https://github.com/rmoyulong/OneCloud_OpenWrt patchs
+
 cd ..
 sudo dd if=/dev/zero of=openwrt.img bs=1M count=2000
 sudo mkfs.ext4 openwrt.img
 sudo mount openwrt.img mount_rootfs
 cd mount_rootfs
 sudo cp -rf ../rootfs_path/* .
+sudo cp -rf ../patchs/lede6.6/target/linux/meson/base-files/* .
+sudo cp -rf ../patchs/onecloud/files/* .
 cd ..
 sudo sync
 sudo umount mount_rootfs
 #sudo img2simg ${loop}p1 burn/boot.simg
 #mv $GITHUB_WORKSPACE/lede6.12/boot.PARTITION burn/boot.simg
-git clone  https://github.com/rmoyulong/OneCloud_OpenWrt patchs
+
 cp -rf ./patchs/lede6.12/boot.PARTITION burn/boot.simg
 sudo img2simg openwrt.img burn/rootfs.simg
 sudo rm -rf *.img
