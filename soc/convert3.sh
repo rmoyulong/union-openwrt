@@ -16,6 +16,8 @@ if [ "$files" != "0" ]; then
     #tarfile=$(ls ./*rootfs.tar)
     sudo tar xvfp $tarfile
 	#sudo rm -r *.tar
+	sudo mv $tarfile ../openwrt/bin/targets/*/*/openwrt_meson8b_thunder_armv7_onecloud_rootfs.tar
+	prefix=$(ls ../openwrt/bin/targets/*/*/*rootfs.tar | sed 's/\rootfs.tar$//')
     echo "解压$tarfile"
   else
     tarfile=$(ls ../openwrt/bin/targets/*/*/*rootfs.tar.gz)
@@ -23,6 +25,8 @@ if [ "$files" != "0" ]; then
     #tarfile=$(ls ./*rootfs.tar.gz)
     sudo tar zxvfp $tarfile
 	#sudo rm -r *.tar.gz
+	sudo mv $tarfile ../openwrt/bin/targets/*/*/openwrt_meson8b_thunder_armv7_onecloud_rootfs.tar.gz
+	prefix=$(ls ../openwrt/bin/targets/*/*/*rootfs.tar.gz | sed 's/\rootfs.tar.gz$//')
     echo "解压$tarfile"
 fi
 
@@ -45,7 +49,7 @@ cat <<EOF >>burn/commands.txt
 PARTITION:boot:sparse:boot.simg
 PARTITION:rootfs:sparse:rootfs.simg
 EOF
-prefix=$(ls openwrt/bin/targets/*/*/*rootfs.tar.gz | sed 's/\rootfs.tar.gz$//')
+#prefix=$(ls openwrt/bin/targets/*/*/*rootfs.tar.gz | sed 's/\rootfs.tar.gz$//')
 burnimg=${prefix}.burn.img
 ./AmlImg pack $burnimg burn/
 for f in openwrt/bin/targets/*/*/*.burn.img; do
@@ -53,4 +57,4 @@ for f in openwrt/bin/targets/*/*/*.burn.img; do
   xz -9 --threads=0 --compress "$f"
 done
 sudo rm -rf openwrt/bin/targets/*/*/*.img
-sudo rm -rf openwrt/bin/targets/*/*/*.gz
+#sudo rm -rf openwrt/bin/targets/*/*/*.gz
