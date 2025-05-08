@@ -50,13 +50,13 @@ PARTITION:boot:sparse:boot.simg
 PARTITION:rootfs:sparse:rootfs.simg
 EOF
 
-if [ "$prefix_ext" != "0" ]; then
+if [ $prefix_ext == 1 ]; then
   prefix=$(ls openwrt/bin/targets/*/*/*rootfs.tar.gz | sed 's/\rootfs.tar.gz$//')
 else
   prefix=$(ls openwrt/bin/targets/*/*/*rootfs.tar | sed 's/\rootfs.tar$//')
 fi
 
-burnimg=${prefix}.burn.img
+burnimg=${prefix}.OneCloud.burn.img
 ./AmlImg pack $burnimg burn/
 for f in openwrt/bin/targets/*/*/*.burn.img; do
   sha256sum "$f" >"${f}.sha"
