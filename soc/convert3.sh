@@ -7,6 +7,7 @@ curl -L -o ./uboot.img https://github.com/rmoyulong/u-boot-onecloud/releases/dow
 
 mkdir rootfs_path
 mkdir mount_rootfs
+sudo git clone  https://github.com/rmoyulong/OneCloud_OpenWrt patchs
 
 files=$(ls openwrt/bin/targets/*/*/*.tar 2> /dev/null | wc -l)
 cd rootfs_path
@@ -29,10 +30,8 @@ if [ "$files" != "0" ]; then
 	prefix_ext=1
     echo "解压$tarfile"
 fi
-
-git clone  https://github.com/rmoyulong/OneCloud_OpenWrt patchs
-
 cd ..
+
 sudo dd if=/dev/zero of=openwrt.img bs=1M count=2000
 sudo mkfs.ext4 openwrt.img
 sudo mount openwrt.img mount_rootfs
@@ -41,6 +40,7 @@ sudo cp -rf ../rootfs_path/* .
 sudo cp -rf ../patchs/lede6.6/target/linux/meson/base-files/* .
 sudo cp -rf ../patchs/onecloud/files/* .
 cd ..
+
 sudo sync
 sudo umount mount_rootfs
 #sudo img2simg ${loop}p1 burn/boot.simg
