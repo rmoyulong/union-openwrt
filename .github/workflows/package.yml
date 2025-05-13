@@ -161,7 +161,7 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadowsocks-libev
         
         #需要删除 package/openwrt-passwall/shadowsocks-rust
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadowsocks-rust
+        git_sparse_clone main https://github.com/kenzok8/small-package shadowsocks-rust
         ##########################################################################################
         git_sparse_clone main https://github.com/kenzok8/small-package dnsforwarder
         git_sparse_clone main https://github.com/kenzok8/small-package v2dat
@@ -304,8 +304,6 @@ jobs:
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         tar zcvfp $GITHUB_WORKSPACE/outfile/openwrt_orther.tar.gz .
         ##########################################################################################
-        rm -rf package/shadowsocks-rust
-        merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-rust
         rm -rf package/libs
         mkdir -p package/libs
         cp -rf ../lede/package/libs/mbedtls package/libs/mbedtls
