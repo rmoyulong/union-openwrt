@@ -140,7 +140,7 @@ jobs:
         rm -rf  package/openwrt-passwall/xray-core
         #git_sparse_clone main https://github.com/kiddin9/kwrt-packages xray-core
         merge_package master https://github.com/coolsnowwolf/packages package lang/rust
-        git_sparse_clone main https://github.com/kiddin9/kwrt-packages dns2socks-rust
+        #git_sparse_clone main  https://github.com/kiddin9/kwrt-packages dns2socks-rust
         merge_package main https://github.com/xiaorouji/openwrt-passwall package luci-app-passwall
         merge_package main https://github.com/xiaorouji/openwrt-passwall2 package luci-app-passwall2
         #merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-passwall
@@ -267,8 +267,8 @@ jobs:
         #适合openwrt库的mod_nftables_full 
         rm -rf package/network/utils
         mkdir -p package/network/utils
-        cp -rf ../breeze303/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
-        cp -rf ../breeze303/package/network/utils/fullconenat package/network/utils/fullconenat
+        cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/fullconenat-nft
+        cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils/fullconenat
         #cp -rf ../lede/package/network/utils/nftables package/network/utils/nftables
         ###########################################################################################
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages cpufreq
