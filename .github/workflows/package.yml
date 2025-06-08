@@ -226,7 +226,8 @@ jobs:
         
         #需要删除 feeds/luci/applications/luci-app-kodexplorer
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-kodexplorer
-        merge_package master https://github.com/immortalwrt/luci/ package applications/luci-app-unblockneteasemusic
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-unblockmusic
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-unblockneteasemusic
         ##########################################################################################
         #适合lede库的mod_nftables_full 
         rm -rf package/network/utils
