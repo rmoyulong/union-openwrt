@@ -106,7 +106,7 @@ jobs:
       run: |
         git clone -q --single-branch --depth=1 --branch=master https://github.com/immortalwrt/immortalwrt immortalwrt
         git clone -q --single-branch --depth=1 --branch=master https://github.com/coolsnowwolf/lede lede
-        git clone -q --single-branch --depth=1 --branch=main https://github.com/LiBwrt-op/openwrt-6.x breeze303
+        git clone -q --single-branch --depth=1 --branch=k6.12-nss https://github.com/LiBwrt-op/openwrt-6.x breeze303
         
         #建立上传目录
         mkdir -p outfile
