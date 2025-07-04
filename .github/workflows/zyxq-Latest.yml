@@ -91,7 +91,7 @@ jobs:
       # 修正files配置文件脚本 -- remove  目录 不执行: false 已经执行cd openwrt
       CORE_Files_SH: false
       # linux 内核
-      CORE_LINUX: 6.1.y_6.6.y
+      CORE_LINUX: 6.6.y_6.12.y
       # 固件初始设置 -- patch 目录 不执行: false
       CORE_FILES: zyxq/files
       #打包的一些设置
