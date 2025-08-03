@@ -133,8 +133,7 @@ jobs:
         #git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
         #===============================================================================
         git clone --depth=1 https://github.com/VIKINGYFY/homeproxy package/homeproxy
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        
+       
         HP_RULE="surge"
         HP_PATH="package/homeproxy/root/etc/homeproxy"
         rm -rf ./$HP_PATH/resources/*
@@ -150,7 +149,6 @@ jobs:
         cd .. && rm -rf ./$HP_RULE/
         
         echo "homeproxy date has been updated!"
-        cd ${{ env.FIRMWARE }}
         #===============================================================================
         
         #需要删除 feeds/luci/applications/luci-app-homeproxy  feeds/kenzo/luci-app-homeproxy
