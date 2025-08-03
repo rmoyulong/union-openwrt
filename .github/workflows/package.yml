@@ -149,7 +149,7 @@ jobs:
         
         cd .. && rm -rf ./$HP_RULE/
         
-        cd $PKG_PATH && echo "homeproxy date has been updated!"
+        echo "homeproxy date has been updated!"
         cd ${{ env.FIRMWARE }}
         #===============================================================================
         
