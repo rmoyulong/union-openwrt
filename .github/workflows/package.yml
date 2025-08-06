@@ -179,6 +179,7 @@ jobs:
         #需要删除 feeds/packages/net/shadowsocks-libev
         #merge_package master https://github.com/immortalwrt/packages package net/shadowsocks-libev
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadowsocks-libev
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadowsocksr-libev
         
         #需要删除 package/openwrt-passwall/shadowsocks-rust
         git_sparse_clone main https://github.com/kenzok8/small-package shadowsocks-rust
