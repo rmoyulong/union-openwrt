@@ -178,7 +178,7 @@ jobs:
         #git clone -b main_nss_wifi https://github.com/AgustinLorenzo/nss-packages package/nss-packages
         
         #需要删除 feeds/packages/net/shadowsocks-libev
-        merge_package master https://github.com/coolsnowwolf/packages package net/shadowsocks-libev
+        #merge_package master https://github.com/coolsnowwolf/packages package net/shadowsocks-libev
         #git_sparse_clone main https://github.com/kiddin9/kwrt-packages shadowsocks-libev
         git_sparse_clone main https://github.com/kenzok8/small-package shadowsocksr-libev
         
@@ -371,3 +371,4 @@ jobs:
       with:
         retain_days: 0
         keep_minimum_runs: 1
+
