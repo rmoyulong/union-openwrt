@@ -82,12 +82,12 @@ jobs:
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
       # 通用脚本 -- Scripts  目录 不执行: false 已经执行cd openwrt
-      CORE_DIY_P1_SH: lede.sh
+      CORE_DIY_P1_SH: immortalwrt.sh
       CORE_DIY_P2_SH: Settings.sh
       CORE_DIY_P3_SH: false
       CORE_DIY_P4_SH: false
       # 删除不兼容的插件 -- remove 目录 不执行: false 已经执行cd openwrt
-      CORE_remove: lede_remove.sh
+      CORE_remove: remove.sh
       # 修正files配置文件脚本 -- remove  目录 不执行: false 已经执行cd openwrt
       CORE_Files_SH: edit_files.sh
       # linux 内核
