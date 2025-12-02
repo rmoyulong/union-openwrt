@@ -70,14 +70,14 @@ jobs:
       CORE_BRANCH: master
       CORE_tag_name: 最新版
       # 头部 配置文件 --- header 目录
-      CORE_header: amlogic_mesongx_DEVICE_phicomm_n1.config
+      CORE_header: armsr_armv8_DEVICE_generic.config
       # 配置文件 -- config 目录
       CORE_config: N1_latest.config 
       # 补丁脚本 -- patch 目录 不执行: false 没有执行cd openwrt
       #前置补丁 -- 在【更新订阅源】前执行
-      CORE_patch: before-remove-qca-shortcut-fe-patch.sh
+      CORE_patch: before-lower-turboacc-patch.sh
       #后置补丁 -- 在【更新订阅源】后执行
-      CORE_patch_after: python3.patch.sh
+      CORE_patch_after: armsr_python3_patch.sh
       # 单独处理脚本 -- soc 目录 不执行: false 没有执行cd openwrt
       CORE_SOC_P1_SH: false
       CORE_SOC_P2_SH: false
