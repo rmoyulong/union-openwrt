@@ -10,3 +10,5 @@ chmod -Rf 755 target/linux/amlogic
 # 调整内核版本为 5.15
 sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=5.15/' target/linux/amlogic/Makefile
 			
+rm -rf feeds/packages/lang/python
+merge_package master https://github.com/rmoyulong/old_coolsnowwolf_packages feeds/packages/lang lang/python
