@@ -11,4 +11,4 @@ rm -rf openwrt/package/luci-app-turboacc
 #rm -rf openwrt/package/network/utils/fullconenat
 
 cd openwrt
-git_sparse_clone master https://github.com/kiddin9/openwrt-packages luci-app-turboacc
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-turboacc
