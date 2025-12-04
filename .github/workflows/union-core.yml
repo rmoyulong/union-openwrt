@@ -449,7 +449,7 @@ jobs:
             gzip *.tar
           fi
           
-      - name: 生成标签，上传固件
+      - name: 生成标签，上传armsr底包
         uses: ncipollo/release-action@v1
         if: env.CORE_Pack == 'ophub'  ||  env.CORE_Pack == 'flippy'
         with:
