@@ -465,13 +465,13 @@ jobs:
         if: env.CORE_Pack == 'flippy'
         uses: ophub/flippy-openwrt-actions@main
         env:
-          OPENWRT_ARMVIRT: openwrt/upload/*rootfs.tar.gz
+          OPENWRT_ARMSR: openwrt/upload/*rootfs.tar.gz
+          OPENWRT_IP: ${{env.CORE_IP}}
           PACKAGE_SOC: ${{ env.CORE_TARGET }}
           WHOAMI: moyulong
           KERNEL_VERSION_NAME: ${{ env.CORE_LINUX }}
           KERNEL_AUTO_LATEST: true
           GZIP_IMGS: .gz
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: 合并原始资料和打包文件
         if: env.CORE_Pack == 'ophub'  ||  env.CORE_Pack == 'flippy'
