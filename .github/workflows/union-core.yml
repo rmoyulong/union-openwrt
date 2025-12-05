@@ -463,7 +463,7 @@ jobs:
 
             作者：rmoyulong
             打包时间：${{env.CORE_DATE}}
-            artifacts: openwrt/upload/*.tar.gz
+          artifacts: openwrt/upload/*.tar.gz
           
       - name: Armv8打包OpenWrt
         if: env.CORE_Pack == 'ophub'
@@ -525,3 +525,4 @@ jobs:
         with:
           retain_days: 0
           keep_minimum_runs: 1
+
