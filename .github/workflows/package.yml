@@ -193,6 +193,7 @@ jobs:
         git_sparse_clone main https://github.com/kenzok8/small-package lua-maxminddb
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages lua-neturl
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-ssr-plus
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages simple-obfs
         git_sparse_clone main https://github.com/kenzok8/small-package v2ray-core
         git_sparse_clone main https://github.com/kenzok8/small-package dns2tcp
         git_sparse_clone main https://github.com/kenzok8/small-package trojan
@@ -371,4 +372,5 @@ jobs:
       with:
         retain_days: 0
         keep_minimum_runs: 1
+
 
