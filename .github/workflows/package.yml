@@ -160,8 +160,8 @@ jobs:
         rm -rf  package/openwrt-passwall/simple-obfs
         rm -rf  package/openwrt-passwall/xray-plugin
         merge_package master https://github.com/coolsnowwolf/packages package lang/rust
-        merge_package main https://github.com/xiaorouji/openwrt-passwall package luci-app-passwall
-        merge_package main https://github.com/xiaorouji/openwrt-passwall2 package luci-app-passwall2
+        git_sparse_clone main https://github.com/kenzok8/small-package luci-app-passwall
+        git_sparse_clone main https://github.com/kenzok8/small-package luci-app-passwall2
         git_sparse_clone main https://github.com/kenzok8/small-package luci-app-openclash
         git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-bypass
         ##########################################################################################
