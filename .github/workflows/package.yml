@@ -198,7 +198,7 @@ jobs:
         git_sparse_clone main https://github.com/kenzok8/small-package v2ray-core
         git_sparse_clone main https://github.com/kenzok8/small-package dns2tcp
         git_sparse_clone main https://github.com/kenzok8/small-package trojan
-        git_sparse_clone main https://github.com/kenzok8/small-package xray-plugin
+        git_sparse_clone main https://github.com/kiddin9/kwrt-packages xray-plugin
         
         #需要删除 package/openwrt-passwall/hysteria
         #git_sparse_clone main https://github.com/kiddin9/kwrt-packages hysteria
