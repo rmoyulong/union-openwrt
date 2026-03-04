@@ -104,8 +104,8 @@ jobs:
         
     - name: 打包自定义订阅源
       run: |
-        #git clone -q --single-branch --depth=1 --branch=master https://github.com/immortalwrt/immortalwrt immortalwrt
-        git clone -q --single-branch --depth=1 --branch=main https://github.com/VIKINGYFY/immortalwrt immortalwrt
+        git clone -q --single-branch --depth=1 --branch=master https://github.com/immortalwrt/immortalwrt immortalwrt
+        #git clone -q --single-branch --depth=1 --branch=main https://github.com/VIKINGYFY/immortalwrt immortalwrt
         git clone -q --single-branch --depth=1 --branch=master https://github.com/coolsnowwolf/lede lede
         git clone -q --single-branch --depth=1 --branch=main-nss https://github.com/LiBwrt-op/openwrt-6.x breeze303
         
