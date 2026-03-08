@@ -1,5 +1,6 @@
 # union_openwrt
 个人的云编译openwrt的一些心得<br>
+[![build](https://img.shields.io/github/actions/workflow/status/rmoyulong/union-openwrt/j1900.yml)](https://github.com/rmoyulong/union-openwrt/actions/workflows/j1900.yml) [![downloads](https://img.shields.io/github/downloads/rmoyulong/union-openwrt/total)](https://github.com/rmoyulong/union-openwrt/releases) [![downloads@latest](https://img.shields.io/github/downloads/rmoyulong/union-openwrt/latest/total)](https://github.com/rmoyulong/union-openwrt/releases/latest)<br>
 
 Ax6 支持nss -- openwrt库<br>
 ---------------------------------------------------------------------<br>
