@@ -122,7 +122,7 @@ jobs:
         #需要删除 feeds/packages/net/aria2 feeds/packages/net/ariang feeds/luci/luci-app-aria2
         merge_package main https://github.com/kiddin9/op-packages package aria2
         merge_package main https://github.com/kiddin9/op-packages package ariang
-        merge_package main https://github.com/kiddin9/op-packages package luci-app-aria2
+        merge_package main https://github.com/kenzok8/jell package luci-app-aria2
         ###########################################################################################        
         git clone --depth=1 https://github.com/kenzok8/openwrt-packages feeds/kenzo
         rm -rf feeds/kenzo/taskd
