@@ -21,5 +21,5 @@ rm -rf feeds/luci/applications/luci-app-homeproxy
 merge_package mian https://github.com/VIKINGYFY/homeproxy package luci-app-homeproxy
 
 cd package
-$GITHUB_WORKSPACE/update_before/Packages.sh
-$GITHUB_WORKSPACE/update_before/Handles.sh
+$GITHUB_WORKSPACE/Scripts/Packages.sh
+$GITHUB_WORKSPACE/Scripts/Handles.sh
