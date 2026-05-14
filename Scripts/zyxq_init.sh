@@ -15,6 +15,9 @@ rm -rf AX6-Actions_Lede
 
 dos2unix ./files/etc/*.sh
 dos2unix ./files/etc/rc.*
+dos2unix ./files/root/*.sh
+
+chmod -Rf 755 ./files/root/*.sh
 chmod -Rf 755 ./files/etc/*.sh
 chmod -Rf 755 ./files/etc/rc.*
 chmod -Rf 755 ./files/etc/init.d/*
