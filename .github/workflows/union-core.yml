@@ -470,6 +470,7 @@ jobs:
         uses: ophub/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: openwrt/upload/*rootfs.tar.gz
+          openwrt_ip: ${{ inputs.CORE_IP }}
           openwrt_board: ${{ env.CORE_TARGET }}
           openwrt_kernel: ${{ env.CORE_LINUX }}
           auto_kernel: ${{ inputs.auto_kernel }}
