@@ -26,3 +26,6 @@ merge_package main https://github.com/kiddin9/op-packages  feeds/packages/net si
 cd package
 $GITHUB_WORKSPACE/Scripts/Packages.sh
 $GITHUB_WORKSPACE/Scripts/Handles.sh
+
+cd ..
+./scripts/feeds update -a
