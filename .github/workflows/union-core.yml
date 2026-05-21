@@ -423,7 +423,7 @@ jobs:
           
       - name: 整理固件
         run: |
-          cd openwrt && mkdir ./upload
+          cd openwrt && mkdir -p ./upload
           
           rm -rf $(find ./bin/targets/ -iregex ".*\(json\|manifest\|buildinfo\|sha256sums\|packages\)$")
           cp -rf $(find ./bin/targets/ -type f -iname "*.*") ./upload/
@@ -457,7 +457,7 @@ jobs:
 
             作者：rmoyulong
             打包时间：${{env.CORE_DATE}}
-            artifacts: openwrt/bin/targets/*/*/*rootfs.*
+            artifacts: ${{ env.FIRMWARE }}/*
           
       - name: Armv8打包OpenWrt
         if: env.CORE_Pack == 'ophub'
