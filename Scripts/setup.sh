@@ -29,3 +29,4 @@ $GITHUB_WORKSPACE/Scripts/Handles.sh
 
 cd ..
 ./scripts/feeds update -a
+./scripts/feeds install -a
