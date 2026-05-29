@@ -443,22 +443,6 @@ jobs:
             gzip *.tar
           fi
           
-      - name: 生成标签，上传armsr底包
-        uses: ncipollo/release-action@v1
-        if: env.CORE_Pack == 'ophub'  ||  env.CORE_Pack == 'flippy'
-        with:
-          allowUpdates: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: armsr8_tar_gz
-          name: armsr8_tar_gz
-          body: |
-            自用armsr openwrt底包！
-            =============基本信息============
-
-            作者：rmoyulong
-            打包时间：${{env.CORE_DATE}}
-            artifacts: ${{ env.FIRMWARE }}/*
-          
       - name: Armv8打包OpenWrt
         if: env.CORE_Pack == 'ophub'
         uses: ophub/amlogic-s9xxx-openwrt@main
