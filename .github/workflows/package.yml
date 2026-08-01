@@ -195,14 +195,14 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/op-packages luci-app-ssr-plus
         git_sparse_clone main https://github.com/kiddin9/op-packages simple-obfs
         git_sparse_clone main https://github.com/kiddin9/op-packages dns2tcp
-        git_sparse_clone main https://github.com/kiddin9/op-packages trojan
-        git_sparse_clone main https://github.com/kiddin9/op-packages xray-plugin
+        git_sparse_clone tmp https://github.com/stupidloud/helloworld trojan
+        git_sparse_clone tmp https://github.com/stupidloud/helloworld xray-plugin
         git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall-packages xray-core
         git_sparse_clone main https://github.com/Openwrt-Passwall/openwrt-passwall-packages geoview        
         
         #需要删除 package/openwrt-passwall/hysteria
         #git_sparse_clone main https://github.com/kiddin9/op-packages hysteria
-        git_sparse_clone main https://github.com/stupidloud/helloworld hysteria
+        git_sparse_clone tmp https://github.com/stupidloud/helloworld hysteria
         
         # iStore
         git_sparse_clone main https://github.com/linkease/istore-ui app-store-ui
