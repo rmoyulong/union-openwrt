@@ -133,7 +133,8 @@ jobs:
         #git clone --depth=1 https://github.com/bulianglin/homeproxy package/homeproxy
         #git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
         #===============================================================================
-        git clone --depth=1 https://github.com/VIKINGYFY/homeproxy package/homeproxy
+        #git clone --depth=1 https://github.com/VIKINGYFY/homeproxy package/homeproxy
+        merge_package main https://github.com/VIKINGYFY/packages package luci-app-homeproxy
        
         HP_RULE="surge"
         HP_PATH="package/homeproxy/root/etc/homeproxy"
@@ -317,7 +318,8 @@ jobs:
         ##########################################################################################
         rm -rf package/homeproxy
         rm -rf package/luci-app-homeproxy
-        git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+        #git clone --depth=1 https://github.com/immortalwrt/homeproxy package/homeproxy
+        merge_package main https://github.com/VIKINGYFY/packages package luci-app-homeproxy
         ##########################################################################################
         #openwrt_orther 打包需要的插件
         rm -rf package/libs
