@@ -186,7 +186,7 @@ jobs:
         git_sparse_clone main https://github.com/kiddin9/op-packages shadowsocks-rust
         ##########################################################################################
         git_sparse_clone main https://github.com/kiddin9/op-packages dnsforwarder
-        git_sparse_clone main https://github.com/kiddin9/op-packages v2dat
+        #git_sparse_clone main https://github.com/kiddin9/op-packages v2dat
         git_sparse_clone main https://github.com/kiddin9/op-packages shadow-tls
        
         git_sparse_clone main https://github.com/kiddin9/op-packages redsocks2
