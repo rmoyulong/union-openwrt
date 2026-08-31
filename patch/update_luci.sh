@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo rm -f /usr/local/bin/runc
+
 cd openwrt
 ./scripts/feeds update -a
 
