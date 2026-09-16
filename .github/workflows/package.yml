@@ -346,6 +346,8 @@ jobs:
         rm -rf package
         rm -rf base
         rm -rf feeds
+        rm -rf luci-app-unblockneteasemusic
+        
         mkdir -p target/linux
         cp -rf ../lede/target/linux/mediatek target/linux
         cp -rf $GITHUB_WORKSPACE/patch/mt7981/filogic.mk target/linux/mediatek/image/filogic.mk
@@ -357,6 +359,8 @@ jobs:
         rm -rf package
         rm -rf base
         rm -rf feeds
+        rm -rf target/linux/mediatek
+        
         mkdir -p target/linux
         cp -rf ../lede/target/linux/amlogic target/linux
         #amlogic 架构打包
