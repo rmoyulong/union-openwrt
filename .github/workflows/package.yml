@@ -353,6 +353,15 @@ jobs:
         #mediatek 架构打包
         tar zcvfp $GITHUB_WORKSPACE/outfile/mediatek.gz .        
         ##########################################################################################
+        ###删除所有源 准备备份lede库的 amlogic 架构
+        rm -rf package
+        rm -rf base
+        rm -rf feeds
+        mkdir -p target/linux
+        cp -rf ../lede/target/linux/amlogic target/linux
+        #amlogic 架构打包
+        tar zcvfp $GITHUB_WORKSPACE/outfile/amlogic.gz .        
+        ##########################################################################################
         
  
     - name: 生成标签，上传固件
