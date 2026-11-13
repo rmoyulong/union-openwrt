@@ -273,8 +273,7 @@ jobs:
         cp -rf ../lede/package/libs/uclient package/libs/uclient
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################       
-        #lede专用 theme
-        merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt
+        #lede专用 theme        
         git clone https://github.com/jerrykuku/luci-app-argon-config --depth=1 package/luci-app-argon-config
         ##########################################################################################
         #lede 打包需要的插件
