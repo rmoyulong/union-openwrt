@@ -274,7 +274,6 @@ jobs:
         cp -rf ../lede/package/libs/pcre package/libs/pcre
         ###########################################################################################       
         #lede专用 theme
-        merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt-2020
         merge_package master https://github.com/immortalwrt/luci/ package themes/luci-theme-openwrt
         git clone https://github.com/jerrykuku/luci-app-argon-config --depth=1 package/luci-app-argon-config
         ##########################################################################################
